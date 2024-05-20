@@ -15,7 +15,7 @@ public final class Calendar {
         return date;
     }
     public String getDateFormat() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy / MM / dd    hh : mm : ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy / MM / dd hh : mm : ss");
         return simpleDateFormat.format(date);
     }
 }

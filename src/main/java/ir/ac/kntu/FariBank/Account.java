@@ -5,8 +5,10 @@ import ir.ac.kntu.DataBase.Database;
 import ir.ac.kntu.DataBase.TransactionDb;
 import ir.ac.kntu.Person.Customer;
 import ir.ac.kntu.Transaction.Transaction;
+import ir.ac.kntu.Transaction.TransactionKind;
 
 import java.util.Set;
+import java.util.concurrent.Callable;
 
 public class Account {
     private long balance = 0;
@@ -35,17 +37,30 @@ public class Account {
         this.accountNumber = accountNumber;
     }
 
+    public TransactionDb getTransactionDb() {
+        return transactionDb;
+    }
+
+    public void setTransactionDb(TransactionDb transactionDb) {
+        this.transactionDb = transactionDb;
+    }
+
     public void increaseCredit(long money) {
         setBalance(getBalance() + money);
+        Database database = new Database();
+        Customer customer = database.findReceiver(accountNumber);
+        Transaction transaction = new Transaction(customer.getFirstName(), customer.getLastName(), customer.getAccount().getAccountNumber(), getAccountNumber(), TransactionKind.INCREASE_CREDIT);
+
     }
 
     public void transfer(long money, String accountNumber) {
+        Database database = new Database();
         try {
             if (money + Constant.WAGE <= balance) {
                 setBalance(getBalance() - money - Constant.WAGE);
-                Customer customer = Database.find_transferToReceiver(accountNumber);
-                customer.getAccount().increaseCredit(money);
-                Transaction transaction = new Transaction(customer.getFirstName(), customer.getLastName(), customer.getAccount().getAccountNumber(), getAccountNumber());
+                Customer customer = database.findReceiver(accountNumber);
+                customer.getAccount().setBalance(getBalance() + money);
+                Transaction transaction = new Transaction(customer.getFirstName(), customer.getLastName(), customer.getAccount().getAccountNumber(), getAccountNumber(), TransactionKind.TRANSFER_MONEY);
                 transactionDb.addTransaction(transaction);
             } else {
                 throw new RuntimeException("balance is not enough : " + balance);
