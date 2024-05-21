@@ -61,6 +61,7 @@ public class CustomerMenu {
                         break;
                     case 3:
                         contactMenu contactMenu = new contactMenu();
+                        contactMenu.contactMenu(customer);
                         break;
                     case 4:
                         break;

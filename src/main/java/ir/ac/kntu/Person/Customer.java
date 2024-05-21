@@ -3,6 +3,7 @@ package ir.ac.kntu.Person;
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.DataBase.ContactDatabase;
 import ir.ac.kntu.DataBase.RecentTransactionsDataBase;
+import ir.ac.kntu.DataBase.RequestDatabase;
 import ir.ac.kntu.FariBank.Account;
 
 import java.util.Objects;
@@ -16,6 +17,7 @@ public class Customer extends Person {
     private ContactDatabase contactDatabase;
     private RecentTransactionsDataBase recentTransactions;
     private RegistrationStatus status;
+    private RequestDatabase requestDatabase;
 
     public Customer(String firstName, String lastName, String password, String nationalCode, String cellNumber) {
         super(firstName, lastName, password);
@@ -31,6 +33,7 @@ public class Customer extends Person {
         }
         contactDatabase = new ContactDatabase();
         this.status = RegistrationStatus.PROGRESSING;
+        requestDatabase = new RequestDatabase();
 
     }
 
