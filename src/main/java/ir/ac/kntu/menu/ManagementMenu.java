@@ -10,6 +10,8 @@ public class ManagementMenu {
         System.out.println(Constant.BLUE + "choose one of the following option :");
         System.out.println(Constant.GREEN + "1.log in");
         System.out.println(Constant.GREEN + "2.register");
+        System.out.println(Constant.GREEN + "99.back");
+
     }
     public void managementRegistration() {
         int number = ScannerWrapper.getInstance().nextInt();
@@ -44,4 +46,35 @@ public class ManagementMenu {
         }
         System.out.println(Constant.RED + "invalid information!!");
     }
+
+    public void printManagementMenu() {
+        System.out.println(Constant.BLUE + "choose one of the following option : ");
+        System.out.println(Constant.GREEN + "1.verify");
+        System.out.println(Constant.GREEN + "2.request");
+        System.out.println(Constant.GREEN + "3.user access");
+        System.out.println(Constant.GREEN + "99.back");
+
+    }
+    public void managementMenu() {
+        int number = ScannerWrapper.getInstance().nextInt();
+        while (number != 99) {
+            try {
+                printManagementMenu();
+                switch (number) {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        throw new RuntimeException("invalid number!!");
+                }
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+            number = ScannerWrapper.getInstance().nextInt();
+        }
+    }
+
 }

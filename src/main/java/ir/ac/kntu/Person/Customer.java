@@ -104,6 +104,14 @@ public class Customer extends Person {
         this.contactIsOn = contactIsOn;
     }
 
+    public registrationStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(registrationStatus status) {
+        this.status = status;
+    }
+
     public void addContact(String cellNumber, String firstName, String lastName) {
         Customer customer = contactDatabase.findCustomer(cellNumber);
         try {
