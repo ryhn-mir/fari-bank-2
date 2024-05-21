@@ -127,6 +127,15 @@ public class Customer extends Person {
     }
 
     @Override
+    public String toString() {
+        return "Customer{" + super.toString() +
+                "nationalCode='" + nationalCode + '\'' +
+                ", cellNumber='" + cellNumber + '\'' +
+                ", status=" + status +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
