@@ -73,4 +73,8 @@ public class Database {
     public void removeCustomer(Customer customer) {
 
     }
+
+    public static void addCustomer(Customer customer) {
+        customerDataBase.add(customer);
+    }
 }

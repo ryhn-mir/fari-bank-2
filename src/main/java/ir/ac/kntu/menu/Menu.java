@@ -19,8 +19,8 @@ public class Menu {
             printMainMenu();
             switch (number) {
                 case 1:
-                    CustomerMenu customer = new CustomerMenu();
-                    customer.login_registerMenu();
+                    CustomerMenu customerMenu = new CustomerMenu();
+                    customerMenu.UserRegistrationMenu();
                     break;
                 case 2:
                     break;

@@ -25,6 +25,8 @@ public class CustomerMenu {
                     case 2: //register
                         register();
                         break;
+                    default:
+                        throw new RuntimeException("invalid number");
                 }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
@@ -103,6 +105,55 @@ public class CustomerMenu {
     }
 
     private void register() {
+        String firstName = ScannerWrapper.getInstance().next();
+        String lastName = ScannerWrapper.getInstance().next();
+        String cellNumber = ScannerWrapper.getInstance().next();
+        String nationalCode = ScannerWrapper.getInstance().next();
+        String password = ScannerWrapper.getInstance().next();
 
+        for (Customer customer : Database.getCustomerDataBase()) {
+            if (customer.getCellNumber().equals(cellNumber) || customer.getNationalCode().equals(nationalCode)) {
+                System.out.println(Constant.RED + "a customer with this data is already exist!!");
+                return;
+            }
+        }
+        while (!checkPassword(password)) {
+            System.out.println(Constant.RED + "password is too weak try another password!!");
+            password = ScannerWrapper.getInstance().next();
+        }
+        Customer customer = new Customer(firstName, lastName, password, nationalCode, cellNumber);
+        Database.addCustomer(customer);
+    }
+    private boolean checkPassword(String password) {
+        boolean upperCase = false;
+        boolean lowerCase = false;
+        boolean numeric = false;
+        boolean character = false;
+
+        for (int i =0; i < password.length(); i++) {
+            if (Character.isUpperCase(password.charAt(i))) {
+                upperCase = true;
+            }
+            if (Character.isLowerCase(password.charAt(i))) {
+                lowerCase = true;
+            }
+            if (Character.isDigit(password.charAt(i))) {
+                numeric = true;
+            }
+        }
+        if (passwordHasSpecialChar(password)) {
+            character = true;
+        }
+        return ( numeric && character && lowerCase && upperCase );
+    }
+    private boolean passwordHasSpecialChar(String password) {
+        if (password.contains("/") || password.contains("%") || password.contains("~")) {
+            return false;
+        }
+        if (password.contains("@") || password.contains("#") || password.contains("^") ||
+                password.contains("$") || password.contains("&") || password.contains("*")) {
+            return true;
+        }
+        return false;
     }
 }

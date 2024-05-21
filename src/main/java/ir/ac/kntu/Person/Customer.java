@@ -19,6 +19,7 @@ public class Customer extends Person {
     private boolean contactIsOn = true;
     private ContactDatabase contactDatabase;
     private RecentTransactionsDataBase recentTransactions;
+    private registrationStatus status;
 
     public Customer(String firstName, String lastName, String password, String nationalCode, String cellNumber) {
         super(firstName, lastName, password);
@@ -33,6 +34,7 @@ public class Customer extends Person {
             }
         }
         contactDatabase = new ContactDatabase();
+        this.status = registrationStatus.PROGRESSING;
 
     }
 
@@ -43,6 +45,7 @@ public class Customer extends Person {
         this.account = customer.account;
         this.contactDatabase = customer.getContactDatabase();
         this.contactIsOn = customer.contactIsOn;
+        this.status = customer.status;
     }
 
     public String getNationalCode() {
