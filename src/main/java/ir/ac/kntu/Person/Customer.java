@@ -2,13 +2,9 @@ package ir.ac.kntu.Person;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.DataBase.ContactDatabase;
-import ir.ac.kntu.DataBase.Database;
 import ir.ac.kntu.DataBase.RecentTransactionsDataBase;
 import ir.ac.kntu.FariBank.Account;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -19,7 +15,7 @@ public class Customer extends Person {
     private boolean contactIsOn = true;
     private ContactDatabase contactDatabase;
     private RecentTransactionsDataBase recentTransactions;
-    private registrationStatus status;
+    private RegistrationStatus status;
 
     public Customer(String firstName, String lastName, String password, String nationalCode, String cellNumber) {
         super(firstName, lastName, password);
@@ -34,7 +30,7 @@ public class Customer extends Person {
             }
         }
         contactDatabase = new ContactDatabase();
-        this.status = registrationStatus.PROGRESSING;
+        this.status = RegistrationStatus.PROGRESSING;
 
     }
 
@@ -104,11 +100,11 @@ public class Customer extends Person {
         this.contactIsOn = contactIsOn;
     }
 
-    public registrationStatus getStatus() {
+    public RegistrationStatus getStatus() {
         return status;
     }
 
-    public void setStatus(registrationStatus status) {
+    public void setStatus(RegistrationStatus status) {
         this.status = status;
     }
 

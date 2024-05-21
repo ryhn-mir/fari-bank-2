@@ -2,8 +2,11 @@ package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.DataBase.Database;
+import ir.ac.kntu.Person.Customer;
 import ir.ac.kntu.Person.Management;
+import ir.ac.kntu.Person.RegistrationStatus;
 import ir.ac.kntu.util.ScannerWrapper;
+import jdk.jshell.Snippet;
 
 public class ManagementMenu {
     public void printManagementRegistration() {
@@ -62,10 +65,14 @@ public class ManagementMenu {
                 printManagementMenu();
                 switch (number) {
                     case 1:
+                        verify();
                         break;
                     case 2:
+                        request();
                         break;
                     case 3:
+                        UserAccessMenu userAccess = new UserAccessMenu();
+                        userAccess.userAccessMenu();
                         break;
                     default:
                         throw new RuntimeException("invalid number!!");
@@ -74,6 +81,27 @@ public class ManagementMenu {
                 System.err.println(e.getMessage());
             }
             number = ScannerWrapper.getInstance().nextInt();
+        }
+    }
+
+    private void request() {
+    }
+
+    public void verify() {
+        int count = 1;
+        for (Customer customer : Database.getCustomerDataBase()) {
+            if(customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
+                System.out.println(count + "." + customer);
+                count++;
+            }
+        }
+        int number = ScannerWrapper.getInstance().nextInt();
+        int counter = 0;
+        for (Customer customer : Database.getCustomerDataBase()) {
+            if (counter == number) {
+                customer.setStatus(RegistrationStatus.ACCEPTED);
+            }
+            counter++;
         }
     }
 

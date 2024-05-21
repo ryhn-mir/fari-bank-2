@@ -2,14 +2,14 @@ package ir.ac.kntu.Person;
 
 import ir.ac.kntu.Constant;
 
-public enum registrationStatus {
+public enum RegistrationStatus {
     REJECTED(Constant.CYAN + "rejected"),
     PROGRESSING(Constant.CYAN + "progressing"),
     ACCEPTED(Constant.CYAN + "accepted");
 
     private final String statusOfCustomer;
 
-    registrationStatus(String statusOfCustomer) {
+    RegistrationStatus(String statusOfCustomer) {
         this.statusOfCustomer = statusOfCustomer;
     }
 

@@ -23,18 +23,25 @@ public class SearchUserAccessMenu {
             printSearchUserAccessMenu();
             switch (number) {
                 case 1:
+                    searchByFirstName();
                     break;
                 case 2:
+                    searchByLastName();
                     break;
                 case 3:
+                    searchByCellNumber();
                     break;
                 case 4:
+                    searchByFirstNameAndLastName();
                     break;
                 case 5:
+                    searchByFirstNameAndCellNumber();
                     break;
                 case 6:
+                    searchByLastNameAndCellNumber();
                     break;
                 case 7:
+                    searchByFirstNameAndLastNameAndCellNumber();
                     break;
                 default:
                     System.out.println(Constant.RED + "invalid number");
