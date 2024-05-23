@@ -17,8 +17,9 @@ public class TransferMoneyMenu {
         System.out.println(Constant.GREEN + "3.transfer money by account number");
         System.out.println(Constant.GREEN + "99.back");
     }
+
     public void transferMoney(Customer customer) {
-        int number= ScannerWrapper.getInstance().nextInt();
+        int number = ScannerWrapper.getInstance().nextInt();
         while (number != 99) {
             printTransferMoneyMenu();
             try {
@@ -40,14 +41,15 @@ public class TransferMoneyMenu {
             }
         }
     }
+
     public void transferMoneyByContact(Customer customer) {
-        if(!customer.isContactIsOn()) {
+        if (!customer.isContactIsOn()) {
             System.out.println(Constant.RED + "you do not have access to contact");
             return;
         } else {
             int count = 1;
             for (Customer cust : customer.getContactDatabase().getContactList()) {
-                System.out.println(count + "." + cust.getFirstName()+ " " + cust.getLastName());
+                System.out.println(count + "." + cust.getFirstName() + " " + cust.getLastName());
             }
             int number = ScannerWrapper.getInstance().nextInt();
             if (number >= 1 && number <= count) {
@@ -57,7 +59,8 @@ public class TransferMoneyMenu {
             }
         }
     }
-    public void transferMoneyByAccountNumber (Customer customer) {
+
+    public void transferMoneyByAccountNumber(Customer customer) {
         System.out.println(Constant.PURPLE + "enter account number");
         String accountNumber = ScannerWrapper.getInstance().next();
         Customer cust = Database.findReceiver(accountNumber);
@@ -73,6 +76,7 @@ public class TransferMoneyMenu {
             System.err.println(e.getMessage());
         }
     }
+
     private void checkContact(Customer customer, int number) {
         Customer cust = customer.getContactDatabase().getContactList().get(number);
         if (cust.getContactDatabase().checkContactIsOn(customer.getAccount().getAccountNumber())) {

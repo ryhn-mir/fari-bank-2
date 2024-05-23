@@ -80,8 +80,12 @@ public class contactMenu {
         }
     }
 
+    public static void printInformationOfContact() {
+        System.out.println(Constant.PURPLE + "Enter your contact firstName lastName and cellNumber");
+    }
+
     public void addContact(Customer customer) {
-        PrintMenu.printInformationOfContact();
+        printInformationOfContact();
         String firstName = ScannerWrapper.getInstance().next();
         String lastName = ScannerWrapper.getInstance().next();
         String cellNumber = ScannerWrapper.getInstance().next();

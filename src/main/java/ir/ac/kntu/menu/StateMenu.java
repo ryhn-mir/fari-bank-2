@@ -15,6 +15,7 @@ public class StateMenu {
         System.out.println(Constant.GREEN + "3.progressing");
         System.out.println(Constant.GREEN + "99.back");
     }
+
     public void stateMenu(AnswerRequestDatabase answerRequestDatabase) {
         int number = ScannerWrapper.getInstance().nextInt();
         while (number != 99) {
@@ -35,6 +36,7 @@ public class StateMenu {
             number = ScannerWrapper.getInstance().nextInt();
         }
     }
+
     private void showSubmit(AnswerRequestDatabase answerRequestDatabase) {
         print(answerRequestDatabase, RequestState.SUBMIT);
         int count = 0;
@@ -46,6 +48,7 @@ public class StateMenu {
             }
         }
     }
+
     private void showAnswered(AnswerRequestDatabase answerRequestDatabase) {
         print(answerRequestDatabase, RequestState.ANSWERED);
         int count = 0;
@@ -57,6 +60,7 @@ public class StateMenu {
             }
         }
     }
+
     private void showProgressing(AnswerRequestDatabase answerRequestDatabase) {
         print(answerRequestDatabase, RequestState.PROGRESSING);
         int count = 0;
@@ -68,18 +72,20 @@ public class StateMenu {
             }
         }
     }
-    private void closeRequest(int number, int count, Request request){
+
+    private void closeRequest(int number, int count, Request request) {
         if (number == count) {
             String answer = ScannerWrapper.getInstance().nextLine();
             request.setAnswer(answer);
             request.setRequestState(RequestState.ANSWERED);
         }
     }
+
     private void print(AnswerRequestDatabase answerRequestDatabase, RequestState requestState) {
         int count = 1;
         for (Request request : answerRequestDatabase.getAnswer()) {
             if (request.getRequestState() == requestState) {
-                System.out.println(count + "." +requestState);
+                System.out.println(count + "." + requestState);
                 count++;
             }
         }

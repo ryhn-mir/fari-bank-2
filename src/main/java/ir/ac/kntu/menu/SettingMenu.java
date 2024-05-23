@@ -14,6 +14,7 @@ public class SettingMenu {
         System.out.println(Constant.GREEN + "4.unActivation your contact");
         System.out.println(Constant.GREEN + "99.back");
     }
+
     public void settingMenu(Customer customer) {
         int number = ScannerWrapper.getInstance().nextInt();
         while (number != 99) {
@@ -40,7 +41,8 @@ public class SettingMenu {
             }
         }
     }
-    private void editCardPassword(Customer customer){
+
+    private void editCardPassword(Customer customer) {
         //ask
     }
 

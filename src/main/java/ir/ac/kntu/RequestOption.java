@@ -5,6 +5,7 @@ public enum RequestOption {
     SETTING,
     TRANSFER,
     REPORT;
+
     public static void print() {
         System.out.println(Constant.BLUE + "choose one the following option : ");
         System.out.println(Constant.GREEN + "1.contact");

@@ -29,6 +29,7 @@ public class SupportMenu {
             number = ScannerWrapper.getInstance().nextInt();
         }
     }
+
     private void showRequest(Customer customer) {
         for (Request request : customer.getRequestDatabase().getRequestList()) {
             int count = 1;

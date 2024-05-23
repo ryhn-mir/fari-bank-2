@@ -41,7 +41,7 @@ public class Transaction {
         this.transactionKind = transactionKind;
     }
 
-    private String getTracingNumber () {
+    private String getTracingNumber() {
         Random random = new Random();
         int max = 999999;
         int min = 100000;

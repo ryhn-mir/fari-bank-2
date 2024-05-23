@@ -12,6 +12,7 @@ public class ShowRequestMenu {
         System.out.println(Constant.GREEN + "2.show");
         System.out.println(Constant.GREEN + "99.back");
     }
+
     public void showRequestMenu(AnswerRequestDatabase answerRequestDatabase) {
         int number = ScannerWrapper.getInstance().nextInt();
         while (number != 99) {
@@ -33,6 +34,6 @@ public class ShowRequestMenu {
         answerRequestDatabase.printAnswerRequest();
         int number = ScannerWrapper.getInstance().nextInt();
         answerRequestDatabase.getAnswer().get(number - 1).setRequestState(RequestState.PROGRESSING);
-        System.out.println(answerRequestDatabase.getAnswer().get(number - 1) +"cellNumber : "+ answerRequestDatabase.getAnswer().get(number - 1).getCellNumber());
+        System.out.println(answerRequestDatabase.getAnswer().get(number - 1) + "cellNumber : " + answerRequestDatabase.getAnswer().get(number - 1).getCellNumber());
     }
 }
