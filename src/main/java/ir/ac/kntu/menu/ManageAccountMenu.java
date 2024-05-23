@@ -20,6 +20,7 @@ public class ManageAccountMenu {
         System.out.println(Constant.GREEN + "99.back");
 
     }
+
     public void manageAccountMenu(Customer customer) {
         int number = ScannerWrapper.getInstance().nextInt();
         while (number != 99) {
@@ -55,7 +56,7 @@ public class ManageAccountMenu {
         System.out.println(Constant.PURPLE + customer.getAccount().getBalance());
     }
 
-    private void increaseBalance(Customer customer){
+    private void increaseBalance(Customer customer) {
         long money = ScannerWrapper.getInstance().nextLong();
         System.out.println(Constant.BLUE + "enter the money");
         customer.getAccount().increaseCredit(money);
@@ -95,6 +96,7 @@ public class ManageAccountMenu {
             }
         }
     }
+
     private void getTransactionsByNumber(Customer customer) {
         try {
             System.out.println(Constant.PURPLE + "enter the number of transactions you want");
@@ -119,14 +121,15 @@ public class ManageAccountMenu {
         Date secondDate = simpleDateFormat.parse(secondNumber);
         int size = customer.getAccount().getTransactionDb().getTransactions().size();
 
-        for(int i = size - 1; i >= 0; i--) {
+        for (int i = size - 1; i >= 0; i--) {
             long time = customer.getAccount().getTransactionDb().getTransactions().get(i).getDate().getTime();
-            if(firstDate.getTime() <= time  && time <= secondDate.getTime()) {
+            if (firstDate.getTime() <= time && time <= secondDate.getTime()) {
                 System.out.println(Constant.PURPLE + customer.getAccount().getTransactionDb().getTransactions().get(i));
             }
         }
     }
-     private void getAllTransactions(Customer customer) {
+
+    private void getAllTransactions(Customer customer) {
         try {
             int size = customer.getAccount().getTransactionDb().getTransactions().size();
             if (size == 0) {
@@ -138,6 +141,6 @@ public class ManageAccountMenu {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-     }
+    }
 
 }

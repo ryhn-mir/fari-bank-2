@@ -9,7 +9,8 @@ import java.util.Set;
 
 public class TransactionDb {
     private List<Transaction> transactions;
-    public TransactionDb(){
+
+    public TransactionDb() {
         transactions = new LinkedList<>();
     }
 

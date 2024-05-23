@@ -16,6 +16,7 @@ public class ManagementMenu {
         System.out.println(Constant.GREEN + "99.back");
 
     }
+
     public void managementRegistration() {
         int number = ScannerWrapper.getInstance().nextInt();
         while (number != 99) {
@@ -28,7 +29,7 @@ public class ManagementMenu {
                         System.out.println(Constant.PURPLE + "coming soon :)");
                         break;
                     default:
-                       throw new RuntimeException("invalid number");
+                        throw new RuntimeException("invalid number");
                 }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
@@ -36,6 +37,7 @@ public class ManagementMenu {
             number = ScannerWrapper.getInstance().nextInt();
         }
     }
+
     public void login() {
         System.out.println(Constant.PURPLE + "enter your userName : ");
         String userName = ScannerWrapper.getInstance().next();
@@ -58,6 +60,7 @@ public class ManagementMenu {
         System.out.println(Constant.GREEN + "99.back");
 
     }
+
     public void managementMenu() {
         int number = ScannerWrapper.getInstance().nextInt();
         while (number != 99) {
@@ -91,7 +94,7 @@ public class ManagementMenu {
     public void verify() {
         int count = 1;
         for (Customer customer : Database.getCustomerDataBase()) {
-            if(customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
+            if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
                 System.out.println(count + "." + customer);
                 count++;
             }

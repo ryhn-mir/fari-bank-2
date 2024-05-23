@@ -34,7 +34,7 @@ public class BranchMenu {
     }
 
     public void report(AnswerRequestDatabase answerRequestDatabase) {
-        print(answerRequestDatabase,RequestOption.REPORT);
+        print(answerRequestDatabase, RequestOption.REPORT);
         int number = ScannerWrapper.getInstance().nextInt();
         int count = 0;
         for (Request request : answerRequestDatabase.getAnswer()) {
@@ -47,7 +47,7 @@ public class BranchMenu {
     }
 
     private void transfer(AnswerRequestDatabase answerRequestDatabase) {
-        print(answerRequestDatabase,RequestOption.TRANSFER);
+        print(answerRequestDatabase, RequestOption.TRANSFER);
         int number = ScannerWrapper.getInstance().nextInt();
         int count = 0;
         for (Request request : answerRequestDatabase.getAnswer()) {
@@ -59,7 +59,7 @@ public class BranchMenu {
     }
 
     private void Setting(AnswerRequestDatabase answerRequestDatabase) {
-        print(answerRequestDatabase,RequestOption.SETTING);
+        print(answerRequestDatabase, RequestOption.SETTING);
         int number = ScannerWrapper.getInstance().nextInt();
         int count = 0;
         for (Request request : answerRequestDatabase.getAnswer()) {
@@ -71,7 +71,7 @@ public class BranchMenu {
     }
 
     private void Contact(AnswerRequestDatabase answerRequestDatabase) {
-        print(answerRequestDatabase,RequestOption.CONTACT);
+        print(answerRequestDatabase, RequestOption.CONTACT);
         int number = ScannerWrapper.getInstance().nextInt();
         int count = 0;
         for (Request request : answerRequestDatabase.getAnswer()) {
@@ -86,12 +86,13 @@ public class BranchMenu {
         int count = 1;
         for (Request request : answerRequestDatabase.getAnswer()) {
             if (request.getRequestOption() == requestOption) {
-                System.out.println(count + "." +requestOption);
+                System.out.println(count + "." + requestOption);
                 count++;
             }
         }
     }
-    private void closeRequest(int number, int count, Request request){
+
+    private void closeRequest(int number, int count, Request request) {
         if (number == count) {
             String answer = ScannerWrapper.getInstance().nextLine();
             request.setAnswer(answer);

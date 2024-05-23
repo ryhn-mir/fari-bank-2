@@ -12,6 +12,7 @@ public class Menu {
         System.out.println(Constant.YELLOW + "2.management");
         System.out.println(Constant.YELLOW + "99.exit");
     }
+
     public int mainMenu() {
 
         int number = ScannerWrapper.getInstance().nextInt();
@@ -34,11 +35,6 @@ public class Menu {
         }
         return number;
     }
-
-
-
-
-
 
 
 }

@@ -46,6 +46,7 @@ public class CustomerMenu {
         System.out.println(Constant.GREEN + "99.back");
 
     }
+
     public void customerMenu(Customer customer) {
         int number = ScannerWrapper.getInstance().nextInt();
         while (number != 99) {
@@ -73,7 +74,7 @@ public class CustomerMenu {
                         throw new RuntimeException("invalid number");
                 }
                 number = ScannerWrapper.getInstance().nextInt();
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         }
@@ -125,13 +126,14 @@ public class CustomerMenu {
         Customer customer = new Customer(firstName, lastName, password, nationalCode, cellNumber);
         Database.addCustomer(customer);
     }
+
     private boolean checkPassword(String password) {
         boolean upperCase = false;
         boolean lowerCase = false;
         boolean numeric = false;
         boolean character = false;
 
-        for (int i =0; i < password.length(); i++) {
+        for (int i = 0; i < password.length(); i++) {
             if (Character.isUpperCase(password.charAt(i))) {
                 upperCase = true;
             }
@@ -145,8 +147,9 @@ public class CustomerMenu {
         if (passwordHasSpecialChar(password)) {
             character = true;
         }
-        return ( numeric && character && lowerCase && upperCase );
+        return (numeric && character && lowerCase && upperCase);
     }
+
     private boolean passwordHasSpecialChar(String password) {
         if (password.contains("/") || password.contains("%") || password.contains("~")) {
             return false;

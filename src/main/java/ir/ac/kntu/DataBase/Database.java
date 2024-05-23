@@ -34,7 +34,8 @@ public class Database {
     public static void setCustomerDataBase(Set<Customer> customerDataBase) {
         Database.customerDataBase = customerDataBase;
     }
-    public static Customer findReceiver (String accountNumber) {
+
+    public static Customer findReceiver(String accountNumber) {
         Set<Customer> customersDB = getCustomerDataBase();
         for (Customer customer : customersDB) {
             if (customer.getAccount().getAccountNumber().equals(accountNumber)) {
@@ -44,7 +45,7 @@ public class Database {
         return null;
     }
 
-    public Management findManagement (String userName) {
+    public Management findManagement(String userName) {
         Set<Management> managementDB = getManagementDataBase();
         for (Management management : managementDB) {
             if (management.getUserName().equals(userName)) {
@@ -53,9 +54,10 @@ public class Database {
         }
         return null;
     }
+
     public boolean DoesCustomerExist(Customer customer) {
         for (Customer cust : customerDataBase) {
-            if(customer.equals(cust)) {
+            if (customer.equals(cust)) {
                 return true;
             }
         }
@@ -64,12 +66,13 @@ public class Database {
 
     public boolean DoesManagementExist(Management management) {
         for (Management cust : managementDataBase) {
-            if(management.equals(cust)) {
+            if (management.equals(cust)) {
                 return true;
             }
         }
         return false;
     }
+
     public void removeCustomer(Customer customer) {
 
     }

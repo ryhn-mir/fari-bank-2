@@ -12,9 +12,11 @@ public class AnswerRequestDatabase {
     public AnswerRequestDatabase() {
         answer = new LinkedList<>();
     }
+
     public void add(Request request) {
         answer.add(request);
     }
+
     public void remove(Request request) {
         answer.remove(request);
     }
