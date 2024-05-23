@@ -1,6 +1,4 @@
-package ir.ac.kntu.Person;
-
-import java.util.regex.Pattern;
+package ir.ac.kntu.person;
 
 public class Person {
     private String firstName;

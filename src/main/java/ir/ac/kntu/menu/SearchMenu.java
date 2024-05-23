@@ -1,8 +1,7 @@
 package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.DataBase.AnswerRequestDatabase;
-import ir.ac.kntu.DataBase.RequestDatabase;
+import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestState;
 import ir.ac.kntu.util.ScannerWrapper;

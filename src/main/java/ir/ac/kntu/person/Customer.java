@@ -1,10 +1,10 @@
-package ir.ac.kntu.Person;
+package ir.ac.kntu.person;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.DataBase.ContactDatabase;
-import ir.ac.kntu.DataBase.RecentTransactionsDataBase;
-import ir.ac.kntu.DataBase.RequestDatabase;
-import ir.ac.kntu.FariBank.Account;
+import ir.ac.kntu.database.ContactDatabase;
+import ir.ac.kntu.database.RecentTransactionsDataBase;
+import ir.ac.kntu.database.RequestDatabase;
+import ir.ac.kntu.faribank.Account;
 
 import java.util.Objects;
 import java.util.regex.Pattern;

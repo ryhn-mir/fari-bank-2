@@ -1,12 +1,11 @@
 package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.DataBase.Database;
-import ir.ac.kntu.Person.Customer;
-import ir.ac.kntu.Person.Management;
-import ir.ac.kntu.Person.RegistrationStatus;
+import ir.ac.kntu.database.Database;
+import ir.ac.kntu.person.Customer;
+import ir.ac.kntu.person.Management;
+import ir.ac.kntu.person.RegistrationStatus;
 import ir.ac.kntu.util.ScannerWrapper;
-import jdk.jshell.Snippet;
 
 public class ManagementMenu {
     public void printManagementRegistration() {

@@ -1,4 +1,4 @@
-package ir.ac.kntu.Person;
+package ir.ac.kntu.person;
 
 public class Management extends Person {
     String userName;

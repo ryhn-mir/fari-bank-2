@@ -1,14 +1,11 @@
-package ir.ac.kntu.FariBank;
+package ir.ac.kntu.faribank;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.DataBase.Database;
-import ir.ac.kntu.DataBase.TransactionDb;
-import ir.ac.kntu.Person.Customer;
-import ir.ac.kntu.Transaction.Transaction;
-import ir.ac.kntu.Transaction.TransactionKind;
-
-import java.util.Set;
-import java.util.concurrent.Callable;
+import ir.ac.kntu.database.Database;
+import ir.ac.kntu.database.TransactionDb;
+import ir.ac.kntu.person.Customer;
+import ir.ac.kntu.transaction.Transaction;
+import ir.ac.kntu.transaction.TransactionKind;
 
 public class Account {
     private long balance = 0;

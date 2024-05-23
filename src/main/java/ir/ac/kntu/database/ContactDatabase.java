@@ -1,6 +1,6 @@
-package ir.ac.kntu.DataBase;
+package ir.ac.kntu.database;
 
-import ir.ac.kntu.Person.Customer;
+import ir.ac.kntu.person.Customer;
 
 import java.util.LinkedList;
 import java.util.List;

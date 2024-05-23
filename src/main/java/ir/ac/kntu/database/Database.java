@@ -1,11 +1,9 @@
-package ir.ac.kntu.DataBase;
+package ir.ac.kntu.database;
 
-import ir.ac.kntu.Person.Customer;
-import ir.ac.kntu.Person.Management;
+import ir.ac.kntu.person.Customer;
+import ir.ac.kntu.person.Management;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Database {

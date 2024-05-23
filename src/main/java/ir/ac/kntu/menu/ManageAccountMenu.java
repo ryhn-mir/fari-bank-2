@@ -1,9 +1,8 @@
 package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.DataBase.TransactionDb;
-import ir.ac.kntu.Person.Customer;
-import ir.ac.kntu.Transaction.Transaction;
+import ir.ac.kntu.person.Customer;
+import ir.ac.kntu.transaction.Transaction;
 import ir.ac.kntu.util.ScannerWrapper;
 
 import java.text.ParseException;

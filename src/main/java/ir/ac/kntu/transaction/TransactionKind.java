@@ -1,4 +1,4 @@
-package ir.ac.kntu.Transaction;
+package ir.ac.kntu.transaction;
 
 public enum TransactionKind {
     INCREASE_CREDIT,

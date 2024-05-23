@@ -1,12 +1,10 @@
 package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.DataBase.Database;
-import ir.ac.kntu.DataBase.RecentTransactionsDataBase;
-import ir.ac.kntu.Person.Customer;
+import ir.ac.kntu.database.Database;
+import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class TransferMoneyMenu {

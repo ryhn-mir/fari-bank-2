@@ -1,8 +1,7 @@
 package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.DataBase.AnswerRequestDatabase;
-import ir.ac.kntu.DataBase.RequestDatabase;
+import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestOption;
 import ir.ac.kntu.RequestState;
@@ -15,10 +14,10 @@ public class BranchMenu {
             RequestOption.print();
             switch (number) {
                 case 1:
-                    Contact(answerRequestDatabase);
+                    contact(answerRequestDatabase);
                     break;
                 case 2:
-                    Setting(answerRequestDatabase);
+                    setting(answerRequestDatabase);
                     break;
                 case 3:
                     transfer(answerRequestDatabase);
@@ -58,7 +57,7 @@ public class BranchMenu {
         }
     }
 
-    private void Setting(AnswerRequestDatabase answerRequestDatabase) {
+    private void setting(AnswerRequestDatabase answerRequestDatabase) {
         print(answerRequestDatabase, RequestOption.SETTING);
         int number = ScannerWrapper.getInstance().nextInt();
         int count = 0;
@@ -70,7 +69,7 @@ public class BranchMenu {
         }
     }
 
-    private void Contact(AnswerRequestDatabase answerRequestDatabase) {
+    private void contact(AnswerRequestDatabase answerRequestDatabase) {
         print(answerRequestDatabase, RequestOption.CONTACT);
         int number = ScannerWrapper.getInstance().nextInt();
         int count = 0;

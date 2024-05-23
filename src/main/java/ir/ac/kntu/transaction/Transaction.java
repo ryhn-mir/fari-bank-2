@@ -1,6 +1,5 @@
-package ir.ac.kntu.Transaction;
+package ir.ac.kntu.transaction;
 
-import ir.ac.kntu.FariBank.Account;
 import ir.ac.kntu.util.Calendar;
 
 import java.util.Date;

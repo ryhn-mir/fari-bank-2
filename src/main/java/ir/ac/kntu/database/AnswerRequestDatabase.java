@@ -1,4 +1,4 @@
-package ir.ac.kntu.DataBase;
+package ir.ac.kntu.database;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.Request;

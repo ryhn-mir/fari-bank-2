@@ -1,8 +1,7 @@
 package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.DataBase.RequestDatabase;
-import ir.ac.kntu.Person.Customer;
+import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestOption;
 import ir.ac.kntu.util.ScannerWrapper;

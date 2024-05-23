@@ -1,11 +1,9 @@
-package ir.ac.kntu.DataBase;
+package ir.ac.kntu.database;
 
-import ir.ac.kntu.Transaction.Transaction;
+import ir.ac.kntu.transaction.Transaction;
 
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 public class TransactionDb {
     private List<Transaction> transactions;
