@@ -1,5 +1,6 @@
 package ir.ac.kntu.DataBase;
 
+import ir.ac.kntu.Constant;
 import ir.ac.kntu.Request;
 
 import java.util.LinkedList;
@@ -16,5 +17,21 @@ public class AnswerRequestDatabase {
     }
     public void remove(Request request) {
         answer.remove(request);
+    }
+
+    public List<Request> getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(List<Request> answer) {
+        this.answer = answer;
+    }
+
+    public void printAnswerRequest() {
+        for (Request request : answer) {
+            int count = 1;
+            System.out.println(Constant.PURPLE + count + "." + "requestOption" + request.getRequestOption() + " cellNumber" + request.getCellNumber());
+            count++;
+        }
     }
 }

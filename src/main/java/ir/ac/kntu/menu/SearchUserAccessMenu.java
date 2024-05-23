@@ -6,7 +6,7 @@ import ir.ac.kntu.Person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class SearchUserAccessMenu {
-    public void printSearchUserAccessMenu(){
+    public void printSearchUserAccessMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option : ");
         System.out.println(Constant.GREEN + "search by firstName");
         System.out.println(Constant.GREEN + "search by lastName");
@@ -17,6 +17,7 @@ public class SearchUserAccessMenu {
         System.out.println(Constant.GREEN + "search by firstName and lastName and cellNumber");
         System.out.println(Constant.GREEN + "99.back");
     }
+
     public void searchUserAccessMenu() {
         int number = ScannerWrapper.getInstance().nextInt();
         while (number != 99) {
@@ -60,6 +61,7 @@ public class SearchUserAccessMenu {
             }
         }
     }
+
     private void searchByLastName() {
         int count = 1;
         String lastName = ScannerWrapper.getInstance().next();
@@ -70,6 +72,7 @@ public class SearchUserAccessMenu {
             }
         }
     }
+
     private void searchByCellNumber() {
         int count = 1;
         String cellNumber = ScannerWrapper.getInstance().next();
@@ -80,6 +83,7 @@ public class SearchUserAccessMenu {
             }
         }
     }
+
     private void searchByFirstNameAndLastName() {
         int count = 1;
         String firstName = ScannerWrapper.getInstance().next();
@@ -92,6 +96,7 @@ public class SearchUserAccessMenu {
         }
 
     }
+
     private void searchByFirstNameAndCellNumber() {
         int count = 1;
         String firstName = ScannerWrapper.getInstance().next();
@@ -102,9 +107,8 @@ public class SearchUserAccessMenu {
                 count++;
             }
         }
-
-
     }
+
     private void searchByLastNameAndCellNumber() {
         int count = 1;
         String lastName = ScannerWrapper.getInstance().next();
@@ -118,6 +122,7 @@ public class SearchUserAccessMenu {
 
 
     }
+
     private void searchByFirstNameAndLastNameAndCellNumber() {
         int count = 1;
         String firstName = ScannerWrapper.getInstance().next();

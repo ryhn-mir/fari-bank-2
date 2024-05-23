@@ -11,6 +11,15 @@ public class RequestDatabase {
     public RequestDatabase() {
         requestList = new LinkedList<>();
     }
+
+    public List<Request> getRequestList() {
+        return requestList;
+    }
+
+    public void setRequestList(List<Request> requestList) {
+        this.requestList = requestList;
+    }
+
     public void addRequest(Request request) {
         requestList.add(request);
     }
@@ -18,4 +27,6 @@ public class RequestDatabase {
     public void removeRequest(Request request) {
         requestList.remove(request);
     }
+
 }
+

@@ -31,8 +31,10 @@ public class UserAccessMenu {
     }
 
     public void showUserDetails() {
+        int count = 1;
         for (Customer customer : Database.getCustomerDataBase()) {
-            System.out.println(Constant.PURPLE + customer.getFirstName() + " " + customer.getLastName() + " " + customer.getCellNumber());
+            System.out.println(Constant.PURPLE + count + " " + customer.getFirstName() + " " + customer.getLastName() + " " + customer.getCellNumber());
+            count++;
         }
     }
 }

@@ -47,6 +47,14 @@ public class Customer extends Person {
         this.status = customer.status;
     }
 
+    public RequestDatabase getRequestDatabase() {
+        return requestDatabase;
+    }
+
+    public void setRequestDatabase(RequestDatabase requestDatabase) {
+        this.requestDatabase = requestDatabase;
+    }
+
     public String getNationalCode() {
         return nationalCode;
     }
