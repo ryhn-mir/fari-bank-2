@@ -51,13 +51,13 @@ public class PrintMenu {
 //        System.out.println(Constant.GREEN + "99.back");
 //
 //    }
-    public static void printContactMenu() {
-        System.out.println(Constant.BLUE + "choose one of the following option");
-        System.out.println(Constant.GREEN + "1.show contact");
-        System.out.println(Constant.GREEN + "2.edit contact information");
-        System.out.println(Constant.GREEN + "3.add contact");
-        System.out.println(Constant.GREEN + "99.back");
-    }
+//    public static void printContactMenu() {
+//        System.out.println(Constant.BLUE + "choose one of the following option");
+//        System.out.println(Constant.GREEN + "1.show contact");
+//        System.out.println(Constant.GREEN + "2.edit contact information");
+//        System.out.println(Constant.GREEN + "3.add contact");
+//        System.out.println(Constant.GREEN + "99.back");
+//    }
     public static void printSettingMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option");
         System.out.println(Constant.GREEN + "1.edit your card password");
