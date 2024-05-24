@@ -1,4 +1,4 @@
-package ir.ac.kntu.menu;
+package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.person.Customer;
@@ -43,7 +43,12 @@ public class SettingMenu {
     }
 
     private void editCardPassword(Customer customer) {
-        //ask
+        String pass = ScannerWrapper.getInstance().nextLine();
+        if (pass.matches("[0-9]{4}")) {
+            customer.getAccount().getCard().setPassword(pass);
+        } else {
+            System.out.println(Constant.RED + "invalid password format!!");
+        }
     }
 
     private void editPersonPassword(Customer customer) {

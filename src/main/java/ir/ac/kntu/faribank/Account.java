@@ -10,12 +10,21 @@ import ir.ac.kntu.transaction.TransactionKind;
 public class Account {
     private long balance = 0;
     private String accountNumber;
+    private Card card;
     private TransactionDb transactionDb;
 
     public Account(long balance, String accountNumber) {
         this.balance = balance;
         this.accountNumber = accountNumber;
         transactionDb = new TransactionDb();
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
     }
 
     public long getBalance() {
