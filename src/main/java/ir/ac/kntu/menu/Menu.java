@@ -22,9 +22,10 @@ public class Menu {
 
     public int mainMenu() {
 
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         try {
             printMainMenu();
+            number = ScannerWrapper.getInstance().nextInt();
             switch (number) {
                 case 1:
                     CustomerMenu customerMenu = new CustomerMenu();

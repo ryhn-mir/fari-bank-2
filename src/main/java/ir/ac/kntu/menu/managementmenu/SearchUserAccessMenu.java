@@ -7,21 +7,22 @@ import ir.ac.kntu.util.ScannerWrapper;
 
 public class SearchUserAccessMenu {
     public void printSearchUserAccessMenu() {
-        System.out.println(Constant.BLUE + "choose one of the following option : ");
-        System.out.println(Constant.GREEN + "search by firstName");
-        System.out.println(Constant.GREEN + "search by lastName");
-        System.out.println(Constant.GREEN + "search by cellNumber");
-        System.out.println(Constant.GREEN + "search by firstName and lastName");
-        System.out.println(Constant.GREEN + "search by firstName and cellNumber");
-        System.out.println(Constant.GREEN + "search by lastName and cellNumber");
-        System.out.println(Constant.GREEN + "search by firstName and lastName and cellNumber");
+        System.out.println(Constant.BLUE + "1choose one of the following option : ");
+        System.out.println(Constant.GREEN + "1.search by firstName");
+        System.out.println(Constant.GREEN + "2.search by lastName");
+        System.out.println(Constant.GREEN + "3.search by cellNumber");
+        System.out.println(Constant.GREEN + "4.search by firstName and lastName");
+        System.out.println(Constant.GREEN + "5.search by firstName and cellNumber");
+        System.out.println(Constant.GREEN + "6.search by lastName and cellNumber");
+        System.out.println(Constant.GREEN + "7.search by firstName and lastName and cellNumber");
         System.out.println(Constant.GREEN + "99.back");
     }
 
     public void searchUserAccessMenu() {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             printSearchUserAccessMenu();
+            number = ScannerWrapper.getInstance().nextInt();
             switch (number) {
                 case 1:
                     searchByFirstName();
@@ -44,14 +45,19 @@ public class SearchUserAccessMenu {
                 case 7:
                     searchByFirstNameAndLastNameAndCellNumber();
                     break;
+                case 99:
+                    break;
                 default:
                     System.out.println(Constant.RED + "invalid number");
             }
-            number = ScannerWrapper.getInstance().nextInt();
         }
     }
 
     private void searchByFirstName() {
+        if (Database.getCustomerDataBase().isEmpty()) {
+            System.out.println(Constant.RED + "there is no customer");
+            return;
+        }
         int count = 1;
         String firstName = ScannerWrapper.getInstance().next();
         for (Customer customer : Database.getCustomerDataBase()) {
@@ -63,6 +69,10 @@ public class SearchUserAccessMenu {
     }
 
     private void searchByLastName() {
+        if (Database.getCustomerDataBase().isEmpty()) {
+            System.out.println(Constant.RED + "there is no customer");
+            return;
+        }
         int count = 1;
         String lastName = ScannerWrapper.getInstance().next();
         for (Customer customer : Database.getCustomerDataBase()) {
@@ -74,6 +84,10 @@ public class SearchUserAccessMenu {
     }
 
     private void searchByCellNumber() {
+        if (Database.getCustomerDataBase().isEmpty()) {
+            System.out.println(Constant.RED + "there is no customer");
+            return;
+        }
         int count = 1;
         String cellNumber = ScannerWrapper.getInstance().next();
         for (Customer customer : Database.getCustomerDataBase()) {
@@ -85,6 +99,10 @@ public class SearchUserAccessMenu {
     }
 
     private void searchByFirstNameAndLastName() {
+        if (Database.getCustomerDataBase().isEmpty()) {
+            System.out.println(Constant.RED + "there is no customer");
+            return;
+        }
         int count = 1;
         String firstName = ScannerWrapper.getInstance().next();
         String lastName = ScannerWrapper.getInstance().next();
@@ -98,6 +116,10 @@ public class SearchUserAccessMenu {
     }
 
     private void searchByFirstNameAndCellNumber() {
+        if (Database.getCustomerDataBase().isEmpty()) {
+            System.out.println(Constant.RED + "there is no customer");
+            return;
+        }
         int count = 1;
         String firstName = ScannerWrapper.getInstance().next();
         String cellNumber = ScannerWrapper.getInstance().next();
@@ -110,6 +132,10 @@ public class SearchUserAccessMenu {
     }
 
     private void searchByLastNameAndCellNumber() {
+        if (Database.getCustomerDataBase().isEmpty()) {
+            System.out.println(Constant.RED + "there is no customer");
+            return;
+        }
         int count = 1;
         String lastName = ScannerWrapper.getInstance().next();
         String cellNumber = ScannerWrapper.getInstance().next();
@@ -124,6 +150,10 @@ public class SearchUserAccessMenu {
     }
 
     private void searchByFirstNameAndLastNameAndCellNumber() {
+        if (Database.getCustomerDataBase().isEmpty()) {
+            System.out.println(Constant.RED + "there is no customer");
+            return;
+        }
         int count = 1;
         String firstName = ScannerWrapper.getInstance().next();
         String lastName = ScannerWrapper.getInstance().next();

@@ -15,9 +15,10 @@ public class UserAccessMenu {
     }
 
     public void userAccessMenu() {
-        int number = ScannerWrapper.getInstance().nextInt();
-        printUserAccessMenu();
+        int number = 0;
         while (number != 99) {
+            printUserAccessMenu();
+            number = ScannerWrapper.getInstance().nextInt();
             switch (number) {
                 case 1:
                     showUserDetails();
@@ -26,6 +27,8 @@ public class UserAccessMenu {
                     SearchUserAccessMenu searchUserAccess = new SearchUserAccessMenu();
                     searchUserAccess.searchUserAccessMenu();
                     break;
+                case 99:
+                    break;
                 default:
                     System.out.println(Constant.RED + "invalid number");
             }
@@ -33,6 +36,10 @@ public class UserAccessMenu {
     }
 
     public void showUserDetails() {
+        if (Database.getCustomerDataBase().isEmpty()) {
+            System.out.println(Constant.RED + "there is no customer");
+            return;
+        }
         int count = 1;
         for (Customer customer : Database.getCustomerDataBase()) {
             System.out.println(Constant.PURPLE + count + " " + customer.getFirstName() + " " + customer.getLastName() + " " + customer.getCellNumber());

@@ -13,8 +13,8 @@ public class Database {
     public Database() {
         customerDataBase = new HashSet<>();
         managementDataBase = new HashSet<>();
-        managementDataBase.add(new Management("reyhane", "arabshahi", "Rr@1384", "reyhane123"));
-        managementDataBase.add(new Management("sara", "ahmadi", "Ss@1383", "sara123"));
+        managementDataBase.add(new Management("reyhane", "arabshahi", "r", "1"));
+        managementDataBase.add(new Management("sara", "ahmadi", "s@1383", "sara123"));
     }
 
     public static Set<Management> getManagementDataBase() {

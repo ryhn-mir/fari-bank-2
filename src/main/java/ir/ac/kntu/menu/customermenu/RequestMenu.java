@@ -18,8 +18,10 @@ public class RequestMenu {
     }
 
     public void requestMenu(Customer customer, AnswerRequestDatabase answerRequestDatabase) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
+            printRequestMenu();
+            number = ScannerWrapper.getInstance().nextInt();
             switch (number) {
                 case 1:
                     contact(customer,answerRequestDatabase);
@@ -32,6 +34,8 @@ public class RequestMenu {
                     break;
                 case 4:
                     report(customer, answerRequestDatabase);
+                    break;
+                case 99:
                     break;
                 default:
                     System.out.println(Constant.RED + "invalid number!!");

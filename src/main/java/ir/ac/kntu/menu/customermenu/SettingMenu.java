@@ -16,10 +16,11 @@ public class SettingMenu {
     }
 
     public void settingMenu(Customer customer) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             try {
                 printSettingMenu();
+                number = ScannerWrapper.getInstance().nextInt();
                 switch (number) {
                     case 1:
                         editCardPassword(customer);
@@ -32,10 +33,11 @@ public class SettingMenu {
                         break;
                     case 4:
                         unActivationContact(customer);
+                    case 99:
+                        break;
                     default:
                         throw new RuntimeException("invalid number");
                 }
-                number = ScannerWrapper.getInstance().nextInt();
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }

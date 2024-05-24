@@ -20,10 +20,11 @@ public class ManagementMenu {
     }
 
     public void managementRegistration(AnswerRequestDatabase answerRequestDatabase) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             try {
                 printManagementRegistration();
+                number = ScannerWrapper.getInstance().nextInt();
                 switch (number) {
                     case 1:
                         login(answerRequestDatabase );
@@ -31,13 +32,14 @@ public class ManagementMenu {
                     case 2:
                         System.out.println(Constant.PURPLE + "coming soon :)");
                         break;
+                    case 99:
+                        break;
                     default:
                         throw new RuntimeException("invalid number");
                 }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
-            number = ScannerWrapper.getInstance().nextInt();
         }
     }
 
@@ -65,10 +67,11 @@ public class ManagementMenu {
     }
 
     public void managementMenu(AnswerRequestDatabase answerRequestDatabase) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             try {
                 printManagementMenu();
+                number = ScannerWrapper.getInstance().nextInt();
                 switch (number) {
                     case 1:
                         verify();
@@ -81,13 +84,14 @@ public class ManagementMenu {
                         UserAccessMenu userAccess = new UserAccessMenu();
                         userAccess.userAccessMenu();
                         break;
+                    case 99:
+                        break;
                     default:
                         throw new RuntimeException("invalid number!!");
                 }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
-            number = ScannerWrapper.getInstance().nextInt();
         }
     }
 
@@ -101,6 +105,10 @@ public class ManagementMenu {
                 count++;
             }
         }
+        if (Database.getCustomerDataBase().isEmpty()) {
+            return;
+        }
+        System.out.println(Constant.PURPLE + "enter number");
         int number = ScannerWrapper.getInstance().nextInt();
         int counter = 0;
         System.out.println(Constant.BLUE + "wanna accept the customer ? 1(yes) 0(no)");

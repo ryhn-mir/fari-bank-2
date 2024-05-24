@@ -16,10 +16,11 @@ public class CustomerMenu {
     }
 
     public void UserRegistrationMenu(AnswerRequestDatabase answerRequestDatabase) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             try {
                 printUserRegistrationCustomerMenu();
+                number = ScannerWrapper.getInstance().nextInt();
                 switch (number) {
                     case 1: //login
                         login(answerRequestDatabase);
@@ -27,14 +28,14 @@ public class CustomerMenu {
                     case 2: //register
                         register();
                         break;
+                    case 99:
+                        break;
                     default:
                         throw new RuntimeException("invalid number");
                 }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
-            number = ScannerWrapper.getInstance().nextInt();
-
         }
     }
 
@@ -50,10 +51,11 @@ public class CustomerMenu {
     }
 
     public void customerMenu(Customer customer, AnswerRequestDatabase answerRequestDatabase) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             try {
                 printCustomerMenu();
+                number = ScannerWrapper.getInstance().nextInt();
                 switch (number) {
                     case 1:
                         TransferMoneyMenu transferMoneyMenu = new TransferMoneyMenu();
@@ -75,10 +77,11 @@ public class CustomerMenu {
                         SettingMenu settingMenu = new SettingMenu();
                         settingMenu.settingMenu(customer);
                         break;
+                    case 99:
+                        break;
                     default:
                         throw new RuntimeException("invalid number");
                 }
-                number = ScannerWrapper.getInstance().nextInt();
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
@@ -86,7 +89,7 @@ public class CustomerMenu {
     }
 
     public void loginMenu() {
-        System.out.println(Constant.BLUE + "please enter your celNumber and national code ");
+        System.out.println(Constant.BLUE + "please enter your national code and celNumber ");
     }
 
     private void login(AnswerRequestDatabase answerRequestDatabase) {
@@ -116,8 +119,16 @@ public class CustomerMenu {
             System.err.println(e.getMessage());
         }
     }
-
+    private void printRegister() {
+        System.out.println(Constant.BLUE + "fill the blanks!!");
+        System.out.println(Constant.GREEN + "first name");
+        System.out.println(Constant.GREEN + "last name");
+        System.out.println(Constant.GREEN + "cell number");
+        System.out.println(Constant.GREEN + "national code");
+        System.out.println(Constant.GREEN + "password");
+    }
     private void register() {
+        printRegister();
         String firstName = ScannerWrapper.getInstance().next();
         String lastName = ScannerWrapper.getInstance().next();
         String cellNumber = ScannerWrapper.getInstance().next();
@@ -139,26 +150,27 @@ public class CustomerMenu {
     }
 
     private boolean checkPassword(String password) {
-        boolean upperCase = false;
-        boolean lowerCase = false;
-        boolean numeric = false;
-        boolean character = false;
-
-        for (int i = 0; i < password.length(); i++) {
-            if (Character.isUpperCase(password.charAt(i))) {
-                upperCase = true;
-            }
-            if (Character.isLowerCase(password.charAt(i))) {
-                lowerCase = true;
-            }
-            if (Character.isDigit(password.charAt(i))) {
-                numeric = true;
-            }
-        }
-        if (passwordHasSpecialChar(password)) {
-            character = true;
-        }
-        return (numeric && character && lowerCase && upperCase);
+//        boolean upperCase = false;
+//        boolean lowerCase = false;
+//        boolean numeric = false;
+//        boolean character = false;
+//
+//        for (int i = 0; i < password.length(); i++) {
+//            if (Character.isUpperCase(password.charAt(i))) {
+//                upperCase = true;
+//            }
+//            if (Character.isLowerCase(password.charAt(i))) {
+//                lowerCase = true;
+//            }
+//            if (Character.isDigit(password.charAt(i))) {
+//                numeric = true;
+//            }
+//        }
+//        if (passwordHasSpecialChar(password)) {
+//            character = true;
+//        }
+//        return (numeric && character && lowerCase && upperCase);
+        return true;
     }
 
     private boolean passwordHasSpecialChar(String password) {

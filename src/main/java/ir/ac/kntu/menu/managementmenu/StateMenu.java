@@ -16,9 +16,10 @@ public class StateMenu {
     }
 
     public void stateMenu(AnswerRequestDatabase answerRequestDatabase) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             printStateMenu();
+            number = ScannerWrapper.getInstance().nextInt();
             switch (number) {
                 case 1:
                     showSubmit(answerRequestDatabase);
@@ -29,16 +30,22 @@ public class StateMenu {
                 case 3:
                     showProgressing(answerRequestDatabase);
                     break;
+                case 99:
+                    break;
                 default:
                     System.out.println(Constant.RED + "invalid number!!");
             }
-            number = ScannerWrapper.getInstance().nextInt();
         }
     }
 
     private void showSubmit(AnswerRequestDatabase answerRequestDatabase) {
+        if (answerRequestDatabase.getAnswer().isEmpty()) {
+            System.out.println(Constant.PURPLE + "there is no customer");
+            return;
+        }
         print(answerRequestDatabase, RequestState.SUBMIT);
         int count = 0;
+        System.out.println(Constant.PURPLE + "enter number");
         int number = ScannerWrapper.getInstance().nextInt();
         for (Request request : answerRequestDatabase.getAnswer()) {
             if (request.getRequestState() == RequestState.SUBMIT) {
@@ -49,8 +56,13 @@ public class StateMenu {
     }
 
     private void showAnswered(AnswerRequestDatabase answerRequestDatabase) {
+        if (answerRequestDatabase.getAnswer().isEmpty()) {
+            System.out.println(Constant.PURPLE + "there is no customer");
+            return;
+        }
         print(answerRequestDatabase, RequestState.ANSWERED);
         int count = 0;
+        System.out.println(Constant.PURPLE + "enter number");
         int number = ScannerWrapper.getInstance().nextInt();
         for (Request request : answerRequestDatabase.getAnswer()) {
             if (request.getRequestState() == RequestState.ANSWERED) {
@@ -61,8 +73,13 @@ public class StateMenu {
     }
 
     private void showProgressing(AnswerRequestDatabase answerRequestDatabase) {
+        if (answerRequestDatabase.getAnswer().isEmpty()) {
+            System.out.println(Constant.PURPLE + "there is no customer");
+            return;
+        }
         print(answerRequestDatabase, RequestState.PROGRESSING);
         int count = 0;
+        System.out.println(Constant.PURPLE + "enter number");
         int number = ScannerWrapper.getInstance().nextInt();
         for (Request request : answerRequestDatabase.getAnswer()) {
             if (request.getRequestState() == RequestState.PROGRESSING) {

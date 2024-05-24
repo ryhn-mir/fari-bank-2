@@ -15,9 +15,10 @@ public class SupportMenu {
     }
 
     public void supportMenu(Customer customer, AnswerRequestDatabase answerRequestDB) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             printSupportMenu();
+            number = ScannerWrapper.getInstance().nextInt();
             switch (number) {
                 case 1:
                     RequestMenu requestMenu = new RequestMenu();
@@ -26,10 +27,11 @@ public class SupportMenu {
                 case 2:
                     showRequest(customer);
                     break;
+                case 99:
+                    break;
                 default:
                     System.out.println(Constant.RED + "invalid number");
             }
-            number = ScannerWrapper.getInstance().nextInt();
         }
     }
 

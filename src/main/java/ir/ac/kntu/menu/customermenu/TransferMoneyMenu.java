@@ -17,9 +17,10 @@ public class TransferMoneyMenu {
     }
 
     public void transferMoney(Customer customer) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             printTransferMoneyMenu();
+            number = ScannerWrapper.getInstance().nextInt();
             try {
                 switch (number) {
                     case 1:
@@ -30,6 +31,8 @@ public class TransferMoneyMenu {
                         break;
                     case 3:
                         transferMoneyByAccountNumber(customer);
+                        break;
+                    case 99:
                         break;
                     default:
                         throw new RuntimeException("invalid number");

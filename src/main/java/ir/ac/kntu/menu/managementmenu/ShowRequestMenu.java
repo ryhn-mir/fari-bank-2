@@ -14,9 +14,10 @@ public class ShowRequestMenu {
     }
 
     public void showRequestMenu(AnswerRequestDatabase answerRequestDatabase) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             printShowRequestMenu();
+            number = ScannerWrapper.getInstance().nextInt();
             switch (number) {
                 case 1:
                     SearchMenu searchMenu = new SearchMenu();
@@ -25,6 +26,8 @@ public class ShowRequestMenu {
                 case 2:
                     showRequest(answerRequestDatabase);
                     break;
+                case 99:
+                    break;
                 default:
                     System.out.println(Constant.RED + "invalid number!!");
             }
@@ -32,6 +35,9 @@ public class ShowRequestMenu {
     }
 
     private void showRequest(AnswerRequestDatabase answerRequestDatabase) {
+        if (answerRequestDatabase.getAnswer().isEmpty()) {
+            System.out.println(Constant.RED  + "there is no customer to show!!");
+        }
         answerRequestDatabase.printAnswerRequest();
         int number = ScannerWrapper.getInstance().nextInt();
         answerRequestDatabase.getAnswer().get(number - 1).setRequestState(RequestState.PROGRESSING);

@@ -15,9 +15,10 @@ public class contactMenu {
     }
 
     public void contactMenu(Customer customer) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             printContactMenu();
+            number = ScannerWrapper.getInstance().nextInt();
             try {
                 switch (number) {
                     case 1:
@@ -28,6 +29,8 @@ public class contactMenu {
                         break;
                     case 3:
                         addContact(customer);
+                        break;
+                    case 99:
                         break;
                     default:
                         throw new RuntimeException("invalid number");

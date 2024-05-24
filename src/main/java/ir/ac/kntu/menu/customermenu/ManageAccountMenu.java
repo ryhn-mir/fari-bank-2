@@ -21,10 +21,11 @@ public class ManageAccountMenu {
     }
 
     public void manageAccountMenu(Customer customer) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             try {
                 printManageAccountMenu();
+                number = ScannerWrapper.getInstance().nextInt();
                 switch (number) {
                     case 1:
                         increaseBalance(customer);
@@ -35,10 +36,11 @@ public class ManageAccountMenu {
                     case 3:
                         showListOfTransactions(customer);
                         break;
+                    case 99:
+                        break;
                     default:
                         throw new RuntimeException("invalid number");
                 }
-                number = ScannerWrapper.getInstance().nextInt();
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
@@ -71,10 +73,11 @@ public class ManageAccountMenu {
     }
 
     public void requestTransaction(Customer customer) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             try {
                 printRequestTransactions();
+                number = ScannerWrapper.getInstance().nextInt();
                 switch (number) {
                     case 1:
                         getTransactionsByNumber(customer);
@@ -85,10 +88,11 @@ public class ManageAccountMenu {
                     case 3:
                         getAllTransactions(customer);
                         break;
+                    case 99:
+                        break;
                     default:
                         throw new RuntimeException("invalid number");
                 }
-                number = ScannerWrapper.getInstance().nextInt();
 
             } catch (Exception e) {
                 System.err.println(e.getMessage());

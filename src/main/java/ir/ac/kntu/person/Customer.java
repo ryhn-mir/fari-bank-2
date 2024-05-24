@@ -7,6 +7,7 @@ import ir.ac.kntu.database.RequestDatabase;
 import ir.ac.kntu.faribank.Account;
 
 import java.util.Objects;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 public class Customer extends Person {
@@ -23,17 +24,19 @@ public class Customer extends Person {
         super(firstName, lastName, password);
         this.nationalCode = nationalCode;
         recentTransactions = new RecentTransactionsDataBase();
-        while (true) {
-            setCellNumber(cellNumber);
-            if (cellNumber != null) {
-                break;
-            } else {
-                System.out.println(Constant.CYAN + "Enter your cellphone number again");
-            }
-        }
+//        while (true) {
+//            setCellNumber(cellNumber);
+//            if (cellNumber != null) {
+//                break;
+//            } else {
+//                System.out.println(Constant.CYAN + "Enter your cellphone number again");
+//            }
+//        }
+        setCellNumber(cellNumber);
         contactDatabase = new ContactDatabase();
         this.status = RegistrationStatus.PROGRESSING;
         requestDatabase = new RequestDatabase();
+        account = new Account(0,randAccountNo());
 
     }
 
@@ -85,15 +88,7 @@ public class Customer extends Person {
     }
 
     public void setCellNumber(String cellNumber) {
-        try {
-            if (Pattern.matches("^(09)[0-9]{9}", cellNumber)) {
-                this.cellNumber = cellNumber;
-            } else {
-                throw new RuntimeException("invalid format for cellphone number");
-            }
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+        this.cellNumber = cellNumber;
     }
 
     public RecentTransactionsDataBase getRecentTransactions() {
@@ -102,6 +97,11 @@ public class Customer extends Person {
 
     public void setRecentTransactions(RecentTransactionsDataBase recentTransactions) {
         this.recentTransactions = recentTransactions;
+    }
+
+    private String randAccountNo() {
+        Random random = new Random();
+        return String.valueOf(random.nextInt((int)Math.pow(10,8),(int)Math.pow(10, 9)));
     }
 
     public boolean isContactIsOn() {

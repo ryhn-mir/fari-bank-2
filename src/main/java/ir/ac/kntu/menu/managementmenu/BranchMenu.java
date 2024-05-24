@@ -9,9 +9,10 @@ import ir.ac.kntu.util.ScannerWrapper;
 
 public class BranchMenu {
     public void branchMenu(AnswerRequestDatabase answerRequestDatabase) {
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = 0;
         while (number != 99) {
             RequestOption.print();
+            number = ScannerWrapper.getInstance().nextInt();
             switch (number) {
                 case 1:
                     contact(answerRequestDatabase);
@@ -25,15 +26,21 @@ public class BranchMenu {
                 case 4:
                     report(answerRequestDatabase);
                     break;
+                case 99:
+                    break;
                 default:
                     System.out.println(Constant.RED + " invalid number !!");
             }
-            number = ScannerWrapper.getInstance().nextInt();
         }
     }
 
     public void report(AnswerRequestDatabase answerRequestDatabase) {
+        if (answerRequestDatabase.getAnswer().isEmpty()) {
+            System.out.println(Constant.PURPLE + "there is no customer");
+            return;
+        }
         print(answerRequestDatabase, RequestOption.REPORT);
+        System.out.println(Constant.PURPLE + "enter number");
         int number = ScannerWrapper.getInstance().nextInt();
         int count = 0;
         for (Request request : answerRequestDatabase.getAnswer()) {
@@ -46,7 +53,12 @@ public class BranchMenu {
     }
 
     private void transfer(AnswerRequestDatabase answerRequestDatabase) {
+        if (answerRequestDatabase.getAnswer().isEmpty()) {
+            System.out.println(Constant.PURPLE + "there is no customer");
+            return;
+        }
         print(answerRequestDatabase, RequestOption.TRANSFER);
+        System.out.println(Constant.PURPLE + "enter number");
         int number = ScannerWrapper.getInstance().nextInt();
         int count = 0;
         for (Request request : answerRequestDatabase.getAnswer()) {
@@ -58,7 +70,12 @@ public class BranchMenu {
     }
 
     private void setting(AnswerRequestDatabase answerRequestDatabase) {
+        if (answerRequestDatabase.getAnswer().isEmpty()) {
+            System.out.println(Constant.PURPLE + "there is no customer");
+            return;
+        }
         print(answerRequestDatabase, RequestOption.SETTING);
+        System.out.println(Constant.PURPLE + "enter number");
         int number = ScannerWrapper.getInstance().nextInt();
         int count = 0;
         for (Request request : answerRequestDatabase.getAnswer()) {
@@ -70,7 +87,12 @@ public class BranchMenu {
     }
 
     private void contact(AnswerRequestDatabase answerRequestDatabase) {
+        if (answerRequestDatabase.getAnswer().isEmpty()) {
+            System.out.println(Constant.PURPLE + "there is no customer");
+            return;
+        }
         print(answerRequestDatabase, RequestOption.CONTACT);
+        System.out.println(Constant.PURPLE + "enter number");
         int number = ScannerWrapper.getInstance().nextInt();
         int count = 0;
         for (Request request : answerRequestDatabase.getAnswer()) {
