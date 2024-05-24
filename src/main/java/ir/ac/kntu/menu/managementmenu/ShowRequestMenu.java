@@ -1,4 +1,4 @@
-package ir.ac.kntu.menu;
+package ir.ac.kntu.menu.managementmenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
@@ -19,7 +19,8 @@ public class ShowRequestMenu {
             printShowRequestMenu();
             switch (number) {
                 case 1:
-
+                    SearchMenu searchMenu = new SearchMenu();
+                    searchMenu.searchMenu(answerRequestDatabase);
                     break;
                 case 2:
                     showRequest(answerRequestDatabase);

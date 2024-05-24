@@ -1,8 +1,11 @@
-package ir.ac.kntu.menu;
+package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
+import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.SettingMenu;
 import ir.ac.kntu.person.Customer;
+import ir.ac.kntu.person.RegistrationStatus;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class CustomerMenu {
@@ -13,14 +16,14 @@ public class CustomerMenu {
         System.out.println(Constant.GREEN + "99.back");
     }
 
-    public void UserRegistrationMenu() {
+    public void UserRegistrationMenu(AnswerRequestDatabase answerRequestDatabase) {
         int number = ScannerWrapper.getInstance().nextInt();
         while (number != 99) {
             try {
                 printUserRegistrationCustomerMenu();
                 switch (number) {
                     case 1: //login
-                        login();
+                        login(answerRequestDatabase);
                         break;
                     case 2: //register
                         register();
@@ -47,7 +50,7 @@ public class CustomerMenu {
 
     }
 
-    public void customerMenu(Customer customer) {
+    public void customerMenu(Customer customer, AnswerRequestDatabase answerRequestDatabase) {
         int number = ScannerWrapper.getInstance().nextInt();
         while (number != 99) {
             try {
@@ -55,6 +58,7 @@ public class CustomerMenu {
                 switch (number) {
                     case 1:
                         TransferMoneyMenu transferMoneyMenu = new TransferMoneyMenu();
+                        transferMoneyMenu.transferMoney(customer);
                         break;
                     case 2:
                         ManageAccountMenu manageAccountMenu = new ManageAccountMenu();
@@ -65,6 +69,8 @@ public class CustomerMenu {
                         contactMenu.contactMenu(customer);
                         break;
                     case 4:
+                        SupportMenu supportMenu = new SupportMenu();
+                        supportMenu.supportMenu(customer, answerRequestDatabase);
                         break;
                     case 5:
                         SettingMenu settingMenu = new SettingMenu();
@@ -84,7 +90,7 @@ public class CustomerMenu {
         System.out.println(Constant.BLUE + "please enter your celNumber and national code ");
     }
 
-    private void login() {
+    private void login(AnswerRequestDatabase answerRequestDatabase) {
         loginMenu();
         Customer cust = null;
         String nationalCode = ScannerWrapper.getInstance().next();
@@ -99,7 +105,13 @@ public class CustomerMenu {
             if (cust == null) {
                 throw new RuntimeException("user not found!!");
             } else {
-                customerMenu(cust);
+                if (cust.getStatus().equals(RegistrationStatus.ACCEPTED)) {
+                    customerMenu(cust, answerRequestDatabase);
+                } else if (cust.getStatus().equals(RegistrationStatus.PROGRESSING)) {
+                    System.out.println("in progressing");
+                } else if (cust.getStatus().equals(RegistrationStatus.REJECTED)) {
+                    cust.getRequestDatabase().getRequestList().get(0);
+                }
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());

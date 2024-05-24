@@ -47,6 +47,7 @@ public class Customer extends Person {
         this.status = customer.status;
     }
 
+
     public RequestDatabase getRequestDatabase() {
         return requestDatabase;
     }

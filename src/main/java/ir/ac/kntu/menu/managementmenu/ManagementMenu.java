@@ -1,6 +1,9 @@
-package ir.ac.kntu.menu;
+package ir.ac.kntu.menu.managementmenu;
 
 import ir.ac.kntu.Constant;
+import ir.ac.kntu.Request;
+import ir.ac.kntu.RequestOption;
+import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.person.Management;
@@ -16,13 +19,14 @@ public class ManagementMenu {
 
     }
 
-    public void managementRegistration() {
+    public void managementRegistration(AnswerRequestDatabase answerRequestDatabase) {
         int number = ScannerWrapper.getInstance().nextInt();
         while (number != 99) {
             try {
                 printManagementRegistration();
                 switch (number) {
                     case 1:
+                        login(answerRequestDatabase );
                         break;
                     case 2:
                         System.out.println(Constant.PURPLE + "coming soon :)");
@@ -37,14 +41,14 @@ public class ManagementMenu {
         }
     }
 
-    public void login() {
+    public void login(AnswerRequestDatabase answerRequestDatabase) {
         System.out.println(Constant.PURPLE + "enter your userName : ");
         String userName = ScannerWrapper.getInstance().next();
         System.out.println(Constant.PURPLE + "enter your password : ");
         String password = ScannerWrapper.getInstance().next();
         for (Management management : Database.getManagementDataBase()) {
             if (management.getUserName().equals(userName) && management.getPassword().equals(password)) {
-
+                managementMenu(answerRequestDatabase);
                 return;
             }
         }
@@ -60,7 +64,7 @@ public class ManagementMenu {
 
     }
 
-    public void managementMenu() {
+    public void managementMenu(AnswerRequestDatabase answerRequestDatabase) {
         int number = ScannerWrapper.getInstance().nextInt();
         while (number != 99) {
             try {
@@ -70,7 +74,8 @@ public class ManagementMenu {
                         verify();
                         break;
                     case 2:
-                        request();
+                        ShowRequestMenu showRequestMenu = new  ShowRequestMenu();
+                        showRequestMenu.showRequestMenu(answerRequestDatabase);
                         break;
                     case 3:
                         UserAccessMenu userAccess = new UserAccessMenu();
@@ -86,9 +91,7 @@ public class ManagementMenu {
         }
     }
 
-    private void request() {
 
-    }
 
     public void verify() {
         int count = 1;
@@ -100,12 +103,33 @@ public class ManagementMenu {
         }
         int number = ScannerWrapper.getInstance().nextInt();
         int counter = 0;
-        for (Customer customer : Database.getCustomerDataBase()) {
-            if (counter == number) {
-                customer.setStatus(RegistrationStatus.ACCEPTED);
+        System.out.println(Constant.BLUE + "wanna accept the customer ? 1(yes) 0(no)");
+        int num = ScannerWrapper.getInstance().nextInt();
+        if (num == 1) {
+            for (Customer customer : Database.getCustomerDataBase()) {
+                if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
+                    counter++;
+                    if (counter == number) {
+                        customer.setStatus(RegistrationStatus.ACCEPTED);
+                    }
+                }
             }
-            counter++;
+        } else if (num == 0) {
+            for (Customer customer : Database.getCustomerDataBase()) {
+                if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
+                    counter++;
+                    if (counter == number) {
+                        customer.setStatus(RegistrationStatus.REJECTED);
+                        System.out.println(Constant.BLUE + "enter the reason of reject");
+                        String request = ScannerWrapper.getInstance().nextLine();
+                        Request newRequest = new Request("", RequestOption.REPORT, customer.getCellNumber());
+                        newRequest.setAnswer(request);
+                        customer.getRequestDatabase().addRequest(newRequest);
+                    }
+                }
+            }
+        } else {
+            System.out.println(Constant.RED + "invalid input!");
         }
     }
-
 }

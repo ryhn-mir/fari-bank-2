@@ -1,4 +1,4 @@
-package ir.ac.kntu.menu;
+package ir.ac.kntu.menu.managementmenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.Database;

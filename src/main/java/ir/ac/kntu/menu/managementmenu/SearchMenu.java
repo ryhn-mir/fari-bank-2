@@ -1,4 +1,4 @@
-package ir.ac.kntu.menu;
+package ir.ac.kntu.menu.managementmenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
@@ -19,7 +19,8 @@ public class SearchMenu {
         while (number != 99) {
             switch (number) {
                 case 1:
-
+                    StateMenu stateMenu = new StateMenu();
+                    stateMenu.stateMenu(answerRequestDatabase);
                     break;
                 case 2:
                     BranchMenu branchMenu = new BranchMenu();

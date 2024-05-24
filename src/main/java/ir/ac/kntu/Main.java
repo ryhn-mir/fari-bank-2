@@ -1,11 +1,12 @@
 package ir.ac.kntu;
 
+import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.menu.Menu;
 
 public class Main {
 
     public static void main(String[] args) {
-        Menu menu = new Menu();
+        Menu menu = new Menu(new AnswerRequestDatabase());
         while (true) {
             if (menu.mainMenu() == 99) {
                 break;

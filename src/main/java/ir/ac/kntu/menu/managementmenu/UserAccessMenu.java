@@ -1,7 +1,8 @@
-package ir.ac.kntu.menu;
+package ir.ac.kntu.menu.managementmenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.managementmenu.SearchUserAccessMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
@@ -15,6 +16,7 @@ public class UserAccessMenu {
 
     public void userAccessMenu() {
         int number = ScannerWrapper.getInstance().nextInt();
+        printUserAccessMenu();
         while (number != 99) {
             switch (number) {
                 case 1:
