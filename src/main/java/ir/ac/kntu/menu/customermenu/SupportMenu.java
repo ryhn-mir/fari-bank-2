@@ -43,6 +43,10 @@ public class SupportMenu {
     }
 
     private void showRequest(Customer customer) {
+        if (customer.getRequestDatabase().getRequestList().isEmpty()) {
+            System.out.println(Constant.RED + "there is no request to show!!");
+            return;
+        }
         for (Request request : customer.getRequestDatabase().getRequestList()) {
             int count = 1;
             System.out.println(Constant.PURPLE + count + "." + request.getRequest());
