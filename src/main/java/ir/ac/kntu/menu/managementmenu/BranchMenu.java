@@ -6,9 +6,10 @@ import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestOption;
 import ir.ac.kntu.RequestState;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.util.ScannerWrapper;
 
-public class BranchMenu {
+public class BranchMenu extends MainMenu {
     private Database database;
 
     public BranchMenu(Database database) {
@@ -19,7 +20,7 @@ public class BranchMenu {
         int number = 0;
         while (number != 99) {
             RequestOption.print();
-            number = ScannerWrapper.getInstance().nextInt();
+            number = getNumber();
             switch (number) {
                 case 1:
                     contact(answerRequestDatabase);
@@ -46,9 +47,11 @@ public class BranchMenu {
             System.out.println(Constant.PURPLE + "there is no customer");
             return;
         }
+        if (!checkRequestOption(RequestOption.REPORT, answerRequestDatabase)) {
+            System.out.println(Constant.RED + "there is no report request to show");
+        }
         print(answerRequestDatabase, RequestOption.REPORT);
-        System.out.println(Constant.PURPLE + "enter number");
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = getNumber();
         int count = 0;
         for (Request request : answerRequestDatabase.getAnswer()) {
             if (request.getRequestOption() == RequestOption.REPORT) {
@@ -64,9 +67,11 @@ public class BranchMenu {
             System.out.println(Constant.PURPLE + "there is no customer");
             return;
         }
+        if (!checkRequestOption(RequestOption.TRANSFER, answerRequestDatabase)) {
+            System.out.println(Constant.RED + "there is no transfer request to show");
+        }
         print(answerRequestDatabase, RequestOption.TRANSFER);
-        System.out.println(Constant.PURPLE + "enter number");
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = getNumber();
         int count = 0;
         for (Request request : answerRequestDatabase.getAnswer()) {
             if (request.getRequestOption() == RequestOption.TRANSFER) {
@@ -81,9 +86,11 @@ public class BranchMenu {
             System.out.println(Constant.PURPLE + "there is no customer");
             return;
         }
+        if (!checkRequestOption(RequestOption.SETTING, answerRequestDatabase)) {
+            System.out.println(Constant.RED + "there is no setting request to show");
+        }
         print(answerRequestDatabase, RequestOption.SETTING);
-        System.out.println(Constant.PURPLE + "enter number");
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = getNumber();
         int count = 0;
         for (Request request : answerRequestDatabase.getAnswer()) {
             if (request.getRequestOption() == RequestOption.SETTING) {
@@ -98,9 +105,11 @@ public class BranchMenu {
             System.out.println(Constant.PURPLE + "there is no customer");
             return;
         }
+        if (!checkRequestOption(RequestOption.CONTACT, answerRequestDatabase)) {
+            System.out.println(Constant.RED + "there is no contact request to show");
+        }
         print(answerRequestDatabase, RequestOption.CONTACT);
-        System.out.println(Constant.PURPLE + "enter number");
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = getNumber();
         int count = 0;
         for (Request request : answerRequestDatabase.getAnswer()) {
             if (request.getRequestOption() == RequestOption.CONTACT) {
@@ -122,9 +131,17 @@ public class BranchMenu {
 
     private void closeRequest(int number, int count, Request request) {
         if (number == count) {
-            String answer = ScannerWrapper.getInstance().nextLine();
+            String answer = getAnswer();
             request.setAnswer(answer);
             request.setRequestState(RequestState.ANSWERED);
         }
+    }
+    private boolean checkRequestOption(RequestOption requestOption, AnswerRequestDatabase answerRequestDatabase) {
+        for (Request request : answerRequestDatabase.getAnswer()) {
+            if (request.getRequestOption() == requestOption) {
+                return true;
+            }
+        }
+        return false;
     }
 }

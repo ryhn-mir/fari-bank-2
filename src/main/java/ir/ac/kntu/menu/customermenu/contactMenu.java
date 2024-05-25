@@ -2,10 +2,11 @@ package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
-public class contactMenu {
+public class contactMenu extends MainMenu {
     private Database database;
 
     public contactMenu(Database database) {
@@ -24,7 +25,7 @@ public class contactMenu {
         int number = 0;
         while (number != 99) {
             printContactMenu();
-            number = ScannerWrapper.getInstance().nextInt();
+            number = getNumber();
             try {
                 switch (number) {
                     case 1:
@@ -54,7 +55,7 @@ public class contactMenu {
             count++;
         }
         try {
-            int number = ScannerWrapper.getInstance().nextInt();
+            int number = getNumber();
             if (number >= 1 && number <= count) {
                 System.out.print(Constant.PURPLE + customer.getContactDatabase().getContactList().get(count - 1).getFirstName());
                 System.out.print(" " + Constant.PURPLE + customer.getContactDatabase().getContactList().get(count - 1).getLastName());
@@ -70,15 +71,15 @@ public class contactMenu {
     }
 
     public void editContact(Customer customer) {
-        String cellPhone = ScannerWrapper.getInstance().next();
+        String cellPhone = getCellNumber();
         Customer cust = customer.getContactDatabase().findCustomer(cellPhone, database);
         try {
             if (cust == null) {
                 throw new RuntimeException("contact not found");
             } else {
                 customer.getContactDatabase().removeContact(cust);
-                String firstName = ScannerWrapper.getInstance().next();
-                String lastName = ScannerWrapper.getInstance().next();
+                String firstName = getFirstName();
+                String lastName = getLastName();
                 Customer customer1 = new Customer(cust, firstName, lastName);
                 customer.getContactDatabase().addContact(customer1);
             }
@@ -93,9 +94,9 @@ public class contactMenu {
 
     public void addContact(Customer customer) {
         printInformationOfContact();
-        String firstName = ScannerWrapper.getInstance().next();
-        String lastName = ScannerWrapper.getInstance().next();
-        String cellNumber = ScannerWrapper.getInstance().next();
+        String firstName = getFirstName();
+        String lastName = getLastName();
+        String cellNumber = getCellNumber();
         if (customer.getContactDatabase().findCustomer(cellNumber, database) != null) {
             System.out.println(Constant.RED + "this contact is already exit!!");
             return;

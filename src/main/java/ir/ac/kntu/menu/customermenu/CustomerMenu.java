@@ -3,11 +3,12 @@ package ir.ac.kntu.menu.customermenu;
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.person.RegistrationStatus;
 import ir.ac.kntu.util.ScannerWrapper;
 
-public class CustomerMenu {
+public class CustomerMenu extends MainMenu{
 
     private Database database;
 
@@ -27,7 +28,7 @@ public class CustomerMenu {
         while (number != 99) {
             try {
                 printUserRegistrationCustomerMenu();
-                number = ScannerWrapper.getInstance().nextInt();
+                number = getNumber();
                 switch (number) {
                     case 1: //login
                         login(answerRequestDatabase);
@@ -62,7 +63,7 @@ public class CustomerMenu {
         while (number != 99) {
             try {
                 printCustomerMenu();
-                number = ScannerWrapper.getInstance().nextInt();
+                number = getNumber();
                 switch (number) {
                     case 1:
                         TransferMoneyMenu transferMoneyMenu = new TransferMoneyMenu(database);
@@ -102,8 +103,8 @@ public class CustomerMenu {
     private void login(AnswerRequestDatabase answerRequestDatabase) {
         loginMenu();
         Customer cust = null;
-        String nationalCode = ScannerWrapper.getInstance().next();
-        String cellNumber = ScannerWrapper.getInstance().next();
+        String nationalCode = getNationalCode();
+        String cellNumber = getCellNumber();
         for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getCellNumber().equals(cellNumber) && customer.getNationalCode().equals(nationalCode)) {
                 cust = customer;
@@ -127,21 +128,12 @@ public class CustomerMenu {
             System.err.println(e.getMessage());
         }
     }
-    private void printRegister() {
-        System.out.println(Constant.BLUE + "fill the blanks!!");
-        System.out.println(Constant.GREEN + "first name");
-        System.out.println(Constant.GREEN + "last name");
-        System.out.println(Constant.GREEN + "cell number");
-        System.out.println(Constant.GREEN + "national code");
-        System.out.println(Constant.GREEN + "password");
-    }
     private void register() {
-        printRegister();
-        String firstName = ScannerWrapper.getInstance().next();
-        String lastName = ScannerWrapper.getInstance().next();
-        String cellNumber = ScannerWrapper.getInstance().next();
-        String nationalCode = ScannerWrapper.getInstance().next();
-        String password = ScannerWrapper.getInstance().next();
+        String firstName = getFirstName();
+        String lastName = getLastName();
+        String cellNumber = getCellNumber();
+        String nationalCode = getNationalCode();
+        String password = getPassword();
 
         for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getCellNumber().equals(cellNumber) || customer.getNationalCode().equals(nationalCode)) {

@@ -3,11 +3,12 @@ package ir.ac.kntu.menu.customermenu;
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.Request;
 import ir.ac.kntu.util.ScannerWrapper;
 
-public class SupportMenu {
+public class SupportMenu extends MainMenu {
     private Database database;
 
     public SupportMenu(Database database) {
@@ -25,7 +26,7 @@ public class SupportMenu {
         int number = 0;
         while (number != 99) {
             printSupportMenu();
-            number = ScannerWrapper.getInstance().nextInt();
+            number = getNumber();
             switch (number) {
                 case 1:
                     RequestMenu requestMenu = new RequestMenu(database);
@@ -52,7 +53,8 @@ public class SupportMenu {
             System.out.println(Constant.PURPLE + count + "." + request.getRequest());
             count++;
         }
-        int number = ScannerWrapper.getInstance().nextInt();
+        System.out.println(Constant.PURPLE + "enter number");
+        int number =
         System.out.println(Constant.PURPLE + customer.getRequestDatabase().getRequestList().get(number - 1));
     }
 }

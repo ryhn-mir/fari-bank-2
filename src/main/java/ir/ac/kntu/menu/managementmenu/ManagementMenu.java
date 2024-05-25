@@ -5,12 +5,13 @@ import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestOption;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.person.Management;
 import ir.ac.kntu.person.RegistrationStatus;
 import ir.ac.kntu.util.ScannerWrapper;
 
-public class ManagementMenu {
+public class ManagementMenu extends MainMenu {
     private Database database;
 
     public ManagementMenu(Database database) {
@@ -30,7 +31,7 @@ public class ManagementMenu {
         while (number != 99) {
             try {
                 printManagementRegistration();
-                number = ScannerWrapper.getInstance().nextInt();
+                number = getNumber();
                 switch (number) {
                     case 1:
                         login(answerRequestDatabase );
@@ -50,10 +51,8 @@ public class ManagementMenu {
     }
 
     public void login(AnswerRequestDatabase answerRequestDatabase) {
-        System.out.println(Constant.PURPLE + "enter your userName : ");
-        String userName = ScannerWrapper.getInstance().next();
-        System.out.println(Constant.PURPLE + "enter your password : ");
-        String password = ScannerWrapper.getInstance().next();
+        String userName = getUserName();
+        String password = getPassword();
         for (Management management : database.getManagementDataBase()) {
             if (management.getUserName().equals(userName) && management.getPassword().equals(password)) {
                 managementMenu(answerRequestDatabase);
@@ -77,7 +76,7 @@ public class ManagementMenu {
         while (number != 99) {
             try {
                 printManagementMenu();
-                number = ScannerWrapper.getInstance().nextInt();
+                number = getNumber();
                 switch (number) {
                     case 1:
                         verify();
@@ -115,11 +114,10 @@ public class ManagementMenu {
                 count++;
             }
         }
-        System.out.println(Constant.PURPLE + "enter number");
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = getNumber();
         int counter = 0;
         System.out.println(Constant.BLUE + "wanna accept the customer ? 1(yes) 0(no)");
-        int num = ScannerWrapper.getInstance().nextInt();
+        int num = getNumber();
         if (num == 1) {
             for (Customer customer : database.getCustomerDataBase()) {
                 if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
@@ -136,7 +134,7 @@ public class ManagementMenu {
                     if (counter == number) {
                         customer.setStatus(RegistrationStatus.REJECTED);
                         System.out.println(Constant.BLUE + "enter the reason of reject");
-                        String request = ScannerWrapper.getInstance().nextLine();
+                        String request = getRequest();
                         Request newRequest = new Request("", RequestOption.REPORT, customer.getCellNumber());
                         newRequest.setAnswer(request);
                         customer.getRequestDatabase().addRequest(newRequest);

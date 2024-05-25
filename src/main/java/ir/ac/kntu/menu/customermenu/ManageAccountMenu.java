@@ -2,6 +2,7 @@ package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.transaction.Transaction;
 import ir.ac.kntu.util.ScannerWrapper;
@@ -10,7 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ManageAccountMenu {
+public class ManageAccountMenu extends MainMenu {
     private Database database;
 
     public ManageAccountMenu(Database database) {
@@ -31,7 +32,7 @@ public class ManageAccountMenu {
         while (number != 99) {
             try {
                 printManageAccountMenu();
-                number = ScannerWrapper.getInstance().nextInt();
+                number = getNumber();
                 switch (number) {
                     case 1:
                         increaseBalance(customer);
@@ -64,7 +65,7 @@ public class ManageAccountMenu {
     }
 
     private void increaseBalance(Customer customer) {
-        long money = ScannerWrapper.getInstance().nextLong();
+        long money = getInputMoney();
         System.out.println(Constant.BLUE + "enter the money");
         customer.getAccount().increaseCredit(money);
     }
@@ -83,7 +84,7 @@ public class ManageAccountMenu {
         while (number != 99) {
             try {
                 printRequestTransactions();
-                number = ScannerWrapper.getInstance().nextInt();
+                number = getNumber();
                 switch (number) {
                     case 1:
                         getTransactionsByNumber(customer);
@@ -109,7 +110,7 @@ public class ManageAccountMenu {
     private void getTransactionsByNumber(Customer customer) {
         try {
             System.out.println(Constant.PURPLE + "enter the number of transactions you want");
-            int number = ScannerWrapper.getInstance().nextInt();
+            int number = getNumber();
             int size = customer.getAccount().getTransactionDb().getTransactions().size();
             if (size == 0) {
                 throw new RuntimeException("there is no transactions to show!!");

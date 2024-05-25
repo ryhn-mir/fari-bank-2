@@ -2,10 +2,11 @@ package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
-public class SettingMenu {
+public class SettingMenu extends MainMenu {
     private Database database;
 
     public SettingMenu(Database database) {
@@ -26,7 +27,7 @@ public class SettingMenu {
         while (number != 99) {
             try {
                 printSettingMenu();
-                number = ScannerWrapper.getInstance().nextInt();
+                number = getNumber();
                 switch (number) {
                     case 1:
                         editCardPassword(customer);
@@ -51,7 +52,7 @@ public class SettingMenu {
     }
 
     private void editCardPassword(Customer customer) {
-        String pass = ScannerWrapper.getInstance().nextLine();
+        String pass = getPassword();
         if (pass.matches("[0-9]{4}")) {
             customer.getAccount().getCard().setPassword(pass);
         } else {
@@ -61,7 +62,7 @@ public class SettingMenu {
 
     private void editPersonPassword(Customer customer) {
         System.out.println(Constant.PURPLE + "enter your new password");
-        String pass = ScannerWrapper.getInstance().next();
+        String pass = getPassword();
         customer.setPassword(pass);
     }
 

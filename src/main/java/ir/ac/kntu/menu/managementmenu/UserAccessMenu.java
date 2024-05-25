@@ -2,11 +2,12 @@ package ir.ac.kntu.menu.managementmenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.menu.managementmenu.SearchUserAccessMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
-public class UserAccessMenu {
+public class UserAccessMenu extends MainMenu {
     private Database database;
 
     public UserAccessMenu(Database database) {
@@ -24,7 +25,7 @@ public class UserAccessMenu {
         int number = 0;
         while (number != 99) {
             printUserAccessMenu();
-            number = ScannerWrapper.getInstance().nextInt();
+            number = getNumber();
             switch (number) {
                 case 1:
                     showUserDetails();

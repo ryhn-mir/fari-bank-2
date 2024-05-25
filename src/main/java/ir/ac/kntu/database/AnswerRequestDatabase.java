@@ -30,8 +30,8 @@ public class AnswerRequestDatabase {
     }
 
     public void printAnswerRequest() {
+        int count = 1;
         for (Request request : answer) {
-            int count = 1;
             System.out.println(Constant.PURPLE + count + "." + "requestOption" + request.getRequestOption() + " cellNumber" + request.getCellNumber());
             count++;
         }

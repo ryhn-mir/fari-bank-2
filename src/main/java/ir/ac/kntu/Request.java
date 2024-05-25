@@ -12,6 +12,7 @@ public class Request {
         this.requestOption = requestOption;
         this.cellNumber = cellNumber;
         this.answer = "";
+        this.requestState = RequestState.SUBMIT;
     }
 
     public RequestState getRequestState() {

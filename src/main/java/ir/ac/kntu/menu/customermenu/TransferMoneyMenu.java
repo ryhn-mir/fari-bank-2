@@ -2,12 +2,13 @@ package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
 import java.util.List;
 
-public class TransferMoneyMenu {
+public class TransferMoneyMenu extends MainMenu {
     private Database database;
 
     public TransferMoneyMenu(Database database) {
@@ -26,7 +27,7 @@ public class TransferMoneyMenu {
         int number = 0;
         while (number != 99) {
             printTransferMoneyMenu();
-            number = ScannerWrapper.getInstance().nextInt();
+            number = getNumber();
             try {
                 switch (number) {
                     case 1:
@@ -58,7 +59,7 @@ public class TransferMoneyMenu {
             for (Customer cust : customer.getContactDatabase().getContactList()) {
                 System.out.println(count + "." + cust.getFirstName() + " " + cust.getLastName());
             }
-            int number = ScannerWrapper.getInstance().nextInt();
+            int number = getNumber();
             if (number >= 1 && number <= count) {
                 checkContact(customer, number);
             } else {
@@ -68,15 +69,13 @@ public class TransferMoneyMenu {
     }
 
     public void transferMoneyByAccountNumber(Customer customer) {
-        System.out.println(Constant.PURPLE + "enter account number");
-        String accountNumber = ScannerWrapper.getInstance().next();
+        String accountNumber = getAccountNumber();
         Customer cust = database.findReceiver(accountNumber);
         try {
             if (cust == null) {
                 throw new RuntimeException("there is no person with that accountNumber");
             } else {
-                System.out.println(Constant.PURPLE + "enter the amount you want to transfer");
-                long money = ScannerWrapper.getInstance().nextLong();
+                long money = getInputMoney();
                 customer.getAccount().transfer(money, accountNumber);
             }
         } catch (Exception e) {
@@ -87,8 +86,7 @@ public class TransferMoneyMenu {
     private void checkContact(Customer customer, int number) {
         Customer cust = customer.getContactDatabase().getContactList().get(number);
         if (cust.getContactDatabase().checkContactIsOn(customer.getAccount().getAccountNumber())) {
-            System.out.println(Constant.PURPLE + "enter the amount you want to transfer");
-            long money = ScannerWrapper.getInstance().nextLong();
+            long money = getInputMoney();
             customer.getAccount().transfer(money, cust.getAccount().getAccountNumber());
         } else {
             System.out.println(Constant.RED + "you are not the contact of " + cust.getFirstName() + " " + cust.getLastName());
@@ -98,10 +96,10 @@ public class TransferMoneyMenu {
     private void transferMoneyByRecentTransactions(Customer customer) {
         List<Customer> recentTransactions = customer.getRecentTransactions().getRecentTransactions();
         customer.getRecentTransactions().printContact();
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = getNumber();
         if (number >= 1 && number <= recentTransactions.size()) {
             Customer cust = customer.getRecentTransactions().getRecentTransactions().get(number - 1);
-            long money = ScannerWrapper.getInstance().nextLong();
+            long money = getInputMoney();
             customer.getAccount().transfer(money, cust.getAccount().getAccountNumber());
         } else {
             System.out.println(Constant.RED + "number out of the range!!");

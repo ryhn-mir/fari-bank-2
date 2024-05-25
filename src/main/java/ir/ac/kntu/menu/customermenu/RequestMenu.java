@@ -3,12 +3,13 @@ package ir.ac.kntu.menu.customermenu;
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestOption;
 import ir.ac.kntu.util.ScannerWrapper;
 
-public class RequestMenu {
+public class RequestMenu extends MainMenu {
     private Database database;
 
     public RequestMenu(Database database) {
@@ -28,7 +29,7 @@ public class RequestMenu {
         int number = 0;
         while (number != 99) {
             printRequestMenu();
-            number = ScannerWrapper.getInstance().nextInt();
+            number = getNumber();
             switch (number) {
                 case 1:
                     contact(customer,answerRequestDatabase);
@@ -50,29 +51,25 @@ public class RequestMenu {
         }
     }
     private void contact(Customer customer, AnswerRequestDatabase answerRequestDatabase){
-        System.out.println(Constant.PURPLE + "enter request : ");
-        String request = ScannerWrapper.getInstance().next();
+        String request = getRequest();
         Request request1 = new Request(request, RequestOption.CONTACT, customer.getCellNumber());
         customer.getRequestDatabase().addRequest(request1);
         answerRequestDatabase.add(request1);
     }
     private void transfer(Customer customer, AnswerRequestDatabase answerRequestDatabase) {
-        System.out.println(Constant.PURPLE + "enter request : ");
-        String request = ScannerWrapper.getInstance().next();
+        String request = getRequest();
         Request request1 = new Request(request, RequestOption.TRANSFER, customer.getCellNumber());
         customer.getRequestDatabase().addRequest(request1);
         answerRequestDatabase.add(request1);
     }
     private void report(Customer customer, AnswerRequestDatabase answerRequestDatabase) {
-        System.out.println(Constant.PURPLE + "enter request : ");
-        String request = ScannerWrapper.getInstance().next();
+        String request = getRequest();
         Request request1 = new Request(request, RequestOption.REPORT, customer.getCellNumber());
         customer.getRequestDatabase().addRequest(request1);
         answerRequestDatabase.add(request1);
     }
     private void setting(Customer customer, AnswerRequestDatabase answerRequestDatabase) {
-        System.out.println(Constant.PURPLE + "enter request : ");
-        String request = ScannerWrapper.getInstance().next();
+        String request = getRequest();
         Request request1 = new Request(request, RequestOption.SETTING, customer.getCellNumber());
         customer.getRequestDatabase().addRequest(request1);
         answerRequestDatabase.add(request1);

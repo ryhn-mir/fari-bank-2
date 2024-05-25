@@ -2,10 +2,11 @@ package ir.ac.kntu.menu.managementmenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
-public class SearchUserAccessMenu {
+public class SearchUserAccessMenu extends MainMenu {
     private Database database;
 
     public SearchUserAccessMenu(Database database) {
@@ -28,7 +29,7 @@ public class SearchUserAccessMenu {
         int number = 0;
         while (number != 99) {
             printSearchUserAccessMenu();
-            number = ScannerWrapper.getInstance().nextInt();
+            number = getNumber();
             switch (number) {
                 case 1:
                     searchByFirstName();
@@ -65,7 +66,7 @@ public class SearchUserAccessMenu {
             return;
         }
         int count = 1;
-        String firstName = ScannerWrapper.getInstance().next();
+        String firstName = getFirstName();
         for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getFirstName().equals(firstName)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());
@@ -80,7 +81,7 @@ public class SearchUserAccessMenu {
             return;
         }
         int count = 1;
-        String lastName = ScannerWrapper.getInstance().next();
+        String lastName = getLastName();
         for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getLastName().equals(lastName)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());
@@ -95,7 +96,7 @@ public class SearchUserAccessMenu {
             return;
         }
         int count = 1;
-        String cellNumber = ScannerWrapper.getInstance().next();
+        String cellNumber = getCellNumber();
         for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getCellNumber().equals(cellNumber)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());
@@ -110,8 +111,8 @@ public class SearchUserAccessMenu {
             return;
         }
         int count = 1;
-        String firstName = ScannerWrapper.getInstance().next();
-        String lastName = ScannerWrapper.getInstance().next();
+        String firstName = getFirstName();
+        String lastName = getLastName();
         for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getFirstName().equals(firstName) && customer.getLastName().equals(lastName)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());
@@ -127,8 +128,8 @@ public class SearchUserAccessMenu {
             return;
         }
         int count = 1;
-        String firstName = ScannerWrapper.getInstance().next();
-        String cellNumber = ScannerWrapper.getInstance().next();
+        String firstName = getFirstName();
+        String cellNumber = getCellNumber();
         for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getFirstName().equals(firstName) && customer.getCellNumber().equals(cellNumber)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());
@@ -143,8 +144,8 @@ public class SearchUserAccessMenu {
             return;
         }
         int count = 1;
-        String lastName = ScannerWrapper.getInstance().next();
-        String cellNumber = ScannerWrapper.getInstance().next();
+        String lastName = getLastName();
+        String cellNumber = getCellNumber();
         for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getLastName().equals(lastName) && customer.getCellNumber().equals(cellNumber)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());
@@ -161,9 +162,9 @@ public class SearchUserAccessMenu {
             return;
         }
         int count = 1;
-        String firstName = ScannerWrapper.getInstance().next();
-        String lastName = ScannerWrapper.getInstance().next();
-        String cellNumber = ScannerWrapper.getInstance().next();
+        String firstName = getFirstName();
+        String lastName = getLastName();
+        String cellNumber = getCellNumber();
         for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getFirstName().equals(firstName) && customer.getLastName().equals(lastName) && customer.getCellNumber().equals(cellNumber)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());

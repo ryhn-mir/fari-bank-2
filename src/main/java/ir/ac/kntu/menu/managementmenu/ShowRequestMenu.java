@@ -4,9 +4,10 @@ import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.RequestState;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.util.ScannerWrapper;
 
-public class ShowRequestMenu {
+public class ShowRequestMenu extends MainMenu {
     private Database database;
 
     public ShowRequestMenu(Database database) {
@@ -24,7 +25,7 @@ public class ShowRequestMenu {
         int number = 0;
         while (number != 99) {
             printShowRequestMenu();
-            number = ScannerWrapper.getInstance().nextInt();
+            number = getNumber();
             switch (number) {
                 case 1:
                     SearchMenu searchMenu = new SearchMenu(database);
@@ -46,7 +47,7 @@ public class ShowRequestMenu {
             System.out.println(Constant.RED  + "there is no customer to show!!");
         }
         answerRequestDatabase.printAnswerRequest();
-        int number = ScannerWrapper.getInstance().nextInt();
+        int number = getNumber();
         answerRequestDatabase.getAnswer().get(number - 1).setRequestState(RequestState.PROGRESSING);
         System.out.println(answerRequestDatabase.getAnswer().get(number - 1) + "cellNumber : " + answerRequestDatabase.getAnswer().get(number - 1).getCellNumber());
     }

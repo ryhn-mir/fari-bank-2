@@ -5,9 +5,10 @@ import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestState;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.util.ScannerWrapper;
 
-public class SearchMenu {
+public class SearchMenu extends MainMenu {
     private Database database;
 
     public SearchMenu(Database database) {
@@ -25,7 +26,7 @@ public class SearchMenu {
         int number = 0;
         while (number != 99) {
             printSearchMenu();
-            number = ScannerWrapper.getInstance().nextInt();
+            number = getNumber();
             switch (number) {
                 case 1:
                     StateMenu stateMenu = new StateMenu(database);
@@ -50,12 +51,11 @@ public class SearchMenu {
             System.out.println(Constant.PURPLE + "there is no customer");
             return;
         }
-        System.out.println(Constant.PURPLE + "enter cellNumber");
-        String cellNumber = ScannerWrapper.getInstance().next();
+        String cellNumber = getCellNumber();
         for (Request request : answerRequestDatabase.getAnswer()) {
             if (request.getCellNumber().equals(cellNumber)) {
                 System.out.println(Constant.PURPLE + request);
-                String answer = ScannerWrapper.getInstance().nextLine();
+                String answer = getAnswer();
                 request.setAnswer(answer);
                 request.setRequestState(RequestState.ANSWERED);
                 return;

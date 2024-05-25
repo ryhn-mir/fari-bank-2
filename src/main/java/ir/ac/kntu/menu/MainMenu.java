@@ -3,7 +3,7 @@ package ir.ac.kntu.menu;
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.util.ScannerWrapper;
 
-public class mainMenu {
+public class MainMenu {
     public String getCellNumber() {
         String cellNumber = "";
         do {
@@ -16,6 +16,7 @@ public class mainMenu {
     public String getFirstName() {
         System.out.println(Constant.PURPLE + "enter your firstName :");
         return ScannerWrapper.getInstance().nextLine();
+
     } public String getLastName() {
         System.out.println(Constant.PURPLE + "enter your lastName :");
         return ScannerWrapper.getInstance().nextLine();
@@ -36,7 +37,24 @@ public class mainMenu {
         System.out.println(Constant.PURPLE + "enter number :");
         return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
     }
+    public String getRequest() {
+        System.out.println(Constant.PURPLE + "enter request :");
+        return ScannerWrapper.getInstance().nextLine();
+    }
+    public String getAccountNumber() {
+        System.out.println(Constant.PURPLE + "enter accountNumber");
+        return ScannerWrapper.getInstance().nextLine();
+    }
 
+    public String getAnswer() {
+        System.out.println(Constant.PURPLE + "enter answer");
+        return ScannerWrapper.getInstance().nextLine();
+    }
+
+    public String getUserName() {
+        System.out.println(Constant.PURPLE + "enter userName");
+        return ScannerWrapper.getInstance().nextLine();
+    }
     private boolean checkCellNumber(String cellNumber) {
         if (!cellNumber.matches("^(09)[0-9]{9}")) {
             System.out.println(Constant.RED + "invalid cellNumber format!!");
