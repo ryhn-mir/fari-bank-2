@@ -1,10 +1,16 @@
 package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
+import ir.ac.kntu.database.Database;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class SettingMenu {
+    private Database database;
+
+    public SettingMenu(Database database) {
+        this.database = database;
+    }
 
     public static void printSettingMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option");

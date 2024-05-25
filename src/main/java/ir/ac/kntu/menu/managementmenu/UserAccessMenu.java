@@ -7,6 +7,12 @@ import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class UserAccessMenu {
+    private Database database;
+
+    public UserAccessMenu(Database database) {
+        this.database = database;
+    }
+
     public void printUserAccessMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option : ");
         System.out.println(Constant.GREEN + "1.showUser");
@@ -24,7 +30,7 @@ public class UserAccessMenu {
                     showUserDetails();
                     break;
                 case 2:
-                    SearchUserAccessMenu searchUserAccess = new SearchUserAccessMenu();
+                    SearchUserAccessMenu searchUserAccess = new SearchUserAccessMenu(database);
                     searchUserAccess.searchUserAccessMenu();
                     break;
                 case 99:
@@ -36,12 +42,12 @@ public class UserAccessMenu {
     }
 
     public void showUserDetails() {
-        if (Database.getCustomerDataBase().isEmpty()) {
+        if (database.getCustomerDataBase().isEmpty()) {
             System.out.println(Constant.RED + "there is no customer");
             return;
         }
         int count = 1;
-        for (Customer customer : Database.getCustomerDataBase()) {
+        for (Customer customer : database.getCustomerDataBase()) {
             System.out.println(Constant.PURPLE + count + " " + customer.getFirstName() + " " + customer.getLastName() + " " + customer.getCellNumber());
             count++;
         }

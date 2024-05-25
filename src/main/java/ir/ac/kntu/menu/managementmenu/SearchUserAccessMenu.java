@@ -6,6 +6,12 @@ import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class SearchUserAccessMenu {
+    private Database database;
+
+    public SearchUserAccessMenu(Database database) {
+        this.database = database;
+    }
+
     public void printSearchUserAccessMenu() {
         System.out.println(Constant.BLUE + "1choose one of the following option : ");
         System.out.println(Constant.GREEN + "1.search by firstName");
@@ -54,13 +60,13 @@ public class SearchUserAccessMenu {
     }
 
     private void searchByFirstName() {
-        if (Database.getCustomerDataBase().isEmpty()) {
+        if (database.getCustomerDataBase().isEmpty()) {
             System.out.println(Constant.RED + "there is no customer");
             return;
         }
         int count = 1;
         String firstName = ScannerWrapper.getInstance().next();
-        for (Customer customer : Database.getCustomerDataBase()) {
+        for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getFirstName().equals(firstName)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());
                 count++;
@@ -69,13 +75,13 @@ public class SearchUserAccessMenu {
     }
 
     private void searchByLastName() {
-        if (Database.getCustomerDataBase().isEmpty()) {
+        if (database.getCustomerDataBase().isEmpty()) {
             System.out.println(Constant.RED + "there is no customer");
             return;
         }
         int count = 1;
         String lastName = ScannerWrapper.getInstance().next();
-        for (Customer customer : Database.getCustomerDataBase()) {
+        for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getLastName().equals(lastName)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());
                 count++;
@@ -84,13 +90,13 @@ public class SearchUserAccessMenu {
     }
 
     private void searchByCellNumber() {
-        if (Database.getCustomerDataBase().isEmpty()) {
+        if (database.getCustomerDataBase().isEmpty()) {
             System.out.println(Constant.RED + "there is no customer");
             return;
         }
         int count = 1;
         String cellNumber = ScannerWrapper.getInstance().next();
-        for (Customer customer : Database.getCustomerDataBase()) {
+        for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getCellNumber().equals(cellNumber)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());
                 count++;
@@ -99,14 +105,14 @@ public class SearchUserAccessMenu {
     }
 
     private void searchByFirstNameAndLastName() {
-        if (Database.getCustomerDataBase().isEmpty()) {
+        if (database.getCustomerDataBase().isEmpty()) {
             System.out.println(Constant.RED + "there is no customer");
             return;
         }
         int count = 1;
         String firstName = ScannerWrapper.getInstance().next();
         String lastName = ScannerWrapper.getInstance().next();
-        for (Customer customer : Database.getCustomerDataBase()) {
+        for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getFirstName().equals(firstName) && customer.getLastName().equals(lastName)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());
                 count++;
@@ -116,14 +122,14 @@ public class SearchUserAccessMenu {
     }
 
     private void searchByFirstNameAndCellNumber() {
-        if (Database.getCustomerDataBase().isEmpty()) {
+        if (database.getCustomerDataBase().isEmpty()) {
             System.out.println(Constant.RED + "there is no customer");
             return;
         }
         int count = 1;
         String firstName = ScannerWrapper.getInstance().next();
         String cellNumber = ScannerWrapper.getInstance().next();
-        for (Customer customer : Database.getCustomerDataBase()) {
+        for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getFirstName().equals(firstName) && customer.getCellNumber().equals(cellNumber)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());
                 count++;
@@ -132,14 +138,14 @@ public class SearchUserAccessMenu {
     }
 
     private void searchByLastNameAndCellNumber() {
-        if (Database.getCustomerDataBase().isEmpty()) {
+        if (database.getCustomerDataBase().isEmpty()) {
             System.out.println(Constant.RED + "there is no customer");
             return;
         }
         int count = 1;
         String lastName = ScannerWrapper.getInstance().next();
         String cellNumber = ScannerWrapper.getInstance().next();
-        for (Customer customer : Database.getCustomerDataBase()) {
+        for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getLastName().equals(lastName) && customer.getCellNumber().equals(cellNumber)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());
                 count++;
@@ -150,7 +156,7 @@ public class SearchUserAccessMenu {
     }
 
     private void searchByFirstNameAndLastNameAndCellNumber() {
-        if (Database.getCustomerDataBase().isEmpty()) {
+        if (database.getCustomerDataBase().isEmpty()) {
             System.out.println(Constant.RED + "there is no customer");
             return;
         }
@@ -158,7 +164,7 @@ public class SearchUserAccessMenu {
         String firstName = ScannerWrapper.getInstance().next();
         String lastName = ScannerWrapper.getInstance().next();
         String cellNumber = ScannerWrapper.getInstance().next();
-        for (Customer customer : Database.getCustomerDataBase()) {
+        for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getFirstName().equals(firstName) && customer.getLastName().equals(lastName) && customer.getCellNumber().equals(cellNumber)) {
                 System.out.println(count + "." + customer.toString() + " " + customer.getAccount().getTransactionDb());
                 count++;

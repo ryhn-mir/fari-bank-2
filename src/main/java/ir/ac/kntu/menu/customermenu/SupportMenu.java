@@ -2,11 +2,18 @@ package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
+import ir.ac.kntu.database.Database;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.Request;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class SupportMenu {
+    private Database database;
+
+    public SupportMenu(Database database) {
+        this.database = database;
+    }
+
     public void printSupportMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option : ");
         System.out.println(Constant.GREEN + "1.add request");
@@ -21,7 +28,7 @@ public class SupportMenu {
             number = ScannerWrapper.getInstance().nextInt();
             switch (number) {
                 case 1:
-                    RequestMenu requestMenu = new RequestMenu();
+                    RequestMenu requestMenu = new RequestMenu(database);
                     requestMenu.requestMenu(customer, answerRequestDB);
                     break;
                 case 2:

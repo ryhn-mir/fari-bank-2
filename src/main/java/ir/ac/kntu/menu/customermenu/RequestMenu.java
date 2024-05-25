@@ -2,12 +2,19 @@ package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
+import ir.ac.kntu.database.Database;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestOption;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class RequestMenu {
+    private Database database;
+
+    public RequestMenu(Database database) {
+        this.database = database;
+    }
+
     public void printRequestMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option : ");
         System.out.println(Constant.GREEN + "1.contact");

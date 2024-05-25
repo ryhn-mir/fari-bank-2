@@ -4,9 +4,16 @@ import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestState;
+import ir.ac.kntu.database.Database;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class StateMenu {
+    private Database database;
+
+    public StateMenu(Database database) {
+        this.database = database;
+    }
+
     private void printStateMenu() {
         System.out.println(Constant.BLUE + "choose one of the the following options :");
         System.out.println(Constant.GREEN + "1.submit");

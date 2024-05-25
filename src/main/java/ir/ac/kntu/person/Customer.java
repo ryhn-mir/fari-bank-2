@@ -2,6 +2,7 @@ package ir.ac.kntu.person;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.ContactDatabase;
+import ir.ac.kntu.database.Database;
 import ir.ac.kntu.database.RecentTransactionsDataBase;
 import ir.ac.kntu.database.RequestDatabase;
 import ir.ac.kntu.faribank.Account;
@@ -120,8 +121,8 @@ public class Customer extends Person {
         this.status = status;
     }
 
-    public void addContact(String cellNumber, String firstName, String lastName) {
-        Customer customer = contactDatabase.findCustomer(cellNumber);
+    public void addContact(String cellNumber, String firstName, String lastName, Database database) {
+        Customer customer = contactDatabase.findCustomer(cellNumber, database);
         try {
             if (customer != null) {
                 Customer cust = new Customer(customer, firstName, lastName);

@@ -11,6 +11,12 @@ import ir.ac.kntu.person.RegistrationStatus;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class ManagementMenu {
+    private Database database;
+
+    public ManagementMenu(Database database) {
+        this.database = database;
+    }
+
     public void printManagementRegistration() {
         System.out.println(Constant.BLUE + "choose one of the following option :");
         System.out.println(Constant.GREEN + "1.log in");
@@ -48,7 +54,7 @@ public class ManagementMenu {
         String userName = ScannerWrapper.getInstance().next();
         System.out.println(Constant.PURPLE + "enter your password : ");
         String password = ScannerWrapper.getInstance().next();
-        for (Management management : Database.getManagementDataBase()) {
+        for (Management management : database.getManagementDataBase()) {
             if (management.getUserName().equals(userName) && management.getPassword().equals(password)) {
                 managementMenu(answerRequestDatabase);
                 return;
@@ -77,11 +83,11 @@ public class ManagementMenu {
                         verify();
                         break;
                     case 2:
-                        ShowRequestMenu showRequestMenu = new  ShowRequestMenu();
+                        ShowRequestMenu showRequestMenu = new  ShowRequestMenu(database);
                         showRequestMenu.showRequestMenu(answerRequestDatabase);
                         break;
                     case 3:
-                        UserAccessMenu userAccess = new UserAccessMenu();
+                        UserAccessMenu userAccess = new UserAccessMenu(database);
                         userAccess.userAccessMenu();
                         break;
                     case 99:
@@ -98,15 +104,16 @@ public class ManagementMenu {
 
 
     public void verify() {
+        if (database.getCustomerDataBase().isEmpty()) {
+            System.out.println(Constant.RED + "there is no customer!!");
+            return;
+        }
         int count = 1;
-        for (Customer customer : Database.getCustomerDataBase()) {
+        for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
                 System.out.println(count + "." + customer);
                 count++;
             }
-        }
-        if (Database.getCustomerDataBase().isEmpty()) {
-            return;
         }
         System.out.println(Constant.PURPLE + "enter number");
         int number = ScannerWrapper.getInstance().nextInt();
@@ -114,7 +121,7 @@ public class ManagementMenu {
         System.out.println(Constant.BLUE + "wanna accept the customer ? 1(yes) 0(no)");
         int num = ScannerWrapper.getInstance().nextInt();
         if (num == 1) {
-            for (Customer customer : Database.getCustomerDataBase()) {
+            for (Customer customer : database.getCustomerDataBase()) {
                 if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
                     counter++;
                     if (counter == number) {
@@ -123,7 +130,7 @@ public class ManagementMenu {
                 }
             }
         } else if (num == 0) {
-            for (Customer customer : Database.getCustomerDataBase()) {
+            for (Customer customer : database.getCustomerDataBase()) {
                 if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
                     counter++;
                     if (counter == number) {

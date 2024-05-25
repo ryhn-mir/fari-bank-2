@@ -5,9 +5,16 @@ import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestOption;
 import ir.ac.kntu.RequestState;
+import ir.ac.kntu.database.Database;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class BranchMenu {
+    private Database database;
+
+    public BranchMenu(Database database) {
+        this.database = database;
+    }
+
     public void branchMenu(AnswerRequestDatabase answerRequestDatabase) {
         int number = 0;
         while (number != 99) {

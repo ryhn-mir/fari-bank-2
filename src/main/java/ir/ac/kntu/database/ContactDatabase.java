@@ -28,8 +28,8 @@ public class ContactDatabase {
         }
         return false;
     }
-    public Customer findCustomer(String cellNumber) {
-        for (Customer customer : Database.getCustomerDataBase()) {
+    public Customer findCustomer(String cellNumber, Database database) {
+        for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getCellNumber().equals(cellNumber)) {
                 return customer;
             }

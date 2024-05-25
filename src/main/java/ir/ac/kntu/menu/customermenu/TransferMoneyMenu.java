@@ -8,6 +8,12 @@ import ir.ac.kntu.util.ScannerWrapper;
 import java.util.List;
 
 public class TransferMoneyMenu {
+    private Database database;
+
+    public TransferMoneyMenu(Database database) {
+        this.database = database;
+    }
+
     public void printTransferMoneyMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option");
         System.out.println(Constant.GREEN + "1.transfer money by recent account");
@@ -64,7 +70,7 @@ public class TransferMoneyMenu {
     public void transferMoneyByAccountNumber(Customer customer) {
         System.out.println(Constant.PURPLE + "enter account number");
         String accountNumber = ScannerWrapper.getInstance().next();
-        Customer cust = Database.findReceiver(accountNumber);
+        Customer cust = database.findReceiver(accountNumber);
         try {
             if (cust == null) {
                 throw new RuntimeException("there is no person with that accountNumber");

@@ -8,6 +8,13 @@ import ir.ac.kntu.person.RegistrationStatus;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class CustomerMenu {
+
+    private Database database;
+
+    public CustomerMenu(Database database) {
+        this.database = database;
+    }
+
     public void printUserRegistrationCustomerMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option : ");
         System.out.println(Constant.GREEN + "1.log in");
@@ -58,23 +65,23 @@ public class CustomerMenu {
                 number = ScannerWrapper.getInstance().nextInt();
                 switch (number) {
                     case 1:
-                        TransferMoneyMenu transferMoneyMenu = new TransferMoneyMenu();
+                        TransferMoneyMenu transferMoneyMenu = new TransferMoneyMenu(database);
                         transferMoneyMenu.transferMoney(customer);
                         break;
                     case 2:
-                        ManageAccountMenu manageAccountMenu = new ManageAccountMenu();
+                        ManageAccountMenu manageAccountMenu = new ManageAccountMenu(database);
                         manageAccountMenu.manageAccountMenu(customer);
                         break;
                     case 3:
-                        contactMenu contactMenu = new contactMenu();
+                        contactMenu contactMenu = new contactMenu(database);
                         contactMenu.contactMenu(customer);
                         break;
                     case 4:
-                        SupportMenu supportMenu = new SupportMenu();
+                        SupportMenu supportMenu = new SupportMenu(database);
                         supportMenu.supportMenu(customer, answerRequestDatabase);
                         break;
                     case 5:
-                        SettingMenu settingMenu = new SettingMenu();
+                        SettingMenu settingMenu = new SettingMenu(database);
                         settingMenu.settingMenu(customer);
                         break;
                     case 99:
@@ -97,7 +104,7 @@ public class CustomerMenu {
         Customer cust = null;
         String nationalCode = ScannerWrapper.getInstance().next();
         String cellNumber = ScannerWrapper.getInstance().next();
-        for (Customer customer : Database.getCustomerDataBase()) {
+        for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getCellNumber().equals(cellNumber) && customer.getNationalCode().equals(nationalCode)) {
                 cust = customer;
                 break;
@@ -113,6 +120,7 @@ public class CustomerMenu {
                     System.out.println("in progressing");
                 } else if (cust.getStatus().equals(RegistrationStatus.REJECTED)) {
                     cust.getRequestDatabase().getRequestList().get(0);
+                    database.getCustomerDataBase().remove(cust);
                 }
             }
         } catch (Exception e) {
@@ -135,7 +143,7 @@ public class CustomerMenu {
         String nationalCode = ScannerWrapper.getInstance().next();
         String password = ScannerWrapper.getInstance().next();
 
-        for (Customer customer : Database.getCustomerDataBase()) {
+        for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getCellNumber().equals(cellNumber) || customer.getNationalCode().equals(nationalCode)) {
                 System.out.println(Constant.RED + "a customer with this data is already exist!!");
                 return;
@@ -146,7 +154,7 @@ public class CustomerMenu {
             password = ScannerWrapper.getInstance().next();
         }
         Customer customer = new Customer(firstName, lastName, password, nationalCode, cellNumber);
-        Database.addCustomer(customer);
+        database.addCustomer(customer);
     }
 
     private boolean checkPassword(String password) {

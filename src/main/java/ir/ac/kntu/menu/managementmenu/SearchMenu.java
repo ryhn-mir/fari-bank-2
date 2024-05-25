@@ -4,9 +4,16 @@ import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestState;
+import ir.ac.kntu.database.Database;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class SearchMenu {
+    private Database database;
+
+    public SearchMenu(Database database) {
+        this.database = database;
+    }
+
     public void printSearchMenu() {
         System.out.println(Constant.BLUE + "choose one the the following option :");
         System.out.println(Constant.GREEN + "1.search by state");
@@ -21,11 +28,11 @@ public class SearchMenu {
             number = ScannerWrapper.getInstance().nextInt();
             switch (number) {
                 case 1:
-                    StateMenu stateMenu = new StateMenu();
+                    StateMenu stateMenu = new StateMenu(database);
                     stateMenu.stateMenu(answerRequestDatabase);
                     break;
                 case 2:
-                    BranchMenu branchMenu = new BranchMenu();
+                    BranchMenu branchMenu = new BranchMenu(database);
                     branchMenu.branchMenu(answerRequestDatabase);
                     break;
                 case 3:

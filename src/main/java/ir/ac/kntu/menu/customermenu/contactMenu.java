@@ -1,10 +1,16 @@
 package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
+import ir.ac.kntu.database.Database;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class contactMenu {
+    private Database database;
+
+    public contactMenu(Database database) {
+        this.database = database;
+    }
 
     public void printContactMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option");
@@ -65,7 +71,7 @@ public class contactMenu {
 
     public void editContact(Customer customer) {
         String cellPhone = ScannerWrapper.getInstance().next();
-        Customer cust = customer.getContactDatabase().findCustomer(cellPhone);
+        Customer cust = customer.getContactDatabase().findCustomer(cellPhone, database);
         try {
             if (cust == null) {
                 throw new RuntimeException("contact not found");
@@ -90,10 +96,10 @@ public class contactMenu {
         String firstName = ScannerWrapper.getInstance().next();
         String lastName = ScannerWrapper.getInstance().next();
         String cellNumber = ScannerWrapper.getInstance().next();
-        if (customer.getContactDatabase().findCustomer(cellNumber) != null) {
+        if (customer.getContactDatabase().findCustomer(cellNumber, database) != null) {
             System.out.println(Constant.RED + "this contact is already exit!!");
             return;
         }
-        customer.addContact(cellNumber, firstName, lastName);
+        customer.addContact(cellNumber, firstName, lastName, database);
     }
 }

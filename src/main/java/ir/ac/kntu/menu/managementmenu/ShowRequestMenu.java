@@ -3,9 +3,16 @@ package ir.ac.kntu.menu.managementmenu;
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.RequestState;
+import ir.ac.kntu.database.Database;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class ShowRequestMenu {
+    private Database database;
+
+    public ShowRequestMenu(Database database) {
+        this.database = database;
+    }
+
     public void printShowRequestMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option");
         System.out.println(Constant.GREEN + "1.search");
@@ -20,7 +27,7 @@ public class ShowRequestMenu {
             number = ScannerWrapper.getInstance().nextInt();
             switch (number) {
                 case 1:
-                    SearchMenu searchMenu = new SearchMenu();
+                    SearchMenu searchMenu = new SearchMenu(database);
                     searchMenu.searchMenu(answerRequestDatabase);
                     break;
                 case 2:

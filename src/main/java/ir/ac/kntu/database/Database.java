@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Database {
-    private static Set<Management> managementDataBase;
-    private static Set<Customer> customerDataBase;
+    private  Set<Management> managementDataBase;
+    private  Set<Customer> customerDataBase;
 
     public Database() {
         customerDataBase = new HashSet<>();
@@ -17,23 +17,23 @@ public class Database {
         managementDataBase.add(new Management("sara", "ahmadi", "s@1383", "sara123"));
     }
 
-    public static Set<Management> getManagementDataBase() {
+    public  Set<Management> getManagementDataBase() {
         return managementDataBase;
     }
 
-    public static Set<Customer> getCustomerDataBase() {
+    public Set<Customer> getCustomerDataBase() {
         return customerDataBase;
     }
 
-    public static void setManagementDataBase(Set<Management> managementDataBase) {
-        Database.managementDataBase = managementDataBase;
+    public void setManagementDataBase(Set<Management> managementDataBase) {
+        this.managementDataBase = managementDataBase;
     }
 
-    public static void setCustomerDataBase(Set<Customer> customerDataBase) {
-        Database.customerDataBase = customerDataBase;
+    public void setCustomerDataBase(Set<Customer> customerDataBase) {
+        this.customerDataBase = customerDataBase;
     }
 
-    public static Customer findReceiver(String accountNumber) {
+    public Customer findReceiver(String accountNumber) {
         Set<Customer> customersDB = getCustomerDataBase();
         for (Customer customer : customersDB) {
             if (customer.getAccount().getAccountNumber().equals(accountNumber)) {
@@ -75,7 +75,7 @@ public class Database {
 
     }
 
-    public static void addCustomer(Customer customer) {
+    public void addCustomer(Customer customer) {
         customerDataBase.add(customer);
     }
 }
