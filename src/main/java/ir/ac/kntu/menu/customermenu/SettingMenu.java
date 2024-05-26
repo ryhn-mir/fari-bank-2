@@ -7,11 +7,6 @@ import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class SettingMenu extends MainMenu {
-    private Database database;
-
-    public SettingMenu(Database database) {
-        this.database = database;
-    }
 
     public static void printSettingMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option");

@@ -13,34 +13,48 @@ public class MainMenu {
 
         return cellNumber;
     }
+
     public String getFirstName() {
         System.out.println(Constant.PURPLE + "enter your firstName :");
         return ScannerWrapper.getInstance().nextLine();
 
-    } public String getLastName() {
+    }
+
+    public String getLastName() {
         System.out.println(Constant.PURPLE + "enter your lastName :");
         return ScannerWrapper.getInstance().nextLine();
     }
+
     public String getNationalCode() {
         System.out.println(Constant.PURPLE + "enter your national code :");
         return ScannerWrapper.getInstance().nextLine();
     }
+
     public String getPassword() {
-        System.out.println(Constant.PURPLE + "enter your password :");
-        return ScannerWrapper.getInstance().nextLine();
+        String passWord = "";
+        do {
+            System.out.println(Constant.PURPLE + "enter your password :");
+            passWord = ScannerWrapper.getInstance().nextLine();
+
+        } while (!checkPassword(passWord));
+        return passWord;
     }
+
     public long getInputMoney() {
         System.out.println(Constant.PURPLE + "enter the amount of money :");
         return Long.parseLong(ScannerWrapper.getInstance().nextLine());
     }
+
     public int getNumber() {
         System.out.println(Constant.PURPLE + "enter number :");
         return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
     }
+
     public String getRequest() {
         System.out.println(Constant.PURPLE + "enter request :");
         return ScannerWrapper.getInstance().nextLine();
     }
+
     public String getAccountNumber() {
         System.out.println(Constant.PURPLE + "enter accountNumber");
         return ScannerWrapper.getInstance().nextLine();
@@ -55,11 +69,48 @@ public class MainMenu {
         System.out.println(Constant.PURPLE + "enter userName");
         return ScannerWrapper.getInstance().nextLine();
     }
+
     private boolean checkCellNumber(String cellNumber) {
         if (!cellNumber.matches("^(09)[0-9]{9}")) {
             System.out.println(Constant.RED + "invalid cellNumber format!!");
             return false;
         }
         return true;
+    }
+    private boolean checkPassword(String password) {
+        boolean upperCase = false;
+        boolean lowerCase = false;
+        boolean numeric = false;
+        boolean character = false;
+
+        for (int i = 0; i < password.length(); i++) {
+            if (Character.isUpperCase(password.charAt(i))) {
+                upperCase = true;
+            }
+            if (Character.isLowerCase(password.charAt(i))) {
+                lowerCase = true;
+            }
+            if (Character.isDigit(password.charAt(i))) {
+                numeric = true;
+            }
+        }
+        if (passwordHasSpecialChar(password)) {
+            character = true;
+        }
+        if (!(numeric && character && lowerCase && upperCase)) {
+            System.out.println(Constant.RED + "password is too weak try another password!!");
+        }
+        return (numeric && character && lowerCase && upperCase);
+    }
+
+    private boolean passwordHasSpecialChar(String password) {
+        if (password.contains("/") || password.contains("%") || password.contains("~")) {
+            return false;
+        }
+        if (password.contains("@") || password.contains("#") || password.contains("^") ||
+                password.contains("$") || password.contains("&") || password.contains("*")) {
+            return true;
+        }
+        return false;
     }
 }

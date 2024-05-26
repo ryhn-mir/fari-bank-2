@@ -33,7 +33,7 @@ public class SearchMenu extends MainMenu {
                     stateMenu.stateMenu(answerRequestDatabase);
                     break;
                 case 2:
-                    BranchMenu branchMenu = new BranchMenu(database);
+                    BranchMenu branchMenu = new BranchMenu();
                     branchMenu.branchMenu(answerRequestDatabase);
                     break;
                 case 3:

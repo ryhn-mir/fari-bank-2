@@ -10,11 +10,6 @@ import ir.ac.kntu.RequestOption;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class RequestMenu extends MainMenu {
-    private Database database;
-
-    public RequestMenu(Database database) {
-        this.database = database;
-    }
 
     public void printRequestMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option : ");

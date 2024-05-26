@@ -7,7 +7,7 @@ import ir.ac.kntu.menu.customermenu.CustomerMenu;
 import ir.ac.kntu.menu.managementmenu.ManagementMenu;
 import ir.ac.kntu.util.ScannerWrapper;
 
-public class Menu {
+public class Menu extends MainMenu{
 
     private AnswerRequestDatabase answerRequestDatabase;
     private Database database;
@@ -23,12 +23,12 @@ public class Menu {
          this.database = database;
     }
 
-    public int mainMenu() {
+    public int mainMenu(){
 
         int number = 0;
         try {
             printMainMenu();
-            number = ScannerWrapper.getInstance().nextInt();
+            number = getNumber();
             switch (number) {
                 case 1:
                     CustomerMenu customerMenu = new CustomerMenu(database);

@@ -29,7 +29,7 @@ public class SupportMenu extends MainMenu {
             number = getNumber();
             switch (number) {
                 case 1:
-                    RequestMenu requestMenu = new RequestMenu(database);
+                    RequestMenu requestMenu = new RequestMenu();
                     requestMenu.requestMenu(customer, answerRequestDB);
                     break;
                 case 2:
@@ -54,7 +54,7 @@ public class SupportMenu extends MainMenu {
             count++;
         }
         System.out.println(Constant.PURPLE + "enter number");
-        int number =
+        int number = getNumber();
         System.out.println(Constant.PURPLE + customer.getRequestDatabase().getRequestList().get(number - 1));
     }
 }

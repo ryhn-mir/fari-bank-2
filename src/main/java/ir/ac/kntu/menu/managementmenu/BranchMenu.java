@@ -10,11 +10,6 @@ import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class BranchMenu extends MainMenu {
-    private Database database;
-
-    public BranchMenu(Database database) {
-        this.database = database;
-    }
 
     public void branchMenu(AnswerRequestDatabase answerRequestDatabase) {
         int number = 0;
@@ -49,6 +44,7 @@ public class BranchMenu extends MainMenu {
         }
         if (!checkRequestOption(RequestOption.REPORT, answerRequestDatabase)) {
             System.out.println(Constant.RED + "there is no report request to show");
+            return;
         }
         print(answerRequestDatabase, RequestOption.REPORT);
         int number = getNumber();
@@ -69,6 +65,7 @@ public class BranchMenu extends MainMenu {
         }
         if (!checkRequestOption(RequestOption.TRANSFER, answerRequestDatabase)) {
             System.out.println(Constant.RED + "there is no transfer request to show");
+            return;
         }
         print(answerRequestDatabase, RequestOption.TRANSFER);
         int number = getNumber();
@@ -88,6 +85,7 @@ public class BranchMenu extends MainMenu {
         }
         if (!checkRequestOption(RequestOption.SETTING, answerRequestDatabase)) {
             System.out.println(Constant.RED + "there is no setting request to show");
+            return;
         }
         print(answerRequestDatabase, RequestOption.SETTING);
         int number = getNumber();
@@ -107,6 +105,7 @@ public class BranchMenu extends MainMenu {
         }
         if (!checkRequestOption(RequestOption.CONTACT, answerRequestDatabase)) {
             System.out.println(Constant.RED + "there is no contact request to show");
+            return;
         }
         print(answerRequestDatabase, RequestOption.CONTACT);
         int number = getNumber();

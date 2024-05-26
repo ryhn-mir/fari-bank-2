@@ -1,6 +1,5 @@
 package ir.ac.kntu.person;
 
-import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.ContactDatabase;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.database.RecentTransactionsDataBase;
@@ -9,7 +8,6 @@ import ir.ac.kntu.faribank.Account;
 
 import java.util.Objects;
 import java.util.Random;
-import java.util.regex.Pattern;
 
 public class Customer extends Person {
     private String nationalCode;
@@ -145,14 +143,14 @@ public class Customer extends Person {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Customer customer = (Customer) o;
+        Customer customer = (Customer) obj;
         return contactIsOn == customer.contactIsOn && Objects.equals(nationalCode, customer.nationalCode) && Objects.equals(cellNumber, customer.cellNumber) && Objects.equals(account, customer.account) && Objects.equals(contactDatabase, customer.contactDatabase);
     }
 

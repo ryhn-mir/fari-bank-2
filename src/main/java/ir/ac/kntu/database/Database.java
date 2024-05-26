@@ -53,7 +53,7 @@ public class Database {
         return null;
     }
 
-    public boolean DoesCustomerExist(Customer customer) {
+    public boolean doesCustomerExist(Customer customer) {
         for (Customer cust : customerDataBase) {
             if (customer.equals(cust)) {
                 return true;
@@ -62,7 +62,7 @@ public class Database {
         return false;
     }
 
-    public boolean DoesManagementExist(Management management) {
+    public boolean doesManagementExist(Management management) {
         for (Management cust : managementDataBase) {
             if (management.equals(cust)) {
                 return true;

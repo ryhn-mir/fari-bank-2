@@ -23,10 +23,7 @@ public class ContactDatabase {
     }
 
     public boolean doesContactExist(Customer customer) {
-        if (contactList.contains(customer)) {
-            return true;
-        }
-        return false;
+        return contactList.contains(customer);
     }
     public Customer findCustomer(String cellNumber, Database database) {
         for (Customer customer : database.getCustomerDataBase()) {

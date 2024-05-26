@@ -4,12 +4,11 @@ import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
-import ir.ac.kntu.util.ScannerWrapper;
 
-public class contactMenu extends MainMenu {
+public class ContactMenu extends MainMenu {
     private Database database;
 
-    public contactMenu(Database database) {
+    public ContactMenu(Database database) {
         this.database = database;
     }
 

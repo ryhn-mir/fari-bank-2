@@ -74,7 +74,7 @@ public class CustomerMenu extends MainMenu{
                         manageAccountMenu.manageAccountMenu(customer);
                         break;
                     case 3:
-                        contactMenu contactMenu = new contactMenu(database);
+                        ContactMenu contactMenu = new ContactMenu(database);
                         contactMenu.contactMenu(customer);
                         break;
                     case 4:
@@ -82,7 +82,7 @@ public class CustomerMenu extends MainMenu{
                         supportMenu.supportMenu(customer, answerRequestDatabase);
                         break;
                     case 5:
-                        SettingMenu settingMenu = new SettingMenu(database);
+                        SettingMenu settingMenu = new SettingMenu();
                         settingMenu.settingMenu(customer);
                         break;
                     case 99:
@@ -141,46 +141,8 @@ public class CustomerMenu extends MainMenu{
                 return;
             }
         }
-        while (!checkPassword(password)) {
-            System.out.println(Constant.RED + "password is too weak try another password!!");
-            password = ScannerWrapper.getInstance().next();
-        }
         Customer customer = new Customer(firstName, lastName, password, nationalCode, cellNumber);
         database.addCustomer(customer);
     }
 
-    private boolean checkPassword(String password) {
-//        boolean upperCase = false;
-//        boolean lowerCase = false;
-//        boolean numeric = false;
-//        boolean character = false;
-//
-//        for (int i = 0; i < password.length(); i++) {
-//            if (Character.isUpperCase(password.charAt(i))) {
-//                upperCase = true;
-//            }
-//            if (Character.isLowerCase(password.charAt(i))) {
-//                lowerCase = true;
-//            }
-//            if (Character.isDigit(password.charAt(i))) {
-//                numeric = true;
-//            }
-//        }
-//        if (passwordHasSpecialChar(password)) {
-//            character = true;
-//        }
-//        return (numeric && character && lowerCase && upperCase);
-        return true;
-    }
-
-    private boolean passwordHasSpecialChar(String password) {
-        if (password.contains("/") || password.contains("%") || password.contains("~")) {
-            return false;
-        }
-        if (password.contains("@") || password.contains("#") || password.contains("^") ||
-                password.contains("$") || password.contains("&") || password.contains("*")) {
-            return true;
-        }
-        return false;
-    }
 }
