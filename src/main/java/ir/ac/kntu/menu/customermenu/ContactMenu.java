@@ -62,7 +62,7 @@ public class ContactMenu extends MainMenu {
             if (number >= 1 && number <= count) {
                 System.out.print(Constant.PURPLE + customer.getContactDatabase().getContactList().get(number - 1).getFirstName());
                 System.out.print(" " + Constant.PURPLE + customer.getContactDatabase().getContactList().get(number - 1).getLastName());
-                System.out.print(" " + Constant.PURPLE + customer.getContactDatabase().getContactList().get(number - 1).getCellNumber());
+                System.out.println(" " + Constant.PURPLE + customer.getContactDatabase().getContactList().get(number - 1).getCellNumber());
 
 
             } else {

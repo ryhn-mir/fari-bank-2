@@ -50,6 +50,10 @@ public class TransferMoneyMenu extends MainMenu {
     }
 
     public void transferMoneyByContact(Customer customer) {
+        if (customer.getContactDatabase().getContactList().isEmpty()) {
+            System.out.println(Constant.RED +  "there is no contact to transfer money");
+            return;
+        }
         if (!customer.isContactIsOn()) {
             System.out.println(Constant.RED + "you do not have access to contact");
             return;
@@ -93,6 +97,10 @@ public class TransferMoneyMenu extends MainMenu {
     }
 
     private void transferMoneyByRecentTransactions(Customer customer) {
+        if (customer.getRecentTrans().getRecentTrans().isEmpty()) {
+            System.out.println(Constant.RED + "there is no transaction to transfer money");
+            return;
+        }
         List<Customer> recentTrans = customer.getRecentTrans().getRecentTrans();
         customer.getRecentTrans().printContact();
         int number = getNumber();

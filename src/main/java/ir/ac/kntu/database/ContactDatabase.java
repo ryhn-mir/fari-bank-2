@@ -2,21 +2,22 @@ package ir.ac.kntu.database;
 
 import ir.ac.kntu.person.Customer;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ContactDatabase {
-    private List<Customer> contactList;
+    private Set<Customer> contactList;
 
     public ContactDatabase() {
-        contactList = new LinkedList<>();
+        contactList = new HashSet<>();
     }
 
     public List<Customer> getContactList() {
-        return contactList;
+        List<Customer> returns = new ArrayList<>();
+        returns.addAll(contactList);
+        return returns;
     }
 
-    public void setContactList(List<Customer> contactList) {
+    public void setContactList(Set<Customer> contactList) {
         this.contactList = contactList;
     }
 

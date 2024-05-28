@@ -80,6 +80,11 @@ public class MainMenu {
         return pass;
     }
 
+    public String getDate() {
+        System.out.println(Constant.PURPLE + "enter date");
+        return ScannerWrapper.getInstance().nextLine();
+    }
+
 
     private boolean checkCellNumber(String cellNumber) {
         if (!cellNumber.matches("^(09)[0-9]{9}")) {

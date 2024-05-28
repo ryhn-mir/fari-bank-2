@@ -1,6 +1,7 @@
 package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
+import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.transaction.Transaction;
@@ -21,7 +22,7 @@ public class ManageAccountMenu extends MainMenu {
 
     }
 
-    public void manageAccountMenu(Customer customer) {
+    public void manageAccountMenu(Customer customer, Database database) {
         int number = 0;
         while (number != 99) {
             try {
@@ -29,13 +30,14 @@ public class ManageAccountMenu extends MainMenu {
                 number = getNumber();
                 switch (number) {
                     case 1:
-                        increaseBalance(customer);
+                        increaseBalance(customer, database);
                         break;
                     case 2:
                         showAccountBalance(customer);
                         break;
                     case 3:
-                        showListOfTransactions(customer);
+//                        showListOfTransactions(customer);
+                        requestTransaction(customer);
                         break;
                     case 99:
                         break;
@@ -48,20 +50,19 @@ public class ManageAccountMenu extends MainMenu {
         }
     }
 
-    private void showListOfTransactions(Customer customer) {
-        for (Transaction transaction : customer.getAccount().getTransactionDb().getTransactions()) {
-            System.out.println(Constant.PURPLE + transaction);
-        }
-    }
+//    private void showListOfTransactions(Customer customer) {
+//        for (Transaction transaction : customer.getAccount().getTransactionDb().getTransactions()) {
+//            System.out.println(Constant.PURPLE + transaction);
+//        }
+//    }
 
     private void showAccountBalance(Customer customer) {
         System.out.println(Constant.PURPLE + customer.getAccount().getBalance());
     }
 
-    private void increaseBalance(Customer customer) {
+    private void increaseBalance(Customer customer, Database database) {
         long money = getInputMoney();
-        System.out.println(Constant.BLUE + "enter the money");
-        customer.getAccount().increaseCredit(money);
+        customer.getAccount().increaseCredit(money, database);
     }
 
     public void printRequestTransactions() {
@@ -104,12 +105,12 @@ public class ManageAccountMenu extends MainMenu {
     private void getTransactionsByNumber(Customer customer) {
         try {
             System.out.println(Constant.PURPLE + "enter the number of transactions you want");
-            int number = getNumber();
             int size = customer.getAccount().getTransactionDb().getTransactions().size();
             if (size == 0) {
                 throw new RuntimeException("there is no transactions to show!!");
             }
-            for (int i = size - 1; i > size - number; i--) {
+            int number = getNumber();
+            for (int i = size - 1; i >= size - number; i--) {
                 System.out.println(Constant.PURPLE + customer.getAccount().getTransactionDb().getTransactions().get(i));
             }
         } catch (Exception e) {
@@ -118,18 +119,26 @@ public class ManageAccountMenu extends MainMenu {
     }
 
     private void getTransactionsByTime(Customer customer) throws ParseException {
-        String firstNumber = ScannerWrapper.getInstance().next();
-        String secondNumber = ScannerWrapper.getInstance().next();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy / MM / dd hh : mm : ss");
-        Date firstDate = simpleDateFormat.parse(firstNumber);
-        Date secondDate = simpleDateFormat.parse(secondNumber);
         int size = customer.getAccount().getTransactionDb().getTransactions().size();
+        if (size == 0) {
+            System.out.println(Constant.RED + "there is no transaction to show");
+            return;
+        }
+        try {
+            String firstNumber = getDate();
+            String secondNumber = getDate();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy / MM / dd hh : mm : ss");
+            Date firstDate = simpleDateFormat.parse(firstNumber);
+            Date secondDate = simpleDateFormat.parse(secondNumber);
 
-        for (int i = size - 1; i >= 0; i--) {
-            long time = customer.getAccount().getTransactionDb().getTransactions().get(i).getDate().getTime();
-            if (firstDate.getTime() <= time && time <= secondDate.getTime()) {
-                System.out.println(Constant.PURPLE + customer.getAccount().getTransactionDb().getTransactions().get(i));
+            for (int i = size - 1; i >= 0; i--) {
+                long time = customer.getAccount().getTransactionDb().getTransactions().get(i).getDate().getTime();
+                if (firstDate.getTime() <= time && time <= secondDate.getTime()) {
+                    System.out.println(Constant.PURPLE + customer.getAccount().getTransactionDb().getTransactions().get(i));
+                }
             }
+        } catch (Exception e) {
+            System.out.println(Constant.RED + "invalid input!");
         }
     }
 
@@ -139,7 +148,7 @@ public class ManageAccountMenu extends MainMenu {
             if (size == 0) {
                 throw new RuntimeException("there is no transactions to show!!");
             }
-            for (int i = 0; i < size - 1; i++) {
+            for (int i = 0; i <= size - 1; i++) {
                 System.out.println(Constant.PURPLE + customer.getAccount().getTransactionDb().getTransactions().get(i));
             }
         } catch (Exception e) {

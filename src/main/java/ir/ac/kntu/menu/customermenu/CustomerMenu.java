@@ -65,7 +65,7 @@ public class CustomerMenu extends MainMenu {
                 number = getNumber();
                 switch (number) {
                     case 1 -> transferMoney(customer);
-                    case 2 -> manageAccount(customer);
+                    case 2 -> manageAccount(customer, database);
                     case 3 -> contact(customer);
                     case 4 -> support(customer, answerDB);
                     case 5 -> setting(customer);
@@ -135,9 +135,9 @@ public class CustomerMenu extends MainMenu {
         transferMoneyMenu.transferMoney(customer);
     }
 
-    private void manageAccount(Customer customer) {
+    private void manageAccount(Customer customer, Database database) {
         ManageAccountMenu manageAccountMenu = new ManageAccountMenu();
-        manageAccountMenu.manageAccountMenu(customer);
+        manageAccountMenu.manageAccountMenu(customer, database);
     }
 
     private void contact(Customer customer) {

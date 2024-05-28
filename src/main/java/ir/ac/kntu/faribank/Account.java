@@ -51,9 +51,9 @@ public class Account {
         this.transactionDb = transactionDb;
     }
 
-    public void increaseCredit(long money) {
+    public void increaseCredit(long money, Database database) {
         setBalance(getBalance() + money);
-        Database database = new Database();
+//        Database database = new Database();
         Customer customer = database.findReceiver(accountNumber);
         Transaction transaction = new Transaction(customer.getFirstName(), customer.getLastName(), customer.getAccount().getAccountNumber(), getAccountNumber(), TransactionKind.INCREASE_CREDIT);
         transactionDb.addTransaction(transaction);
