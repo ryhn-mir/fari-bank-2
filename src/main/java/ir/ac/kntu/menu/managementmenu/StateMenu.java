@@ -4,16 +4,9 @@ import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestState;
-import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
-import ir.ac.kntu.util.ScannerWrapper;
 
 public class StateMenu extends MainMenu {
-    private Database database;
-
-    public StateMenu(Database database) {
-        this.database = database;
-    }
 
     private void printStateMenu() {
         System.out.println(Constant.BLUE + "choose one of the the following options :");
@@ -23,20 +16,20 @@ public class StateMenu extends MainMenu {
         System.out.println(Constant.GREEN + "99.back");
     }
 
-    public void stateMenu(AnswerRequestDatabase answerRequestDatabase) {
+    public void stateMenu(AnswerRequestDatabase answerDB) {
         int number = 0;
         while (number != 99) {
             printStateMenu();
             number = getNumber();
             switch (number) {
                 case 1:
-                    showSubmit(answerRequestDatabase);
+                    showSubmit(answerDB);
                     break;
                 case 2:
-                    showAnswered(answerRequestDatabase);
+                    showAnswered(answerDB);
                     break;
                 case 3:
-                    showProgressing(answerRequestDatabase);
+                    showProgressing(answerDB);
                     break;
                 case 99:
                     break;
@@ -46,15 +39,15 @@ public class StateMenu extends MainMenu {
         }
     }
 
-    private void showSubmit(AnswerRequestDatabase answerRequestDatabase) {
-        if (answerRequestDatabase.getAnswer().isEmpty()) {
+    private void showSubmit(AnswerRequestDatabase answerDB) {
+        if (answerDB.getAnswer().isEmpty()) {
             System.out.println(Constant.PURPLE + "there is no customer");
             return;
         }
-        print(answerRequestDatabase, RequestState.SUBMIT);
+        print(answerDB, RequestState.SUBMIT);
         int count = 0;
         int number = getNumber();
-        for (Request request : answerRequestDatabase.getAnswer()) {
+        for (Request request : answerDB.getAnswer()) {
             if (request.getRequestState() == RequestState.SUBMIT) {
                 count++;
                 closeRequest(number, count, request);
@@ -62,19 +55,19 @@ public class StateMenu extends MainMenu {
         }
     }
 
-    private void showAnswered(AnswerRequestDatabase answerRequestDatabase) {
-        if (answerRequestDatabase.getAnswer().isEmpty()) {
+    private void showAnswered(AnswerRequestDatabase answerDB) {
+        if (answerDB.getAnswer().isEmpty()) {
             System.out.println(Constant.PURPLE + "there is no customer");
             return;
         }
-        if (!checkState(RequestState.ANSWERED, answerRequestDatabase)) {
+        if (!checkState(RequestState.ANSWERED, answerDB)) {
             System.out.println(Constant.RED + "there is no answered customer");
             return;
         }
-        print(answerRequestDatabase, RequestState.ANSWERED);
+        print(answerDB, RequestState.ANSWERED);
         int count = 0;
         int number = getNumber();
-        for (Request request : answerRequestDatabase.getAnswer()) {
+        for (Request request : answerDB.getAnswer()) {
             if (request.getRequestState() == RequestState.ANSWERED) {
                 count++;
                 closeRequest(number, count, request);
@@ -82,19 +75,19 @@ public class StateMenu extends MainMenu {
         }
     }
 
-    private void showProgressing(AnswerRequestDatabase answerRequestDatabase) {
-        if (answerRequestDatabase.getAnswer().isEmpty()) {
+    private void showProgressing(AnswerRequestDatabase answerDB) {
+        if (answerDB.getAnswer().isEmpty()) {
             System.out.println(Constant.PURPLE + "there is no customer");
             return;
         }
-        if (!checkState(RequestState.PROGRESSING, answerRequestDatabase)) {
+        if (!checkState(RequestState.PROGRESSING, answerDB)) {
             System.out.println(Constant.RED + "there is no progressing customer");
             return;
         }
-        print(answerRequestDatabase, RequestState.PROGRESSING);
+        print(answerDB, RequestState.PROGRESSING);
         int count = 0;
         int number = getNumber();
-        for (Request request : answerRequestDatabase.getAnswer()) {
+        for (Request request : answerDB.getAnswer()) {
             if (request.getRequestState() == RequestState.PROGRESSING) {
                 count++;
                 closeRequest(number, count, request);
@@ -111,9 +104,9 @@ public class StateMenu extends MainMenu {
         }
     }
 
-    private void print(AnswerRequestDatabase answerRequestDatabase, RequestState requestState) {
+    private void print(AnswerRequestDatabase answerDB, RequestState requestState) {
         int count = 1;
-        for (Request request : answerRequestDatabase.getAnswer()) {
+        for (Request request : answerDB.getAnswer()) {
             if (request.getRequestState() == requestState) {
                 System.out.println(count + "." + requestState);
                 count++;
@@ -121,8 +114,8 @@ public class StateMenu extends MainMenu {
         }
     }
 
-    private boolean checkState(RequestState requestState, AnswerRequestDatabase answerRequestDatabase) {
-        for (Request request : answerRequestDatabase.getAnswer()) {
+    private boolean checkState(RequestState requestState, AnswerRequestDatabase answerDB) {
+        for (Request request : answerDB.getAnswer()) {
             if (request.getRequestState() == requestState) {
                 return true;
             }

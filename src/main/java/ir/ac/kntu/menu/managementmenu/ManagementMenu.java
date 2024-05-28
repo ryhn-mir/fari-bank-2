@@ -81,7 +81,7 @@ public class ManagementMenu extends MainMenu {
                         verify();
                         break;
                     case 2:
-                        ShowRequestMenu showRequestMenu = new ShowRequestMenu(database);
+                        ShowRequestMenu showRequestMenu = new ShowRequestMenu();
                         showRequestMenu.showRequestMenu(answerDB);
                         break;
                     case 3:

@@ -69,7 +69,7 @@ public class CustomerMenu extends MainMenu {
                         transferMoneyMenu.transferMoney(customer);
                         break;
                     case 2:
-                        ManageAccountMenu manageAccountMenu = new ManageAccountMenu(database);
+                        ManageAccountMenu manageAccountMenu = new ManageAccountMenu();
                         manageAccountMenu.manageAccountMenu(customer);
                         break;
                     case 3:

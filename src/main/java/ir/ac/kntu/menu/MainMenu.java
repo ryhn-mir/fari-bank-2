@@ -101,17 +101,14 @@ public class MainMenu {
         if (!(numeric && character && lowerCase && upperCase)) {
             System.out.println(Constant.RED + "password is too weak try another password!!");
         }
-        return (numeric && character && lowerCase && upperCase);
+        return numeric && character && lowerCase && upperCase;
     }
 
     private boolean passwordHasSpecialChar(String password) {
         if (password.contains("/") || password.contains("%") || password.contains("~")) {
             return false;
         }
-        if (password.contains("@") || password.contains("#") || password.contains("^") ||
-                password.contains("$") || password.contains("&") || password.contains("*")) {
-            return true;
-        }
-        return false;
+        return password.contains("@") || password.contains("#") || password.contains("^") ||
+                password.contains("$") || password.contains("&") || password.contains("*");
     }
 }

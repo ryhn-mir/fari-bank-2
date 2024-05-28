@@ -93,11 +93,11 @@ public class TransferMoneyMenu extends MainMenu {
     }
 
     private void transferMoneyByRecentTransactions(Customer customer) {
-        List<Customer> recentTrans = customer.getRecentTransactions().getRecentTrans();
-        customer.getRecentTransactions().printContact();
+        List<Customer> recentTrans = customer.getRecentTrans().getRecentTrans();
+        customer.getRecentTrans().printContact();
         int number = getNumber();
         if (number >= 1 && number <= recentTrans.size()) {
-            Customer cust = customer.getRecentTransactions().getRecentTrans().get(number - 1);
+            Customer cust = customer.getRecentTrans().getRecentTrans().get(number - 1);
             long money = getInputMoney();
             customer.getAccount().transfer(money, cust.getAccount().getAccountNumber());
         } else {

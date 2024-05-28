@@ -3,15 +3,9 @@ package ir.ac.kntu.menu.managementmenu;
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.RequestState;
-import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
 
 public class ShowRequestMenu extends MainMenu {
-    private Database database;
-
-    public ShowRequestMenu(Database database) {
-        this.database = database;
-    }
 
     public void printShowRequestMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option");
@@ -27,7 +21,7 @@ public class ShowRequestMenu extends MainMenu {
             number = getNumber();
             switch (number) {
                 case 1:
-                    SearchMenu searchMenu = new SearchMenu(database);
+                    SearchMenu searchMenu = new SearchMenu();
                     searchMenu.searchMenu(answerDB);
                     break;
                 case 2:

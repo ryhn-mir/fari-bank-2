@@ -15,14 +15,14 @@ public class Customer extends Person {
     private Account account;
     private boolean contactIsOn = true;
     private ContactDatabase contactDatabase;
-    private RecentTransactionsDataBase recentTransactions;
+    private RecentTransactionsDataBase recentTrans;
     private RegistrationStatus status;
     private RequestDatabase requestDatabase;
 
     public Customer(String firstName, String lastName, String password, String nationalCode, String cellNumber) {
         super(firstName, lastName, password);
         this.nationalCode = nationalCode;
-        recentTransactions = new RecentTransactionsDataBase();
+        recentTrans = new RecentTransactionsDataBase();
 //        while (true) {
 //            setCellNumber(cellNumber);
 //            if (cellNumber != null) {
@@ -62,7 +62,7 @@ public class Customer extends Person {
         return nationalCode;
     }
 
-    public void setNationalCode(String id) {
+    public void setNationalCode(String nationalCode) {
         this.nationalCode = nationalCode;
     }
 
@@ -90,12 +90,12 @@ public class Customer extends Person {
         this.cellNumber = cellNumber;
     }
 
-    public RecentTransactionsDataBase getRecentTransactions() {
-        return recentTransactions;
+    public RecentTransactionsDataBase getRecentTrans() {
+        return recentTrans;
     }
 
-    public void setRecentTransactions(RecentTransactionsDataBase recentTransactions) {
-        this.recentTransactions = recentTransactions;
+    public void setRecentTrans(RecentTransactionsDataBase recentTrans) {
+        this.recentTrans = recentTrans;
     }
 
     private String randAccountNo() {

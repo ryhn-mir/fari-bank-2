@@ -1,7 +1,6 @@
 package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.transaction.Transaction;
@@ -12,11 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ManageAccountMenu extends MainMenu {
-    private Database database;
-
-    public ManageAccountMenu(Database database) {
-        this.database = database;
-    }
 
     public void printManageAccountMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option");
