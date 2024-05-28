@@ -4,6 +4,7 @@ import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
+
 public class SearchUserAccessMenu extends MainMenu {
     private Database database;
 
@@ -29,31 +30,17 @@ public class SearchUserAccessMenu extends MainMenu {
             printSearchUserAccessMenu();
             number = getNumber();
             switch (number) {
-                case 1:
-                    searchByFirstName();
-                    break;
-                case 2:
-                    searchByLastName();
-                    break;
-                case 3:
-                    searchByCellNumber();
-                    break;
-                case 4:
-                    searchByFirstNameAndLastName();
-                    break;
-                case 5:
-                    searchByFirstNameAndCellNumber();
-                    break;
-                case 6:
-                    searchByLastNameAndCellNumber();
-                    break;
-                case 7:
-                    searchByFirstNameAndLastNameAndCellNumber();
-                    break;
-                case 99:
-                    break;
-                default:
-                    System.out.println(Constant.RED + "invalid number");
+                case 1 -> searchByFirstName();
+                case 2 -> searchByLastName();
+                case 3 -> searchByCellNumber();
+                case 4 -> searchByFirstNameAndLastName();
+                case 5 -> searchByFirstNameAndCellNumber();
+                case 6 -> searchByLastNameAndCellNumber();
+                case 7 -> searchByFirstNameAndLastNameAndCellNumber();
+                case 99 -> {
+                    return;
+                }
+                default -> System.out.println(Constant.RED + "invalid number");
             }
         }
     }
