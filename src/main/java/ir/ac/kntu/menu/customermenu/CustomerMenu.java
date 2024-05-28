@@ -64,30 +64,15 @@ public class CustomerMenu extends MainMenu {
                 printCustomerMenu();
                 number = getNumber();
                 switch (number) {
-                    case 1:
-                        TransferMoneyMenu transferMoneyMenu = new TransferMoneyMenu(database);
-                        transferMoneyMenu.transferMoney(customer);
-                        break;
-                    case 2:
-                        ManageAccountMenu manageAccountMenu = new ManageAccountMenu();
-                        manageAccountMenu.manageAccountMenu(customer);
-                        break;
-                    case 3:
-                        ContactMenu contactMenu = new ContactMenu(database);
-                        contactMenu.contactMenu(customer);
-                        break;
-                    case 4:
-                        SupportMenu supportMenu = new SupportMenu();
-                        supportMenu.supportMenu(customer, answerDB);
-                        break;
-                    case 5:
-                        SettingMenu settingMenu = new SettingMenu();
-                        settingMenu.settingMenu(customer);
-                        break;
-                    case 99:
-                        break;
-                    default:
-                        throw new RuntimeException("invalid number");
+                    case 1 -> transferMoney(customer);
+                    case 2 -> manageAccount(customer);
+                    case 3 -> contact(customer);
+                    case 4 -> support(customer, answerDB);
+                    case 5 -> setting(customer);
+                    case 99 -> {
+                        return;
+                    }
+                    default -> throw new RuntimeException("invalid number");
                 }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
@@ -145,4 +130,28 @@ public class CustomerMenu extends MainMenu {
         database.addCustomer(customer);
     }
 
+    private void transferMoney(Customer customer) {
+        TransferMoneyMenu transferMoneyMenu = new TransferMoneyMenu(database);
+        transferMoneyMenu.transferMoney(customer);
+    }
+
+    private void manageAccount(Customer customer) {
+        ManageAccountMenu manageAccountMenu = new ManageAccountMenu();
+        manageAccountMenu.manageAccountMenu(customer);
+    }
+
+    private void contact(Customer customer) {
+        ContactMenu contactMenu = new ContactMenu(database);
+        contactMenu.contactMenu(customer);
+    }
+
+    private void support(Customer customer, AnswerRequestDatabase answerDB) {
+        SupportMenu supportMenu = new SupportMenu();
+        supportMenu.supportMenu(customer, answerDB);
+    }
+
+    private void setting(Customer customer) {
+        SettingMenu settingMenu = new SettingMenu();
+        settingMenu.settingMenu(customer);
+    }
 }

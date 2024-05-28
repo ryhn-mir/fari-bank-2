@@ -1,7 +1,7 @@
 package ir.ac.kntu.person;
 
 public class Management extends Person {
-    String userName;
+    private String userName;
 
     public Management(String firstName, String lastName, String password, String userName) {
         super(firstName, lastName, password);

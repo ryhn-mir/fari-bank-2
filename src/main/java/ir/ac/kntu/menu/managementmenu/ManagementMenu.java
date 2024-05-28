@@ -113,34 +113,43 @@ public class ManagementMenu extends MainMenu {
             }
         }
         int number = getNumber();
-        int counter = 0;
         System.out.println(Constant.BLUE + "wanna accept the customer ? 1(yes) 0(no)");
         int num = getNumber();
         if (num == 1) {
-            for (Customer customer : database.getCustomerDataBase()) {
-                if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
-                    counter++;
-                    if (counter == number) {
-                        customer.setStatus(RegistrationStatus.ACCEPTED);
-                    }
-                }
-            }
+            accept(number);
         } else if (num == 0) {
-            for (Customer customer : database.getCustomerDataBase()) {
-                if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
-                    counter++;
-                    if (counter == number) {
-                        customer.setStatus(RegistrationStatus.REJECTED);
-                        System.out.println(Constant.BLUE + "enter the reason of reject");
-                        String request = getRequest();
-                        Request newRequest = new Request("", RequestOption.REPORT, customer.getCellNumber());
-                        newRequest.setAnswer(request);
-                        customer.getRequestDatabase().addRequest(newRequest);
-                    }
-                }
-            }
+            reject(number);
         } else {
             System.out.println(Constant.RED + "invalid input!");
+        }
+    }
+
+    private void accept(int number) {
+        int counter = 0;
+        for (Customer customer : database.getCustomerDataBase()) {
+            if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
+                counter++;
+                if (counter == number) {
+                    customer.setStatus(RegistrationStatus.ACCEPTED);
+                }
+            }
+        }
+    }
+
+    private void reject(int number) {
+        int counter = 0;
+        for (Customer customer : database.getCustomerDataBase()) {
+            if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
+                counter++;
+                if (counter == number) {
+                    customer.setStatus(RegistrationStatus.REJECTED);
+                    System.out.println(Constant.BLUE + "enter the reason of reject");
+                    String request = getRequest();
+                    Request newRequest = new Request("", RequestOption.REPORT, customer.getCellNumber());
+                    newRequest.setAnswer(request);
+                    customer.getRequestDatabase().addRequest(newRequest);
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 
 public final class Calendar {
 
-    Date date;
+    private Date date;
 
     public Calendar() {
         date = new Date();
