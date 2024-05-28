@@ -2,18 +2,11 @@ package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
-import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.Request;
-import ir.ac.kntu.util.ScannerWrapper;
 
 public class SupportMenu extends MainMenu {
-    private Database database;
-
-    public SupportMenu(Database database) {
-        this.database = database;
-    }
 
     public void printSupportMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option : ");

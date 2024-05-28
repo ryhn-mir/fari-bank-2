@@ -7,26 +7,26 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Database {
-    private  Set<Management> managementDataBase;
-    private  Set<Customer> customerDataBase;
+    private Set<Management> managementDB;
+    private Set<Customer> customerDataBase;
 
     public Database() {
         customerDataBase = new HashSet<>();
-        managementDataBase = new HashSet<>();
-        managementDataBase.add(new Management("reyhane", "arabshahi", "r", "1"));
-        managementDataBase.add(new Management("sara", "ahmadi", "s@1383", "sara123"));
+        managementDB = new HashSet<>();
+        managementDB.add(new Management("reyhane", "arabshahi", "Rr@138406", "reyhane123"));
+        managementDB.add(new Management("sara", "ahmadi", "Ss@138310", "sara123"));
     }
 
-    public  Set<Management> getManagementDataBase() {
-        return managementDataBase;
+    public Set<Management> getManagementDB() {
+        return managementDB;
     }
 
     public Set<Customer> getCustomerDataBase() {
         return customerDataBase;
     }
 
-    public void setManagementDataBase(Set<Management> managementDataBase) {
-        this.managementDataBase = managementDataBase;
+    public void setManagementDB(Set<Management> managementDB) {
+        this.managementDB = managementDB;
     }
 
     public void setCustomerDataBase(Set<Customer> customerDataBase) {
@@ -44,7 +44,7 @@ public class Database {
     }
 
     public Management findManagement(String userName) {
-        Set<Management> managementDB = getManagementDataBase();
+        Set<Management> managementDB = getManagementDB();
         for (Management management : managementDB) {
             if (management.getUserName().equals(userName)) {
                 return management;
@@ -63,7 +63,7 @@ public class Database {
     }
 
     public boolean doesManagementExist(Management management) {
-        for (Management cust : managementDataBase) {
+        for (Management cust : managementDB) {
             if (management.equals(cust)) {
                 return true;
             }

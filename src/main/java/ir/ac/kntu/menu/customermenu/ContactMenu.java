@@ -48,6 +48,10 @@ public class ContactMenu extends MainMenu {
     }
 
     public void showContact(Customer customer) {
+        if (customer.getContactDatabase().getContactList().isEmpty()) {
+            System.out.println(Constant.RED + "there is no contact to show!");
+            return;
+        }
         int count = 1;
         for (Customer cust : customer.getContactDatabase().getContactList()) {
             System.out.println(count + "." + Constant.PURPLE + cust.getFirstName() + " " + Constant.PURPLE + cust.getLastName());
@@ -56,9 +60,9 @@ public class ContactMenu extends MainMenu {
         try {
             int number = getNumber();
             if (number >= 1 && number <= count) {
-                System.out.print(Constant.PURPLE + customer.getContactDatabase().getContactList().get(count - 1).getFirstName());
-                System.out.print(" " + Constant.PURPLE + customer.getContactDatabase().getContactList().get(count - 1).getLastName());
-                System.out.print(" " + Constant.PURPLE + customer.getContactDatabase().getContactList().get(count - 1).getCellNumber());
+                System.out.print(Constant.PURPLE + customer.getContactDatabase().getContactList().get(number - 1).getFirstName());
+                System.out.print(" " + Constant.PURPLE + customer.getContactDatabase().getContactList().get(number - 1).getLastName());
+                System.out.print(" " + Constant.PURPLE + customer.getContactDatabase().getContactList().get(number - 1).getCellNumber());
 
 
             } else {
@@ -70,6 +74,10 @@ public class ContactMenu extends MainMenu {
     }
 
     public void editContact(Customer customer) {
+        if (customer.getContactDatabase().getContactList().isEmpty()) {
+            System.out.println(Constant.RED + "there is no contact to show!");
+            return;
+        }
         String cellPhone = getCellNumber();
         Customer cust = customer.getContactDatabase().findCustomer(cellPhone, database);
         try {
@@ -96,7 +104,7 @@ public class ContactMenu extends MainMenu {
         String firstName = getFirstName();
         String lastName = getLastName();
         String cellNumber = getCellNumber();
-        if (customer.getContactDatabase().findCustomer(cellNumber, database) != null) {
+        if (customer.getContactDatabase().findCustomer(cellNumber, database) == null) {
             System.out.println(Constant.RED + "this contact is already exit!!");
             return;
         }

@@ -9,7 +9,6 @@ import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.person.Management;
 import ir.ac.kntu.person.RegistrationStatus;
-import ir.ac.kntu.util.ScannerWrapper;
 
 public class ManagementMenu extends MainMenu {
     private Database database;
@@ -26,7 +25,7 @@ public class ManagementMenu extends MainMenu {
 
     }
 
-    public void managementRegistration(AnswerRequestDatabase answerRequestDatabase) {
+    public void managementRegistration(AnswerRequestDatabase answerDB) {
         int number = 0;
         while (number != 99) {
             try {
@@ -34,7 +33,7 @@ public class ManagementMenu extends MainMenu {
                 number = getNumber();
                 switch (number) {
                     case 1:
-                        login(answerRequestDatabase );
+                        login(answerDB);
                         break;
                     case 2:
                         System.out.println(Constant.PURPLE + "coming soon :)");
@@ -50,12 +49,12 @@ public class ManagementMenu extends MainMenu {
         }
     }
 
-    public void login(AnswerRequestDatabase answerRequestDatabase) {
+    public void login(AnswerRequestDatabase answerDB) {
         String userName = getUserName();
         String password = getPassword();
-        for (Management management : database.getManagementDataBase()) {
+        for (Management management : database.getManagementDB()) {
             if (management.getUserName().equals(userName) && management.getPassword().equals(password)) {
-                managementMenu(answerRequestDatabase);
+                managementMenu(answerDB);
                 return;
             }
         }
@@ -71,7 +70,7 @@ public class ManagementMenu extends MainMenu {
 
     }
 
-    public void managementMenu(AnswerRequestDatabase answerRequestDatabase) {
+    public void managementMenu(AnswerRequestDatabase answerDB) {
         int number = 0;
         while (number != 99) {
             try {
@@ -82,8 +81,8 @@ public class ManagementMenu extends MainMenu {
                         verify();
                         break;
                     case 2:
-                        ShowRequestMenu showRequestMenu = new  ShowRequestMenu(database);
-                        showRequestMenu.showRequestMenu(answerRequestDatabase);
+                        ShowRequestMenu showRequestMenu = new ShowRequestMenu(database);
+                        showRequestMenu.showRequestMenu(answerDB);
                         break;
                     case 3:
                         UserAccessMenu userAccess = new UserAccessMenu(database);
@@ -99,7 +98,6 @@ public class ManagementMenu extends MainMenu {
             }
         }
     }
-
 
 
     public void verify() {

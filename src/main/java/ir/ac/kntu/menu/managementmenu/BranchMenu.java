@@ -5,29 +5,27 @@ import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestOption;
 import ir.ac.kntu.RequestState;
-import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
-import ir.ac.kntu.util.ScannerWrapper;
 
 public class BranchMenu extends MainMenu {
 
-    public void branchMenu(AnswerRequestDatabase answerRequestDatabase) {
+    public void branchMenu(AnswerRequestDatabase answerDB) {
         int number = 0;
         while (number != 99) {
             RequestOption.print();
             number = getNumber();
             switch (number) {
                 case 1:
-                    contact(answerRequestDatabase);
+                    contact(answerDB);
                     break;
                 case 2:
-                    setting(answerRequestDatabase);
+                    setting(answerDB);
                     break;
                 case 3:
-                    transfer(answerRequestDatabase);
+                    transfer(answerDB);
                     break;
                 case 4:
-                    report(answerRequestDatabase);
+                    report(answerDB);
                     break;
                 case 99:
                     break;
@@ -37,19 +35,19 @@ public class BranchMenu extends MainMenu {
         }
     }
 
-    public void report(AnswerRequestDatabase answerRequestDatabase) {
-        if (answerRequestDatabase.getAnswer().isEmpty()) {
+    public void report(AnswerRequestDatabase answerDB) {
+        if (answerDB.getAnswer().isEmpty()) {
             System.out.println(Constant.PURPLE + "there is no customer");
             return;
         }
-        if (!checkRequestOption(RequestOption.REPORT, answerRequestDatabase)) {
+        if (!checkRequestOption(RequestOption.REPORT, answerDB)) {
             System.out.println(Constant.RED + "there is no report request to show");
             return;
         }
-        print(answerRequestDatabase, RequestOption.REPORT);
+        print(answerDB, RequestOption.REPORT);
         int number = getNumber();
         int count = 0;
-        for (Request request : answerRequestDatabase.getAnswer()) {
+        for (Request request : answerDB.getAnswer()) {
             if (request.getRequestOption() == RequestOption.REPORT) {
                 count++;
                 closeRequest(number, count, request);
@@ -58,19 +56,19 @@ public class BranchMenu extends MainMenu {
 
     }
 
-    private void transfer(AnswerRequestDatabase answerRequestDatabase) {
-        if (answerRequestDatabase.getAnswer().isEmpty()) {
+    private void transfer(AnswerRequestDatabase answerDB) {
+        if (answerDB.getAnswer().isEmpty()) {
             System.out.println(Constant.PURPLE + "there is no customer");
             return;
         }
-        if (!checkRequestOption(RequestOption.TRANSFER, answerRequestDatabase)) {
+        if (!checkRequestOption(RequestOption.TRANSFER, answerDB)) {
             System.out.println(Constant.RED + "there is no transfer request to show");
             return;
         }
-        print(answerRequestDatabase, RequestOption.TRANSFER);
+        print(answerDB, RequestOption.TRANSFER);
         int number = getNumber();
         int count = 0;
-        for (Request request : answerRequestDatabase.getAnswer()) {
+        for (Request request : answerDB.getAnswer()) {
             if (request.getRequestOption() == RequestOption.TRANSFER) {
                 count++;
                 closeRequest(number, count, request);
@@ -78,19 +76,19 @@ public class BranchMenu extends MainMenu {
         }
     }
 
-    private void setting(AnswerRequestDatabase answerRequestDatabase) {
-        if (answerRequestDatabase.getAnswer().isEmpty()) {
+    private void setting(AnswerRequestDatabase answerDB) {
+        if (answerDB.getAnswer().isEmpty()) {
             System.out.println(Constant.PURPLE + "there is no customer");
             return;
         }
-        if (!checkRequestOption(RequestOption.SETTING, answerRequestDatabase)) {
+        if (!checkRequestOption(RequestOption.SETTING, answerDB)) {
             System.out.println(Constant.RED + "there is no setting request to show");
             return;
         }
-        print(answerRequestDatabase, RequestOption.SETTING);
+        print(answerDB, RequestOption.SETTING);
         int number = getNumber();
         int count = 0;
-        for (Request request : answerRequestDatabase.getAnswer()) {
+        for (Request request : answerDB.getAnswer()) {
             if (request.getRequestOption() == RequestOption.SETTING) {
                 count++;
                 closeRequest(number, count, request);
@@ -98,19 +96,19 @@ public class BranchMenu extends MainMenu {
         }
     }
 
-    private void contact(AnswerRequestDatabase answerRequestDatabase) {
-        if (answerRequestDatabase.getAnswer().isEmpty()) {
+    private void contact(AnswerRequestDatabase answerDB) {
+        if (answerDB.getAnswer().isEmpty()) {
             System.out.println(Constant.PURPLE + "there is no customer");
             return;
         }
-        if (!checkRequestOption(RequestOption.CONTACT, answerRequestDatabase)) {
+        if (!checkRequestOption(RequestOption.CONTACT, answerDB)) {
             System.out.println(Constant.RED + "there is no contact request to show");
             return;
         }
-        print(answerRequestDatabase, RequestOption.CONTACT);
+        print(answerDB, RequestOption.CONTACT);
         int number = getNumber();
         int count = 0;
-        for (Request request : answerRequestDatabase.getAnswer()) {
+        for (Request request : answerDB.getAnswer()) {
             if (request.getRequestOption() == RequestOption.CONTACT) {
                 count++;
                 closeRequest(number, count, request);
@@ -118,9 +116,9 @@ public class BranchMenu extends MainMenu {
         }
     }
 
-    private void print(AnswerRequestDatabase answerRequestDatabase, RequestOption requestOption) {
+    private void print(AnswerRequestDatabase answerDB, RequestOption requestOption) {
         int count = 1;
-        for (Request request : answerRequestDatabase.getAnswer()) {
+        for (Request request : answerDB.getAnswer()) {
             if (request.getRequestOption() == requestOption) {
                 System.out.println(count + "." + requestOption);
                 count++;
@@ -135,8 +133,9 @@ public class BranchMenu extends MainMenu {
             request.setRequestState(RequestState.ANSWERED);
         }
     }
-    private boolean checkRequestOption(RequestOption requestOption, AnswerRequestDatabase answerRequestDatabase) {
-        for (Request request : answerRequestDatabase.getAnswer()) {
+
+    private boolean checkRequestOption(RequestOption requestOption, AnswerRequestDatabase answerDB) {
+        for (Request request : answerDB.getAnswer()) {
             if (request.getRequestOption() == requestOption) {
                 return true;
             }

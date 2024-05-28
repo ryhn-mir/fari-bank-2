@@ -6,7 +6,6 @@ import ir.ac.kntu.Request;
 import ir.ac.kntu.RequestState;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
-import ir.ac.kntu.util.ScannerWrapper;
 
 public class SearchMenu extends MainMenu {
     private Database database;
@@ -22,7 +21,8 @@ public class SearchMenu extends MainMenu {
         System.out.println(Constant.GREEN + "3.search by user");
         System.out.println(Constant.GREEN + "99.back");
     }
-    public void searchMenu(AnswerRequestDatabase answerRequestDatabase) {
+
+    public void searchMenu(AnswerRequestDatabase answerDB) {
         int number = 0;
         while (number != 99) {
             printSearchMenu();
@@ -30,14 +30,14 @@ public class SearchMenu extends MainMenu {
             switch (number) {
                 case 1:
                     StateMenu stateMenu = new StateMenu(database);
-                    stateMenu.stateMenu(answerRequestDatabase);
+                    stateMenu.stateMenu(answerDB);
                     break;
                 case 2:
                     BranchMenu branchMenu = new BranchMenu();
-                    branchMenu.branchMenu(answerRequestDatabase);
+                    branchMenu.branchMenu(answerDB);
                     break;
                 case 3:
-                    searchByUser(answerRequestDatabase);
+                    searchByUser(answerDB);
                     break;
                 case 99:
                     break;
@@ -46,13 +46,14 @@ public class SearchMenu extends MainMenu {
             }
         }
     }
-    private void searchByUser(AnswerRequestDatabase answerRequestDatabase) {
-        if (answerRequestDatabase.getAnswer().isEmpty()) {
+
+    private void searchByUser(AnswerRequestDatabase answerDB) {
+        if (answerDB.getAnswer().isEmpty()) {
             System.out.println(Constant.PURPLE + "there is no customer");
             return;
         }
         String cellNumber = getCellNumber();
-        for (Request request : answerRequestDatabase.getAnswer()) {
+        for (Request request : answerDB.getAnswer()) {
             if (request.getCellNumber().equals(cellNumber)) {
                 System.out.println(Constant.PURPLE + request);
                 String answer = getAnswer();

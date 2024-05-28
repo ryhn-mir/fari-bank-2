@@ -11,20 +11,20 @@ public class Transaction {
     private Date date;
     private String dateFormat;
     private String tracingNumber;
-    private String receiverAccountNumber;
-    private String senderAccountNumber;
+    private String receiverNo;
+    private String senderNo;
     private TransactionKind transactionKind;
 
 
-    public Transaction(String receiverFirstName, String receiverLastName, String receiverAccountNumber, String senderAccountNumber, TransactionKind transactionKind) {
+    public Transaction(String receiverFirstName, String receiverLastName, String receiverNo, String senderNo, TransactionKind transactionKind) {
         this.receiverFirstName = receiverFirstName;
         this.receiverLastName = receiverLastName;
         Calendar calendar = new Calendar();
         this.date = calendar.getDate();
         this.tracingNumber = getTracingNumber();
         this.dateFormat = calendar.getDateFormat();
-        this.receiverAccountNumber = receiverAccountNumber;
-        this.senderAccountNumber = senderAccountNumber;
+        this.receiverNo = receiverNo;
+        this.senderNo = senderNo;
         this.transactionKind = transactionKind;
     }
 
@@ -44,8 +44,8 @@ public class Transaction {
         Random random = new Random();
         int max = 999999;
         int min = 100000;
-        int valueOfTracingNumber = random.nextInt(max - min + 1) + min;
-        return String.valueOf(valueOfTracingNumber);
+        int tracingNo = random.nextInt(max - min + 1) + min;
+        return String.valueOf(tracingNo);
     }
 
     @Override
@@ -55,8 +55,8 @@ public class Transaction {
                 ", receiverLastName='" + receiverLastName + '\'' +
                 ", dateFormat='" + dateFormat + '\'' +
                 ", tracingNumber='" + tracingNumber + '\'' +
-                ", receiverAccountNumber='" + receiverAccountNumber + '\'' +
-                ", senderAccountNumber='" + senderAccountNumber + '\'' +
+                ", receiverAccountNumber='" + receiverNo + '\'' +
+                ", senderAccountNumber='" + senderNo + '\'' +
                 ", transactionKind=" + transactionKind +
                 '}';
     }

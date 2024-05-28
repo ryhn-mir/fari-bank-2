@@ -16,8 +16,9 @@ public class Card {
     public void setPassword(String password) {
         this.password = password;
     }
-     private String randomPass() {
-         Random random = new Random();
-         return String.valueOf(random.nextInt(1000, 10000));
-     }
+
+    private String randomPass() {
+        Random random = new Random();
+        return String.valueOf(random.nextInt(1000, 10000));
+    }
 }

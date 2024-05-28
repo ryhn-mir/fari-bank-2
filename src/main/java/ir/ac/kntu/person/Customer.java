@@ -35,7 +35,7 @@ public class Customer extends Person {
         contactDatabase = new ContactDatabase();
         this.status = RegistrationStatus.PROGRESSING;
         requestDatabase = new RequestDatabase();
-        account = new Account(0,randAccountNo());
+        account = new Account(0, randAccountNo());
 
     }
 
@@ -100,7 +100,7 @@ public class Customer extends Person {
 
     private String randAccountNo() {
         Random random = new Random();
-        return String.valueOf(random.nextInt((int)Math.pow(10,8),(int)Math.pow(10, 9)));
+        return String.valueOf(random.nextInt((int) Math.pow(10, 8), (int) Math.pow(10, 9)));
     }
 
     public boolean isContactIsOn() {

@@ -4,7 +4,6 @@ import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
-import ir.ac.kntu.util.ScannerWrapper;
 
 import java.util.List;
 
@@ -94,11 +93,11 @@ public class TransferMoneyMenu extends MainMenu {
     }
 
     private void transferMoneyByRecentTransactions(Customer customer) {
-        List<Customer> recentTransactions = customer.getRecentTransactions().getRecentTransactions();
+        List<Customer> recentTrans = customer.getRecentTransactions().getRecentTrans();
         customer.getRecentTransactions().printContact();
         int number = getNumber();
-        if (number >= 1 && number <= recentTransactions.size()) {
-            Customer cust = customer.getRecentTransactions().getRecentTransactions().get(number - 1);
+        if (number >= 1 && number <= recentTrans.size()) {
+            Customer cust = customer.getRecentTransactions().getRecentTrans().get(number - 1);
             long money = getInputMoney();
             customer.getAccount().transfer(money, cust.getAccount().getAccountNumber());
         } else {

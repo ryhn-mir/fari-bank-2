@@ -56,6 +56,7 @@ public class Account {
         Database database = new Database();
         Customer customer = database.findReceiver(accountNumber);
         Transaction transaction = new Transaction(customer.getFirstName(), customer.getLastName(), customer.getAccount().getAccountNumber(), getAccountNumber(), TransactionKind.INCREASE_CREDIT);
+        transactionDb.addTransaction(transaction);
 
     }
 

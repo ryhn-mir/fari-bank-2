@@ -6,9 +6,8 @@ import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.person.RegistrationStatus;
-import ir.ac.kntu.util.ScannerWrapper;
 
-public class CustomerMenu extends MainMenu{
+public class CustomerMenu extends MainMenu {
 
     private Database database;
 
@@ -23,7 +22,7 @@ public class CustomerMenu extends MainMenu{
         System.out.println(Constant.GREEN + "99.back");
     }
 
-    public void UserRegistrationMenu(AnswerRequestDatabase answerRequestDatabase) {
+    public void userRegistrationMenu(AnswerRequestDatabase answerDB) {
         int number = 0;
         while (number != 99) {
             try {
@@ -31,7 +30,7 @@ public class CustomerMenu extends MainMenu{
                 number = getNumber();
                 switch (number) {
                     case 1: //login
-                        login(answerRequestDatabase);
+                        login(answerDB);
                         break;
                     case 2: //register
                         register();
@@ -58,7 +57,7 @@ public class CustomerMenu extends MainMenu{
 
     }
 
-    public void customerMenu(Customer customer, AnswerRequestDatabase answerRequestDatabase) {
+    public void customerMenu(Customer customer, AnswerRequestDatabase answerDB) {
         int number = 0;
         while (number != 99) {
             try {
@@ -78,8 +77,8 @@ public class CustomerMenu extends MainMenu{
                         contactMenu.contactMenu(customer);
                         break;
                     case 4:
-                        SupportMenu supportMenu = new SupportMenu(database);
-                        supportMenu.supportMenu(customer, answerRequestDatabase);
+                        SupportMenu supportMenu = new SupportMenu();
+                        supportMenu.supportMenu(customer, answerDB);
                         break;
                     case 5:
                         SettingMenu settingMenu = new SettingMenu();
@@ -100,7 +99,7 @@ public class CustomerMenu extends MainMenu{
         System.out.println(Constant.BLUE + "please enter your national code and celNumber ");
     }
 
-    private void login(AnswerRequestDatabase answerRequestDatabase) {
+    private void login(AnswerRequestDatabase answerDB) {
         loginMenu();
         Customer cust = null;
         String nationalCode = getNationalCode();
@@ -116,7 +115,7 @@ public class CustomerMenu extends MainMenu{
                 throw new RuntimeException("user not found!!");
             } else {
                 if (cust.getStatus().equals(RegistrationStatus.ACCEPTED)) {
-                    customerMenu(cust, answerRequestDatabase);
+                    customerMenu(cust, answerDB);
                 } else if (cust.getStatus().equals(RegistrationStatus.PROGRESSING)) {
                     System.out.println("in progressing");
                 } else if (cust.getStatus().equals(RegistrationStatus.REJECTED)) {
@@ -128,6 +127,7 @@ public class CustomerMenu extends MainMenu{
             System.err.println(e.getMessage());
         }
     }
+
     private void register() {
         String firstName = getFirstName();
         String lastName = getLastName();

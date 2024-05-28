@@ -7,6 +7,7 @@ import java.util.List;
 
 public class ContactDatabase {
     private List<Customer> contactList;
+
     public ContactDatabase() {
         contactList = new LinkedList<>();
     }
@@ -18,6 +19,7 @@ public class ContactDatabase {
     public void setContactList(List<Customer> contactList) {
         this.contactList = contactList;
     }
+
     public void addContact(Customer customer) {
         contactList.add(customer);
     }
@@ -25,6 +27,7 @@ public class ContactDatabase {
     public boolean doesContactExist(Customer customer) {
         return contactList.contains(customer);
     }
+
     public Customer findCustomer(String cellNumber, Database database) {
         for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getCellNumber().equals(cellNumber)) {
@@ -33,7 +36,8 @@ public class ContactDatabase {
         }
         return null;
     }
-    public void removeContact (Customer customer) {
+
+    public void removeContact(Customer customer) {
         try {
             if (contactList.contains(customer)) {
                 contactList.remove(customer);

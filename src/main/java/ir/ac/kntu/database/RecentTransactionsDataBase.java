@@ -6,28 +6,28 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class RecentTransactionsDataBase {
-    private List<Customer> recentTransactions;
+    private List<Customer> recentTrans;
 
     public RecentTransactionsDataBase() {
-        recentTransactions = new LinkedList<>();
+        recentTrans = new LinkedList<>();
     }
 
-    public List<Customer> getRecentTransactions() {
-        return recentTransactions;
+    public List<Customer> getRecentTrans() {
+        return recentTrans;
     }
 
-    public void setRecentTransactions(List<Customer> recentTransactions) {
-        this.recentTransactions = recentTransactions;
+    public void setRecentTrans(List<Customer> recentTrans) {
+        this.recentTrans = recentTrans;
     }
 
     public void addTransactions(Customer customer) {
-        recentTransactions.add(customer);
+        recentTrans.add(customer);
     }
 
     public void printContact() {
         int count = 1;
-        for (Customer contact : recentTransactions) {
-            System.out.println(contact + "." + contact.getFirstName() + " " + contact.getLastName());
+        for (Customer contact : recentTrans) {
+            System.out.println(count + "." + contact.getFirstName() + " " + contact.getLastName());
             count++;
         }
     }

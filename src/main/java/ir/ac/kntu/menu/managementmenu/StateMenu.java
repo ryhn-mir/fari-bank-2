@@ -120,6 +120,7 @@ public class StateMenu extends MainMenu {
             }
         }
     }
+
     private boolean checkState(RequestState requestState, AnswerRequestDatabase answerRequestDatabase) {
         for (Request request : answerRequestDatabase.getAnswer()) {
             if (request.getRequestState() == requestState) {

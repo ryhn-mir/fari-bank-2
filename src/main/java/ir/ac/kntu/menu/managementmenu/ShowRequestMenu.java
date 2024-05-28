@@ -5,7 +5,6 @@ import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.RequestState;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
-import ir.ac.kntu.util.ScannerWrapper;
 
 public class ShowRequestMenu extends MainMenu {
     private Database database;
@@ -21,7 +20,7 @@ public class ShowRequestMenu extends MainMenu {
         System.out.println(Constant.GREEN + "99.back");
     }
 
-    public void showRequestMenu(AnswerRequestDatabase answerRequestDatabase) {
+    public void showRequestMenu(AnswerRequestDatabase answerDB) {
         int number = 0;
         while (number != 99) {
             printShowRequestMenu();
@@ -29,10 +28,10 @@ public class ShowRequestMenu extends MainMenu {
             switch (number) {
                 case 1:
                     SearchMenu searchMenu = new SearchMenu(database);
-                    searchMenu.searchMenu(answerRequestDatabase);
+                    searchMenu.searchMenu(answerDB);
                     break;
                 case 2:
-                    showRequest(answerRequestDatabase);
+                    showRequest(answerDB);
                     break;
                 case 99:
                     break;
@@ -42,13 +41,13 @@ public class ShowRequestMenu extends MainMenu {
         }
     }
 
-    private void showRequest(AnswerRequestDatabase answerRequestDatabase) {
-        if (answerRequestDatabase.getAnswer().isEmpty()) {
-            System.out.println(Constant.RED  + "there is no customer to show!!");
+    private void showRequest(AnswerRequestDatabase answerDB) {
+        if (answerDB.getAnswer().isEmpty()) {
+            System.out.println(Constant.RED + "there is no customer to show!!");
         }
-        answerRequestDatabase.printAnswerRequest();
+        answerDB.printAnswerRequest();
         int number = getNumber();
-        answerRequestDatabase.getAnswer().get(number - 1).setRequestState(RequestState.PROGRESSING);
-        System.out.println(answerRequestDatabase.getAnswer().get(number - 1) + "cellNumber : " + answerRequestDatabase.getAnswer().get(number - 1).getCellNumber());
+        answerDB.getAnswer().get(number - 1).setRequestState(RequestState.PROGRESSING);
+        System.out.println(answerDB.getAnswer().get(number - 1) + "cellNumber : " + answerDB.getAnswer().get(number - 1).getCellNumber());
     }
 }

@@ -77,6 +77,7 @@ public class MainMenu {
         }
         return true;
     }
+
     private boolean checkPassword(String password) {
         boolean upperCase = false;
         boolean lowerCase = false;
