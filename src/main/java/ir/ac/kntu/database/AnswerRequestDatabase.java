@@ -1,7 +1,7 @@
 package ir.ac.kntu.database;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.Request;
+import ir.ac.kntu.request.Request;
 
 import java.util.LinkedList;
 import java.util.List;

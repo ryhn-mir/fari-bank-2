@@ -1,4 +1,6 @@
-package ir.ac.kntu;
+package ir.ac.kntu.request;
+
+import ir.ac.kntu.Constant;
 
 public enum RequestOption {
     CONTACT,

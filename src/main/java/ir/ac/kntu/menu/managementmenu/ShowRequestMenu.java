@@ -2,7 +2,7 @@ package ir.ac.kntu.menu.managementmenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
-import ir.ac.kntu.RequestState;
+import ir.ac.kntu.request.RequestState;
 import ir.ac.kntu.menu.MainMenu;
 
 public class ShowRequestMenu extends MainMenu {

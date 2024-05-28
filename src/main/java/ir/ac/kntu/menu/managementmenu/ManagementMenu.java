@@ -1,8 +1,8 @@
 package ir.ac.kntu.menu.managementmenu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.Request;
-import ir.ac.kntu.RequestOption;
+import ir.ac.kntu.request.Request;
+import ir.ac.kntu.request.RequestOption;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;

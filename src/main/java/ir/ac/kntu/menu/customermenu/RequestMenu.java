@@ -4,8 +4,8 @@ import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
-import ir.ac.kntu.Request;
-import ir.ac.kntu.RequestOption;
+import ir.ac.kntu.request.Request;
+import ir.ac.kntu.request.RequestOption;
 
 public class RequestMenu extends MainMenu {
 
