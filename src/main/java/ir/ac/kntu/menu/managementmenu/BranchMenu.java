@@ -120,7 +120,7 @@ public class BranchMenu extends MainMenu {
         int count = 1;
         for (Request request : answerDB.getAnswer()) {
             if (request.getRequestOption() == requestOption) {
-                System.out.println(count + "." + requestOption);
+                System.out.println(count + "." + request);
                 count++;
             }
         }

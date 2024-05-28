@@ -31,4 +31,11 @@ public class TransactionDb {
             count++;
         }
     }
+
+    @Override
+    public String toString() {
+        return "TransactionDb{" +
+                "transactions=" + transactions +
+                '}';
+    }
 }

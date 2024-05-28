@@ -101,16 +101,16 @@ public class ManagementMenu extends MainMenu {
 
 
     public void verify() {
-        if (database.getCustomerDataBase().isEmpty()) {
-            System.out.println(Constant.RED + "there is no customer!!");
-            return;
-        }
         int count = 1;
         for (Customer customer : database.getCustomerDataBase()) {
             if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
                 System.out.println(count + "." + customer);
                 count++;
             }
+        }
+        if (database.getCustomerDataBase().isEmpty() || count == 1) {
+            System.out.println(Constant.RED + "there is no customer!!");
+            return;
         }
         int number = getNumber();
         System.out.println(Constant.BLUE + "wanna accept the customer ? 1(yes) 0(no)");

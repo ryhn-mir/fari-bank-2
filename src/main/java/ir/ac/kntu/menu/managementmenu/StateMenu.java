@@ -108,7 +108,7 @@ public class StateMenu extends MainMenu {
         int count = 1;
         for (Request request : answerDB.getAnswer()) {
             if (request.getRequestState() == requestState) {
-                System.out.println(count + "." + requestState);
+                System.out.println(count + "." + request);
                 count++;
             }
         }

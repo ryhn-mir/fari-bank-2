@@ -46,17 +46,13 @@ public class SettingMenu extends MainMenu {
 
     private void editCardPassword(Customer customer) {
         String pass = getPassword();
-        if (pass.matches("[0-9]{4}")) {
-            customer.getAccount().getCard().setPassword(pass);
-        } else {
-            System.out.println(Constant.RED + "invalid password format!!");
-        }
+        customer.getAccount().getCard().setPassword(pass);
+
     }
 
     private void editPersonPassword(Customer customer) {
         System.out.println(Constant.PURPLE + "enter your new password");
-        String pass = getPassword();
-        customer.setPassword(pass);
+        String pass = getCardPass();
     }
 
     private void activationContact(Customer customer) {

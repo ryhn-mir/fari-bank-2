@@ -41,12 +41,11 @@ public class SupportMenu extends MainMenu {
             System.out.println(Constant.RED + "there is no request to show!!");
             return;
         }
+        int count = 1;
         for (Request request : customer.getRequestDatabase().getRequestList()) {
-            int count = 1;
             System.out.println(Constant.PURPLE + count + "." + request.getRequest());
             count++;
         }
-        System.out.println(Constant.PURPLE + "enter number");
         int number = getNumber();
         System.out.println(Constant.PURPLE + customer.getRequestDatabase().getRequestList().get(number - 1));
     }

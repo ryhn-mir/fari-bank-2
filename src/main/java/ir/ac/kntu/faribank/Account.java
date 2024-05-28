@@ -76,4 +76,14 @@ public class Account {
             System.err.println(e.getMessage());
         }
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "balance=" + balance +
+                ", accountNumber='" + accountNumber + '\'' +
+                ", card=" + card +
+                ", transactionDb=" + transactionDb +
+                '}';
+    }
 }

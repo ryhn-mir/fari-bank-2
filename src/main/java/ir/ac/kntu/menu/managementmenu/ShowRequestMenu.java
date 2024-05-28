@@ -38,6 +38,7 @@ public class ShowRequestMenu extends MainMenu {
     private void showRequest(AnswerRequestDatabase answerDB) {
         if (answerDB.getAnswer().isEmpty()) {
             System.out.println(Constant.RED + "there is no customer to show!!");
+            return;
         }
         answerDB.printAnswerRequest();
         int number = getNumber();

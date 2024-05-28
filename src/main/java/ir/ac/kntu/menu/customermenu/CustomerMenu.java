@@ -104,7 +104,7 @@ public class CustomerMenu extends MainMenu {
                 } else if (cust.getStatus().equals(RegistrationStatus.PROGRESSING)) {
                     System.out.println("in progressing");
                 } else if (cust.getStatus().equals(RegistrationStatus.REJECTED)) {
-                    cust.getRequestDatabase().getRequestList().get(0);
+                    System.out.println(Constant.PURPLE + cust.getRequestDatabase().getRequestList().get(0));
                     database.getCustomerDataBase().remove(cust);
                 }
             }

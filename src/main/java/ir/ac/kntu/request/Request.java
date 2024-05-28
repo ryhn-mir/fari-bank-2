@@ -55,18 +55,22 @@ public class Request {
         this.cellNumber = cellNumber;
     }
 
+
     @Override
     public String toString() {
         if (answer.isEmpty()) {
             return "Request{" +
                     "request='" + request + '\'' +
                     ", requestOption=" + requestOption +
+                    ", requestState=" + requestState +
                     '}';
         }
         return "Request{" +
                 "request='" + request + '\'' +
                 ", requestOption=" + requestOption +
                 ", answer='" + answer + '\'' +
+                ", cellNumber='" + cellNumber + '\'' +
+                ", requestState=" + requestState +
                 '}';
     }
 }

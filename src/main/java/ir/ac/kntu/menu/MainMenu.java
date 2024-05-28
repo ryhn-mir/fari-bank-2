@@ -1,6 +1,7 @@
 package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Constant;
+import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class MainMenu {
@@ -70,6 +71,16 @@ public class MainMenu {
         return ScannerWrapper.getInstance().nextLine();
     }
 
+    public String getCardPass() {
+        String pass = "";
+        do {
+            System.out.println(Constant.PURPLE + "enter password");
+            pass = ScannerWrapper.getInstance().nextLine();
+        } while (checkCardPassword(pass));
+        return pass;
+    }
+
+
     private boolean checkCellNumber(String cellNumber) {
         if (!cellNumber.matches("^(09)[0-9]{9}")) {
             System.out.println(Constant.RED + "invalid cellNumber format!!");
@@ -110,5 +121,14 @@ public class MainMenu {
         }
         return password.contains("@") || password.contains("#") || password.contains("^") ||
                 password.contains("$") || password.contains("&") || password.contains("*");
+    }
+
+    private boolean checkCardPassword(String pass) {
+        if (pass.matches("[0-9]{4}")) {
+            return true;
+        } else {
+            System.out.println(Constant.RED + "invalid password format!!");
+            return false;
+        }
     }
 }
