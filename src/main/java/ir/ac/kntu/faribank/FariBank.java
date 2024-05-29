@@ -3,8 +3,6 @@ package ir.ac.kntu.faribank;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.Menu;
-import ir.ac.kntu.person.Customer;
-import ir.ac.kntu.person.RegistrationStatus;
 
 public class FariBank {
 
