@@ -60,7 +60,7 @@ public class Account {
 
     }
 
-    public void transfer(long money, String accountNumber) {
+    public boolean transfer(long money, String accountNumber) {
         Database database = new Database();
         try {
             if (money + Constant.WAGE <= balance) {
@@ -69,11 +69,14 @@ public class Account {
                 customer.getAccount().setBalance(getBalance() + money);
                 Transaction transaction = new Transaction(customer.getFirstName(), customer.getLastName(), customer.getAccount().getAccountNumber(), getAccountNumber(), TransactionKind.TRANSFER_MONEY);
                 transactionDb.addTransaction(transaction);
+                return true;
             } else {
                 throw new RuntimeException("balance is not enough : " + balance);
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
+            return false;
+
         }
     }
 

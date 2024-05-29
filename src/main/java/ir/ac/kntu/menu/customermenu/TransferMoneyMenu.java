@@ -51,7 +51,7 @@ public class TransferMoneyMenu extends MainMenu {
 
     public void transferMoneyByContact(Customer customer) {
         if (customer.getContactDatabase().getContactList().isEmpty()) {
-            System.out.println(Constant.RED +  "there is no contact to transfer money");
+            System.out.println(Constant.RED + "there is no contact to transfer money");
             return;
         }
         if (!customer.isContactIsOn()) {
@@ -81,6 +81,7 @@ public class TransferMoneyMenu extends MainMenu {
             } else {
                 long money = getInputMoney();
                 customer.getAccount().transfer(money, accountNumber);
+                customer.getRecentTrans().getRecentTrans().add(cust);
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -92,6 +93,7 @@ public class TransferMoneyMenu extends MainMenu {
         if (cust.getContactDatabase().checkContactIsOn(customer.getAccount().getAccountNumber())) {
             long money = getInputMoney();
             customer.getAccount().transfer(money, cust.getAccount().getAccountNumber());
+            customer.getRecentTrans().getRecentTrans().add(cust);
         } else {
             System.out.println(Constant.RED + "you are not the contact of " + cust.getFirstName() + " " + cust.getLastName());
         }
@@ -109,6 +111,7 @@ public class TransferMoneyMenu extends MainMenu {
             Customer cust = customer.getRecentTrans().getRecentTrans().get(number - 1);
             long money = getInputMoney();
             customer.getAccount().transfer(money, cust.getAccount().getAccountNumber());
+            customer.getRecentTrans().getRecentTrans().add(cust);
         } else {
             System.out.println(Constant.RED + "number out of the range!!");
         }
