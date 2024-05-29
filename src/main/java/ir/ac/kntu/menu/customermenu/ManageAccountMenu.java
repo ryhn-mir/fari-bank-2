@@ -34,7 +34,6 @@ public class ManageAccountMenu extends MainMenu {
                         showAccountBalance(customer);
                         break;
                     case 3:
-//                        showListOfTransactions(customer);
                         requestTransaction(customer);
                         break;
                     case 99:
@@ -48,11 +47,6 @@ public class ManageAccountMenu extends MainMenu {
         }
     }
 
-//    private void showListOfTransactions(Customer customer) {
-//        for (Transaction transaction : customer.getAccount().getTransactionDb().getTransactions()) {
-//            System.out.println(Constant.PURPLE + transaction);
-//        }
-//    }
 
     private void showAccountBalance(Customer customer) {
         System.out.println(Constant.PURPLE + customer.getAccount().getBalance());

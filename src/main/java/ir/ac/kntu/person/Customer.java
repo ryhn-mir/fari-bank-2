@@ -24,14 +24,6 @@ public class Customer extends Person {
         super(firstName, lastName, password);
         this.nationalCode = nationalCode;
         recentTrans = new RecentTransactionsDataBase();
-//        while (true) {
-//            setCellNumber(cellNumber);
-//            if (cellNumber != null) {
-//                break;
-//            } else {
-//                System.out.println(Constant.CYAN + "Enter your cellphone number again");
-//            }
-//        }
         setCellNumber(cellNumber);
         contactDatabase = new ContactDatabase();
         this.status = RegistrationStatus.PROGRESSING;
