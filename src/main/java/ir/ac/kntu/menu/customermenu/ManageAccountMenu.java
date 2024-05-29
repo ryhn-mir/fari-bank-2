@@ -4,8 +4,6 @@ import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
-import ir.ac.kntu.transaction.Transaction;
-import ir.ac.kntu.util.ScannerWrapper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -58,6 +56,7 @@ public class ManageAccountMenu extends MainMenu {
 
     private void showAccountBalance(Customer customer) {
         System.out.println(Constant.PURPLE + customer.getAccount().getBalance());
+        System.out.println(Constant.PURPLE + "accountNo : " + customer.getAccount().getAccountNumber());
     }
 
     private void increaseBalance(Customer customer, Database database) {

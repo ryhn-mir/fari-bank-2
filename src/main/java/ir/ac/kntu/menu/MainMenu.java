@@ -1,7 +1,6 @@
 package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class MainMenu {

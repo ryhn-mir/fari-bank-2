@@ -61,6 +61,7 @@ public class TransferMoneyMenu extends MainMenu {
             int count = 1;
             for (Customer cust : customer.getContactDatabase().getContactList()) {
                 System.out.println(count + "." + cust.getFirstName() + " " + cust.getLastName());
+                count++;
             }
             int number = getNumber();
             if (number >= 1 && number <= count) {
