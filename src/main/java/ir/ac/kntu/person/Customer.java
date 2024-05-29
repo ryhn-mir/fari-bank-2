@@ -156,11 +156,11 @@ public class Customer extends Person {
             return false;
         }
         Customer customer = (Customer) obj;
-        return contactIsOn == customer.contactIsOn && Objects.equals(nationalCode, customer.nationalCode) && Objects.equals(cellNumber, customer.cellNumber) && Objects.equals(account, customer.account) && Objects.equals(contactDatabase, customer.contactDatabase);
+        return Objects.equals(nationalCode, customer.nationalCode) && Objects.equals(cellNumber, customer.cellNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nationalCode, cellNumber, account, contactIsOn, contactDatabase);
+        return Objects.hash(nationalCode, cellNumber);
     }
 }

@@ -65,7 +65,8 @@ public class Account {
             if (money + Constant.WAGE <= balance) {
                 setBalance(getBalance() - money - Constant.WAGE);
                 Customer customer = database.findReceiver(accountNumber);
-                customer.getAccount().setBalance(getBalance() + money);
+                long finalMoney = customer.getAccount().getBalance() + money;
+                customer.getAccount().setBalance(finalMoney);
                 Transaction transaction = new Transaction(customer.getFirstName(), customer.getLastName(), customer.getAccount().getAccountNumber(), getAccountNumber(), TransactionKind.TRANSFER_MONEY);
                 transactionDb.addTransaction(transaction);
                 return true;
