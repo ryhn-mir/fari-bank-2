@@ -78,8 +78,12 @@ public class TransferMoneyMenu extends MainMenu {
             if (cust == null) {
                 throw new RuntimeException("there is no person with that accountNumber");
             } else {
+                if (!isAccepted(cust)) {
+                    System.out.println(Constant.RED + "there is no customer");
+                    return;
+                }
                 long money = getInputMoney();
-                customer.getAccount().transfer(money, accountNumber);
+                customer.getAccount().transfer(money, accountNumber, database);
                 customer.getRecentTrans().getRecentTrans().add(cust);
             }
         } catch (Exception e) {
@@ -88,10 +92,14 @@ public class TransferMoneyMenu extends MainMenu {
     }
 
     private void checkContact(Customer customer, int number) {
-        Customer cust = customer.getContactDatabase().getContactList().get(number);
+        Customer cust = customer.getContactDatabase().getContactList().get(number - 1);
+        if (!cust.isContactIsOn()) {
+            System.out.println(Constant.RED + "activation of your contact is off");
+            return;
+        }
         if (cust.getContactDatabase().checkContactIsOn(customer.getAccount().getAccountNumber())) {
             long money = getInputMoney();
-            customer.getAccount().transfer(money, cust.getAccount().getAccountNumber());
+            customer.getAccount().transfer(money, cust.getAccount().getAccountNumber(), database);
             customer.getRecentTrans().getRecentTrans().add(cust);
         } else {
             System.out.println(Constant.RED + "you are not the contact of " + cust.getFirstName() + " " + cust.getLastName());
@@ -109,11 +117,12 @@ public class TransferMoneyMenu extends MainMenu {
         if (number >= 1 && number <= recentTrans.size()) {
             Customer cust = customer.getRecentTrans().getRecentTrans().get(number - 1);
             long money = getInputMoney();
-            customer.getAccount().transfer(money, cust.getAccount().getAccountNumber());
+            customer.getAccount().transfer(money, cust.getAccount().getAccountNumber(), database);
             customer.getRecentTrans().getRecentTrans().add(cust);
         } else {
             System.out.println(Constant.RED + "number out of the range!!");
         }
 
     }
+
 }

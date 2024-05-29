@@ -1,5 +1,6 @@
 package ir.ac.kntu.person;
 
+import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.ContactDatabase;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.database.RecentTransactionsDataBase;
@@ -121,6 +122,10 @@ public class Customer extends Person {
 
     public void addContact(String cellNumber, String firstName, String lastName, Database database) {
         Customer customer = contactDatabase.findCustomer(cellNumber, database);
+        if (customer.getStatus() != RegistrationStatus.ACCEPTED) {
+            System.out.println(Constant.RED + "there is no customer!!");
+            return;
+        }
         try {
             if (customer != null) {
                 Customer cust = new Customer(customer, firstName, lastName);

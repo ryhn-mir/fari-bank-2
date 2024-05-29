@@ -17,6 +17,7 @@ public class Account {
         this.balance = balance;
         this.accountNumber = accountNumber;
         transactionDb = new TransactionDb();
+        card = new Card();
     }
 
     public Card getCard() {
@@ -53,15 +54,13 @@ public class Account {
 
     public void increaseCredit(long money, Database database) {
         setBalance(getBalance() + money);
-//        Database database = new Database();
         Customer customer = database.findReceiver(accountNumber);
         Transaction transaction = new Transaction(customer.getFirstName(), customer.getLastName(), customer.getAccount().getAccountNumber(), getAccountNumber(), TransactionKind.INCREASE_CREDIT);
         transactionDb.addTransaction(transaction);
 
     }
 
-    public boolean transfer(long money, String accountNumber) {
-        Database database = new Database();
+    public boolean transfer(long money, String accountNumber, Database database) {
         try {
             if (money + Constant.WAGE <= balance) {
                 setBalance(getBalance() - money - Constant.WAGE);

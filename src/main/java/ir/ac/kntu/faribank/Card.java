@@ -3,7 +3,7 @@ package ir.ac.kntu.faribank;
 import java.util.Random;
 
 public class Card {
-    private String password;
+    private String password = "";
 
     public Card() {
         this.password = randomPass();

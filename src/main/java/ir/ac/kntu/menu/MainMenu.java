@@ -1,6 +1,8 @@
 package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Constant;
+import ir.ac.kntu.person.Customer;
+import ir.ac.kntu.person.RegistrationStatus;
 import ir.ac.kntu.util.ScannerWrapper;
 
 public class MainMenu {
@@ -84,6 +86,9 @@ public class MainMenu {
         return ScannerWrapper.getInstance().nextLine();
     }
 
+    public boolean isAccepted(Customer customer) {
+        return customer.getStatus() == RegistrationStatus.ACCEPTED;
+    }
 
     private boolean checkCellNumber(String cellNumber) {
         if (!cellNumber.matches("^(09)[0-9]{9}")) {
@@ -135,4 +140,6 @@ public class MainMenu {
             return false;
         }
     }
+
+
 }
