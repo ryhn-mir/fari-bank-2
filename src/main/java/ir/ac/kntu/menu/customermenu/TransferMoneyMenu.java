@@ -56,7 +56,6 @@ public class TransferMoneyMenu extends MainMenu {
         }
         if (!customer.isContactIsOn()) {
             System.out.println(Constant.RED + "you do not have access to contact");
-            return;
         } else {
             int count = 1;
             for (Customer cust : customer.getContactDatabase().getContactList()) {

@@ -75,7 +75,7 @@ public class MainMenu {
         do {
             System.out.println(Constant.PURPLE + "enter password");
             pass = ScannerWrapper.getInstance().nextLine();
-        } while (checkCardPassword(pass));
+        } while (!checkCardPassword(pass));
         return pass;
     }
 

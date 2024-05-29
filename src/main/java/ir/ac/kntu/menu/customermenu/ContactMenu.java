@@ -105,8 +105,14 @@ public class ContactMenu extends MainMenu {
         String lastName = getLastName();
         String cellNumber = getCellNumber();
         if (customer.getContactDatabase().findCustomer(cellNumber, database) == null) {
-            System.out.println(Constant.RED + "this contact is already exit!!");
+            System.out.println(Constant.RED + "person with that cellNumber does not exist!!");
             return;
+        }
+        for (Customer customer1 : customer.getContactDatabase().getContactList()) {
+            if (customer1.getCellNumber().equals(cellNumber)) {
+                System.out.println(Constant.RED + "this person is your contact !!");
+                return;
+            }
         }
         customer.addContact(cellNumber, firstName, lastName, database);
     }

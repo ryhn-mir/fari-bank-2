@@ -45,14 +45,13 @@ public class SettingMenu extends MainMenu {
     }
 
     private void editCardPassword(Customer customer) {
-        String pass = getPassword();
+        String pass = getCardPass();
         customer.getAccount().getCard().setPassword(pass);
 
     }
 
     private void editPersonPassword(Customer customer) {
-        System.out.println(Constant.PURPLE + "enter your new password");
-        String pass = getCardPass();
+        String pass = getPassword();
         customer.setPassword(pass);
     }
 
