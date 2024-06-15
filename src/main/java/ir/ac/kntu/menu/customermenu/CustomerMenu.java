@@ -1,18 +1,28 @@
 package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.database.AnswerRequestDatabase;
-import ir.ac.kntu.database.Database;
+import ir.ac.kntu.database.*;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.person.RegistrationStatus;
+import ir.ac.kntu.request.Request;
+import ir.ac.kntu.request.RequestOption;
 
 public class CustomerMenu extends MainMenu {
 
     private Database database;
+    private SimCardDataBase simCardDataBase;
 
-    public CustomerMenu(Database database) {
+    private BankDataBase bankDataBase;
+    private PayaDataBase payaDataBase;
+    private AnswerRequestDatabase answerDB;
+
+    public CustomerMenu(Database database, SimCardDataBase simCardDataBase, BankDataBase bankDataBase, PayaDataBase payaDataBase, AnswerRequestDatabase answerDB) {
         this.database = database;
+        this.simCardDataBase = simCardDataBase;
+        this.bankDataBase = bankDataBase;
+        this.payaDataBase = payaDataBase;
+        this.answerDB = answerDB;
     }
 
     public void printUserRegistrationCustomerMenu() {
@@ -53,6 +63,8 @@ public class CustomerMenu extends MainMenu {
         System.out.println(Constant.GREEN + "3.go to contact menu");    // show contact list , edit contact info, add contact
         System.out.println(Constant.GREEN + "4.support problems");
         System.out.println(Constant.GREEN + "5.go to setting menu");    // edit card pass, edit username, activation contact
+        System.out.println(Constant.GREEN + "6.fund");
+        System.out.println(Constant.GREEN + "7.simCard charge");
         System.out.println(Constant.GREEN + "99.back");
 
     }
@@ -69,6 +81,8 @@ public class CustomerMenu extends MainMenu {
                     case 3 -> contact(customer);
                     case 4 -> support(customer, answerDB);
                     case 5 -> setting(customer);
+                    case 6 -> fund(customer);
+                    case 7 -> simCardCharge(customer);
                     case 99 -> {
                         return;
                     }
@@ -95,22 +109,26 @@ public class CustomerMenu extends MainMenu {
                 break;
             }
         }
-        try {
-            if (cust == null) {
-                throw new RuntimeException("user not found!!");
-            } else {
-                if (cust.getStatus().equals(RegistrationStatus.ACCEPTED)) {
-                    customerMenu(cust, answerDB);
-                } else if (cust.getStatus().equals(RegistrationStatus.PROGRESSING)) {
-                    System.out.println("in progressing");
-                } else if (cust.getStatus().equals(RegistrationStatus.REJECTED)) {
-                    System.out.println(Constant.PURPLE + cust.getRequestDatabase().getRequestList().get(0));
-                    database.getCustomerDataBase().remove(cust);
-                }
+        if (cust == null) {
+            System.out.println(Constant.RED + "user not found");
+        } else {
+            if (cust.getStatus().equals(RegistrationStatus.ACCEPTED)) {
+                checkExist(cust, answerDB);
+            } else if (cust.getStatus().equals(RegistrationStatus.PROGRESSING)) {
+                System.out.println("in progressing");
+            } else if (cust.getStatus().equals(RegistrationStatus.REJECTED)) {
+                System.out.println(Constant.PURPLE + cust.getRequestDatabase().getRequestList().get(1));
+                database.getCustomerDataBase().remove(cust);
+                register();
             }
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
         }
+    }
+
+    private void checkExist(Customer customer, AnswerRequestDatabase answerDB) {
+        if (!bankDataBase.contains(customer)) {
+            bankDataBase.addCustomer(customer);
+        }
+        customerMenu(customer, answerDB);
     }
 
     private void register() {
@@ -126,12 +144,15 @@ public class CustomerMenu extends MainMenu {
                 return;
             }
         }
-        Customer customer = new Customer(firstName, lastName, password, nationalCode, cellNumber);
+        Customer customer = new Customer(firstName, lastName, password, nationalCode, cellNumber, simCardDataBase);
         database.addCustomer(customer);
+        Request request = new Request("I want to join to fari bank", RequestOption.REPORT, cellNumber);
+        customer.getRequestDatabase().addRequest(request);
+        answerDB.add(request);
     }
 
     private void transferMoney(Customer customer) {
-        TransferMoneyMenu transferMoneyMenu = new TransferMoneyMenu(database);
+        TransferMoneyMenu transferMoneyMenu = new TransferMoneyMenu(database, bankDataBase, payaDataBase);
         transferMoneyMenu.transferMoney(customer);
     }
 
@@ -153,5 +174,15 @@ public class CustomerMenu extends MainMenu {
     private void setting(Customer customer) {
         SettingMenu settingMenu = new SettingMenu();
         settingMenu.settingMenu(customer);
+    }
+
+    private void simCardCharge(Customer customer) {
+        SimCardMenu simCardMenu = new SimCardMenu(database, simCardDataBase, bankDataBase);
+        simCardMenu.simCardMenu(customer);
+    }
+
+    private void fund(Customer customer) {
+        FundMenu fundMenu = new FundMenu(database);
+        fundMenu.fundMenu(customer);
     }
 }
