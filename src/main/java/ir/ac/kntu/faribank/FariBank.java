@@ -4,6 +4,8 @@ import ir.ac.kntu.Constant;
 import ir.ac.kntu.cellphone.CellPhone;
 import ir.ac.kntu.database.*;
 import ir.ac.kntu.menu.Menu;
+import ir.ac.kntu.paya.Paya;
+import ir.ac.kntu.person.Chief;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.person.Management;
 import ir.ac.kntu.person.RegistrationStatus;

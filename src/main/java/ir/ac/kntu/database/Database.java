@@ -1,6 +1,7 @@
 package ir.ac.kntu.database;
 
 import ir.ac.kntu.Constant;
+import ir.ac.kntu.person.Chief;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.person.Management;
 

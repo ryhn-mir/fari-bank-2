@@ -1,5 +1,7 @@
 package ir.ac.kntu.database;
 
+import ir.ac.kntu.fund.Fund;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

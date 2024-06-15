@@ -1,6 +1,7 @@
 package ir.ac.kntu.database;
 
 import ir.ac.kntu.Constant;
+import ir.ac.kntu.paya.Paya;
 
 import java.util.List;
 

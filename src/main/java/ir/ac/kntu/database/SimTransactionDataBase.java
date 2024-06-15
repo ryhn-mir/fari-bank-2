@@ -1,5 +1,8 @@
 package ir.ac.kntu.database;
 
+import ir.ac.kntu.simcardtransaction.SimCardTransaction;
+
+
 import java.util.ArrayList;
 import java.util.List;
 

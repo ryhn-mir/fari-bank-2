@@ -2,6 +2,7 @@ package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.*;
+import ir.ac.kntu.menu.chiefmenu.ChiefMenu;
 import ir.ac.kntu.menu.customermenu.CustomerMenu;
 import ir.ac.kntu.menu.managementmenu.ManagementMenu;
 
