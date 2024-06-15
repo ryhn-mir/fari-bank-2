@@ -4,7 +4,7 @@ import ir.ac.kntu.Constant;
 import ir.ac.kntu.fund.Fund;
 import ir.ac.kntu.person.Customer;
 
-public class Profit {
+public class Profit implements Runnable {
     private Fund fund;
     private Customer customer;
     public void setFund(Fund fund, Customer customer) {
