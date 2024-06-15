@@ -9,8 +9,8 @@ import java.util.List;
 public class AnswerRequestDatabase {
     private List<Request> answer;
 
-    public AnswerRequestDatabase() {
-        answer = new LinkedList<>();
+    public AnswerRequestDatabase(List<Request> answer) {
+        this.answer = answer;
     }
 
     public void add(Request request) {
