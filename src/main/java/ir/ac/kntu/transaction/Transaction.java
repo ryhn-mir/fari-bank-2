@@ -16,6 +16,7 @@ public class Transaction {
     private TransactionKind transactionKind;
 
 
+
     public Transaction(String receiverFirstName, String receiverLastName, String receiverNo, String senderNo, TransactionKind transactionKind) {
         this.receiverFirstName = receiverFirstName;
         this.receiverLastName = receiverLastName;
