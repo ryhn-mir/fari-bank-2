@@ -2,10 +2,18 @@ package ir.ac.kntu.menu.managementmenu;
 
 import ir.ac.kntu.Constant;
 import ir.ac.kntu.database.AnswerRequestDatabase;
+import ir.ac.kntu.database.Database;
+import ir.ac.kntu.person.Management;
 import ir.ac.kntu.request.RequestState;
 import ir.ac.kntu.menu.MainMenu;
 
 public class ShowRequestMenu extends MainMenu {
+
+    private Database database;
+
+    public ShowRequestMenu(Database database) {
+        this.database = database;
+    }
 
     public void printShowRequestMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option");
@@ -14,15 +22,15 @@ public class ShowRequestMenu extends MainMenu {
         System.out.println(Constant.GREEN + "99.back");
     }
 
-    public void showRequestMenu(AnswerRequestDatabase answerDB) {
+    public void showRequestMenu(AnswerRequestDatabase answerDB, Management management) {
         int number = 0;
         while (number != 99) {
             printShowRequestMenu();
             number = getNumber();
             switch (number) {
                 case 1:
-                    SearchMenu searchMenu = new SearchMenu();
-                    searchMenu.searchMenu(answerDB);
+                    SearchMenu searchMenu = new SearchMenu(database);
+                    searchMenu.searchMenu(answerDB, management);
                     break;
                 case 2:
                     showRequest(answerDB);
