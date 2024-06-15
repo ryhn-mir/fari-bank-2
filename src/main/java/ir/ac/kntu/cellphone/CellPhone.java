@@ -40,6 +40,7 @@ public class CellPhone {
     public void setCharge(long charge) {
         this.charge = charge;
     }
+
     public void increaseCharge(long charge) {
         setCharge(getCharge() + charge);
     }
