@@ -1,6 +1,9 @@
 package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Constant;
+import ir.ac.kntu.database.*;
+import ir.ac.kntu.menu.customermenu.CustomerMenu;
+import ir.ac.kntu.menu.managementmenu.ManagementMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.person.RegistrationStatus;
 import ir.ac.kntu.util.ScannerWrapper;
@@ -86,6 +89,91 @@ public class MainMenu {
         return ScannerWrapper.getInstance().nextLine();
     }
 
+    public String getBlockState() {
+        System.out.println(Constant.PURPLE + "do you wanna block ? y / n");
+        return ScannerWrapper.getInstance().nextLine();
+    }
+
+    public String getFundName() {
+        System.out.println(Constant.PURPLE + "enter fund name : ");
+        return ScannerWrapper.getInstance().nextLine();
+    }
+
+    public String getFundKind() {
+        System.out.println(Constant.PURPLE + "enter the fund kind : saving / profit");
+        return ScannerWrapper.getInstance().nextLine();
+    }
+
+    public String getCardNumber() {
+        System.out.println(Constant.PURPLE + "enter card number : ");
+        return ScannerWrapper.getInstance().nextLine();
+    }
+
+    public long getCharge() {
+        System.out.println(Constant.PURPLE + "enter the amount of charge : ");
+        return Long.parseLong(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public long getWage() {
+        System.out.println(Constant.PURPLE + "enter the amount of wage : ");
+        return Long.parseLong(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public String getYesNo() {
+        System.out.println(Constant.PURPLE + "do you wanna accept? y/n");
+        return ScannerWrapper.getInstance().nextLine();
+    }
+
+    public int getVerifyAllocate() {
+        System.out.println(Constant.PURPLE + "enter verify permission : 1 / 0");
+        return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public int getRequestAllocate() {
+        System.out.println(Constant.PURPLE + "enter request permission : 1 / 0");
+        return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public int getContactAllocate() {
+        System.out.println(Constant.PURPLE + "enter contact permission : 1 / 0");
+        return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public int getReportAllocate() {
+        System.out.println(Constant.PURPLE + "enter report permission : 1 / 0");
+        return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
+    }
+    public int getSettingAllocate() {
+        System.out.println(Constant.PURPLE + "enter setting permission : 1 / 0");
+        return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
+    }
+    public int getTransferAllocate() {
+        System.out.println(Constant.PURPLE + "enter transfer permission : 1 / 0");
+        return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public int getStateAllocate() {
+        System.out.println(Constant.PURPLE + "enter state permission : 1 / 0");
+        return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public int getUserAllocate() {
+        System.out.println(Constant.PURPLE + "enter user permission : 1 / 0");
+        return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public int getUserAccessAllocate() {
+        System.out.println(Constant.PURPLE + "enter userAccess permission : 1 / 0");
+        return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
+    }
+
+    public int getMonthCount() {
+        System.out.println(Constant.PURPLE + "enter the number of yhe month");
+        return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
+    }
+
+
+
     public boolean isAccepted(Customer customer) {
         return customer.getStatus() == RegistrationStatus.ACCEPTED;
     }
@@ -140,6 +228,5 @@ public class MainMenu {
             return false;
         }
     }
-
 
 }
