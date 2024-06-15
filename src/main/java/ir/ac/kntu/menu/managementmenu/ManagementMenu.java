@@ -1,14 +1,12 @@
 package ir.ac.kntu.menu.managementmenu;
 
 import ir.ac.kntu.Constant;
+import ir.ac.kntu.person.*;
 import ir.ac.kntu.request.Request;
 import ir.ac.kntu.request.RequestOption;
 import ir.ac.kntu.database.AnswerRequestDatabase;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
-import ir.ac.kntu.person.Customer;
-import ir.ac.kntu.person.Management;
-import ir.ac.kntu.person.RegistrationStatus;
 
 public class ManagementMenu extends MainMenu {
     private Database database;
@@ -54,8 +52,14 @@ public class ManagementMenu extends MainMenu {
         String password = getPassword();
         for (Management management : database.getManagementDB()) {
             if (management.getUserName().equals(userName) && management.getPassword().equals(password)) {
-                managementMenu(answerDB);
-                return;
+                if (management.getUserState() == UserState.UNBLOCKED) {
+                    managementMenu(answerDB, management);
+                    return;
+                } else {
+                    System.out.println(Constant.RED + "you are blocked!");
+                    return;
+                }
+
             }
         }
         System.out.println(Constant.RED + "invalid information!!");
@@ -70,7 +74,7 @@ public class ManagementMenu extends MainMenu {
 
     }
 
-    public void managementMenu(AnswerRequestDatabase answerDB) {
+    public void managementMenu(AnswerRequestDatabase answerDB, Management management) {
         int number = 0;
         while (number != 99) {
             try {
@@ -78,15 +82,13 @@ public class ManagementMenu extends MainMenu {
                 number = getNumber();
                 switch (number) {
                     case 1:
-                        verify();
+                        checkVerify(management);
                         break;
                     case 2:
-                        ShowRequestMenu showRequestMenu = new ShowRequestMenu();
-                        showRequestMenu.showRequestMenu(answerDB);
+                        checkRequest(management, answerDB);
                         break;
                     case 3:
-                        UserAccessMenu userAccess = new UserAccessMenu(database);
-                        userAccess.userAccessMenu();
+                        checkUserAccess(management, answerDB);
                         break;
                     case 99:
                         break;
@@ -151,5 +153,34 @@ public class ManagementMenu extends MainMenu {
                 }
             }
         }
+    }
+
+    private void checkVerify(Management management) {
+        Permission permission = management.getPermission();
+        if (!permission.isVerify()) {
+            System.out.println(Constant.RED + "you do not have access");
+            return;
+        }
+        verify();
+    }
+
+    private void checkRequest(Management management, AnswerRequestDatabase answerDB) {
+        Permission permission = management.getPermission();
+        if (!permission.isRequest()) {
+            System.out.println(Constant.RED + "you do not have access");
+            return;
+        }
+        ShowRequestMenu showRequestMenu = new ShowRequestMenu(database);
+        showRequestMenu.showRequestMenu(answerDB, management);
+    }
+
+    private void checkUserAccess(Management management, AnswerRequestDatabase answerDB) {
+        Permission permission = management.getPermission();
+        if (!permission.isUserAccess()) {
+            System.out.println(Constant.RED + "you do not have access");
+            return;
+        }
+        UserAccessMenu userAccess = new UserAccessMenu(database);
+        userAccess.userAccessMenu();
     }
 }
