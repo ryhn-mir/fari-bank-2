@@ -59,4 +59,17 @@ public class ContactDatabase {
         return false;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        ContactDatabase that = (ContactDatabase) obj;
+        return Objects.equals(contactList, that.contactList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contactList);
+    }
+
 }
