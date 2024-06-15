@@ -1,10 +1,8 @@
 package ir.ac.kntu.person;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.database.ContactDatabase;
-import ir.ac.kntu.database.Database;
-import ir.ac.kntu.database.RecentTransactionsDataBase;
-import ir.ac.kntu.database.RequestDatabase;
+import ir.ac.kntu.cellphone.CellPhone;
+import ir.ac.kntu.database.*;
 import ir.ac.kntu.faribank.Account;
 
 import java.util.Objects;
@@ -12,30 +10,36 @@ import java.util.Random;
 
 public class Customer extends Person {
     private String nationalCode;
-    private String cellNumber;
+    //    private String cellNumber;
+    private CellPhone cellPhone;
     private Account account;
     private boolean contactIsOn = true;
     private ContactDatabase contactDatabase;
     private RecentTransactionsDataBase recentTrans;
     private RegistrationStatus status;
     private RequestDatabase requestDatabase;
+    private SimTransactionDataBase simTransactionDataBase;
 
-    public Customer(String firstName, String lastName, String password, String nationalCode, String cellNumber) {
+    public Customer(String firstName, String lastName, String password, String nationalCode, String cellNumber, SimCardDataBase simCardDataBase) {
         super(firstName, lastName, password);
         this.nationalCode = nationalCode;
         recentTrans = new RecentTransactionsDataBase();
-        setCellNumber(cellNumber);
+        this.cellPhone = new CellPhone(cellNumber, simCardDataBase);
+        if (!simCardDataBase.containCellPhone(cellPhone)) {
+            simCardDataBase.addCellPhone(cellPhone);
+        }
         contactDatabase = new ContactDatabase();
         this.status = RegistrationStatus.PROGRESSING;
         requestDatabase = new RequestDatabase();
         account = new Account(0, randAccountNo());
+        simTransactionDataBase = new SimTransactionDataBase();
 
     }
 
     public Customer(Customer customer, String firstName, String lastName) {
         super(firstName, lastName, customer.getPassword());
         this.nationalCode = customer.nationalCode;
-        this.cellNumber = customer.cellNumber;
+        this.cellPhone = customer.cellPhone;
         this.account = customer.account;
         this.contactDatabase = customer.getContactDatabase();
         this.contactIsOn = customer.contactIsOn;
@@ -60,7 +64,7 @@ public class Customer extends Person {
     }
 
     public String getCellNumber() {
-        return cellNumber;
+        return cellPhone.getCellNo();
     }
 
     public Account getAccount() {
@@ -80,7 +84,7 @@ public class Customer extends Person {
     }
 
     public void setCellNumber(String cellNumber) {
-        this.cellNumber = cellNumber;
+        this.cellPhone.setCellNo(cellNumber);
     }
 
     public RecentTransactionsDataBase getRecentTrans() {
@@ -89,6 +93,22 @@ public class Customer extends Person {
 
     public void setRecentTrans(RecentTransactionsDataBase recentTrans) {
         this.recentTrans = recentTrans;
+    }
+
+    public CellPhone getCellPhone() {
+        return cellPhone;
+    }
+
+    public void setCellPhone(CellPhone cellPhone) {
+        this.cellPhone = cellPhone;
+    }
+
+    public SimTransactionDataBase getSimTransactionDataBase() {
+        return simTransactionDataBase;
+    }
+
+    public void setSimTransactionDataBase(SimTransactionDataBase simTransactionDataBase) {
+        this.simTransactionDataBase = simTransactionDataBase;
     }
 
     private String randAccountNo() {
@@ -134,25 +154,21 @@ public class Customer extends Person {
     public String toString() {
         return "Customer{" + super.toString() +
                 "nationalCode='" + nationalCode + '\'' +
-                ", cellNumber='" + cellNumber + '\'' +
+                ", cellNumber='" + cellPhone.getCellNo() + '\'' +
                 ", status=" + status +
                 '}';
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
         Customer customer = (Customer) obj;
-        return Objects.equals(nationalCode, customer.nationalCode) && Objects.equals(cellNumber, customer.cellNumber);
+        return Objects.equals(nationalCode, customer.nationalCode) && Objects.equals(cellPhone, customer.cellPhone) && Objects.equals(account, customer.account) && Objects.equals(contactDatabase, customer.contactDatabase) && Objects.equals(recentTrans, customer.recentTrans) && Objects.equals(requestDatabase, customer.requestDatabase);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nationalCode, cellNumber);
+        return Objects.hash(nationalCode, cellPhone, account, contactDatabase, recentTrans, requestDatabase);
     }
 }
