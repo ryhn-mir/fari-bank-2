@@ -1,7 +1,9 @@
 package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
+import ir.ac.kntu.database.BankDataBase;
 import ir.ac.kntu.database.Database;
+import ir.ac.kntu.database.PayaDataBase;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 
@@ -9,9 +11,13 @@ import java.util.List;
 
 public class TransferMoneyMenu extends MainMenu {
     private Database database;
+    private BankDataBase bankDataBase;
+    private PayaDataBase payaDataBase;
 
-    public TransferMoneyMenu(Database database) {
+    public TransferMoneyMenu(Database database, BankDataBase bankDataBase, PayaDataBase payaDataBase) {
         this.database = database;
+        this.bankDataBase = bankDataBase;
+        this.payaDataBase = payaDataBase;
     }
 
     public void printTransferMoneyMenu() {
@@ -19,6 +25,7 @@ public class TransferMoneyMenu extends MainMenu {
         System.out.println(Constant.GREEN + "1.transfer money by recent account");
         System.out.println(Constant.GREEN + "2.transfer money by contact");
         System.out.println(Constant.GREEN + "3.transfer money by account number");
+        System.out.println(Constant.GREEN + "4.transfer money by card number");
         System.out.println(Constant.GREEN + "99.back");
     }
 
@@ -29,24 +36,29 @@ public class TransferMoneyMenu extends MainMenu {
             number = getNumber();
             try {
                 switch (number) {
-                    case 1:
-                        transferMoneyByRecentTransactions(customer);
-                        break;
-                    case 2:
-                        transferMoneyByContact(customer);
-                        break;
-                    case 3:
-                        transferMoneyByAccountNumber(customer);
-                        break;
-                    case 99:
-                        break;
-                    default:
-                        throw new RuntimeException("invalid number");
+                    case 1 -> transferMoneyByRecentTransactions(customer);
+                    case 2 -> transferMoneyByContact(customer);
+                    case 3 -> accountToAccount(customer);
+                    case 4 -> cardToCard(customer);
+                    case 99 -> {
+                        return;
+                    }
+                    default -> throw new RuntimeException("invalid number");
                 }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         }
+    }
+
+    private void accountToAccount(Customer customer) {
+        AccountMenu accountMenu = new AccountMenu(database,bankDataBase,payaDataBase);
+        accountMenu.accountMenu(customer);
+    }
+
+    private void cardToCard(Customer customer) {
+        CardMenu cardMenu = new CardMenu(database, bankDataBase, payaDataBase);
+        cardMenu.CardMenu(customer);
     }
 
     public void transferMoneyByContact(Customer customer) {
@@ -71,25 +83,6 @@ public class TransferMoneyMenu extends MainMenu {
         }
     }
 
-    public void transferMoneyByAccountNumber(Customer customer) {
-        String accountNumber = getAccountNumber();
-        Customer cust = database.findReceiver(accountNumber);
-        try {
-            if (cust == null) {
-                throw new RuntimeException("there is no person with that accountNumber");
-            } else {
-                if (!isAccepted(cust)) {
-                    System.out.println(Constant.RED + "there is no customer");
-                    return;
-                }
-                long money = getInputMoney();
-                customer.getAccount().transfer(money, accountNumber, database);
-                customer.getRecentTrans().getRecentTrans().add(cust);
-            }
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
 
     private void checkContact(Customer customer, int number) {
         Customer cust = customer.getContactDatabase().getContactList().get(number - 1);
@@ -99,7 +92,7 @@ public class TransferMoneyMenu extends MainMenu {
         }
         if (cust.getContactDatabase().checkContactIsOn(customer.getAccount().getAccountNumber())) {
             long money = getInputMoney();
-            customer.getAccount().transfer(money, cust.getAccount().getAccountNumber(), database);
+            customer.getAccount().transfer(money, money + Constant.getFariFariWage(), cust.getAccount().getAccountNumber(), bankDataBase);
             customer.getRecentTrans().getRecentTrans().add(cust);
         } else {
             System.out.println(Constant.RED + "you are not the contact of " + cust.getFirstName() + " " + cust.getLastName());
@@ -117,12 +110,22 @@ public class TransferMoneyMenu extends MainMenu {
         if (number >= 1 && number <= recentTrans.size()) {
             Customer cust = customer.getRecentTrans().getRecentTrans().get(number - 1);
             long money = getInputMoney();
-            customer.getAccount().transfer(money, cust.getAccount().getAccountNumber(), database);
+            customer.getAccount().transfer(money,wageKind(cust) + money, cust.getAccount().getAccountNumber(), bankDataBase);
             customer.getRecentTrans().getRecentTrans().add(cust);
         } else {
             System.out.println(Constant.RED + "number out of the range!!");
         }
 
     }
+    private long wageKind(Customer customer) {
+        if (database.getCustomerDataBase().contains(customer)) {
+            return Constant.getFariFariWage();
+        }
+        if (bankDataBase.getBankList().contains(customer)) {
+            return Constant.getFariAnotherCartWage();
+        }
+        return 0;
+    }
+
 
 }
