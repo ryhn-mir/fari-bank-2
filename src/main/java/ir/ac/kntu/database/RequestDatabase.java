@@ -4,6 +4,7 @@ import ir.ac.kntu.request.Request;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class RequestDatabase {
     private List<Request> requestList;
@@ -26,6 +27,19 @@ public class RequestDatabase {
 
     public void removeRequest(Request request) {
         requestList.remove(request);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        RequestDatabase that = (RequestDatabase) obj;
+        return Objects.equals(requestList, that.requestList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(requestList);
     }
 
 }
