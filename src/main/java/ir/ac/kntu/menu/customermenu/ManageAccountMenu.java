@@ -14,7 +14,7 @@ public class ManageAccountMenu extends MainMenu {
     public void printManageAccountMenu() {
         System.out.println(Constant.BLUE + "choose one of the following option");
         System.out.println(Constant.GREEN + "1.increase your credit");
-        System.out.println(Constant.GREEN + "2.show your account balance");
+        System.out.println(Constant.GREEN + "2.show your account balance, accountNumber and cardNumber");
         System.out.println(Constant.GREEN + "3.show list of transaction");
         System.out.println(Constant.GREEN + "99.back");
 
@@ -51,6 +51,7 @@ public class ManageAccountMenu extends MainMenu {
     private void showAccountBalance(Customer customer) {
         System.out.println(Constant.PURPLE + customer.getAccount().getBalance());
         System.out.println(Constant.PURPLE + "accountNo : " + customer.getAccount().getAccountNumber());
+        System.out.println(Constant.PURPLE + "cardNo : " + customer.getAccount().getCard().getCardNumber());
     }
 
     private void increaseBalance(Customer customer, Database database) {
