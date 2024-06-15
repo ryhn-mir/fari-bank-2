@@ -6,7 +6,8 @@ import ir.ac.kntu.util.ScannerWrapper;
 public class Main {
 
     public static void main(String[] args) {
-        FariBank.start();
+        FariBank fariBank = new FariBank();
+        fariBank.start();
         ScannerWrapper.getInstance().close();
     }
 
