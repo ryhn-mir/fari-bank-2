@@ -54,7 +54,8 @@ public class BlockMenu extends MainMenu {
 
     private void blockManagement() {
         String userName = getUserName();
-        Management management = database.findManagement(userName);;
+        Management management = database.findManagement(userName);
+        ;
         if (management == null) {
             System.out.println(Constant.RED + "there is no management with this userName!");
             return;

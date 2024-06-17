@@ -1,9 +1,10 @@
 package ir.ac.kntu.person;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Chief extends  Person{
+public class Chief extends Person implements Serializable {
     private String userName;
     private List<Chief> heads;
     private int position;

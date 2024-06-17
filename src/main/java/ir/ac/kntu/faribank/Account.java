@@ -75,7 +75,7 @@ public class Account {
 
     }
 
-    public boolean transfer(long money,long moneyWithWage, String accountNumber, BankDataBase bankDataBase) {
+    public boolean transfer(long money, long moneyWithWage, String accountNumber, BankDataBase bankDataBase) {
         try {
             if (moneyWithWage <= balance) {
                 setBalance(getBalance() - moneyWithWage);
@@ -157,7 +157,7 @@ public class Account {
 
     public void roundBalance() {
         int size = String.valueOf(balance).length();
-        int length = ( size * 3 )/ 4;
+        int length = (size * 3) / 4;
         long remain = balance % (long) Math.pow(10, length);
         long finalMoney = (long) Math.pow(10, length) - remain;
         withdraw(finalMoney);

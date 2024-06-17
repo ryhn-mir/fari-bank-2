@@ -143,10 +143,12 @@ public class MainMenu {
         System.out.println(Constant.PURPLE + "enter report permission : 1 / 0");
         return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
     }
+
     public int getSettingAllocate() {
         System.out.println(Constant.PURPLE + "enter setting permission : 1 / 0");
         return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
     }
+
     public int getTransferAllocate() {
         System.out.println(Constant.PURPLE + "enter transfer permission : 1 / 0");
         return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
@@ -171,7 +173,6 @@ public class MainMenu {
         System.out.println(Constant.PURPLE + "enter the number of yhe month");
         return Integer.parseInt(ScannerWrapper.getInstance().nextLine());
     }
-
 
 
     public boolean isAccepted(Customer customer) {

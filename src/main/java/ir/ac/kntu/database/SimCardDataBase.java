@@ -10,6 +10,7 @@ public class SimCardDataBase {
     public SimCardDataBase(Set<CellPhone> cellPhoneList) {
         this.cellPhoneList = cellPhoneList;
     }
+
     public void addCellPhone(CellPhone cellPhone) {
         cellPhoneList.add(cellPhone);
     }

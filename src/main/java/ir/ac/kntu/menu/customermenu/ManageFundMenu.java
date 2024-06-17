@@ -92,7 +92,7 @@ public class ManageFundMenu extends MainMenu {
         Fund fund = customer.getAccount().getFundDataBase().findFund(fundName);
         if (fund.getFundKind() == FundKind.PROFIT) {
             if (!checkCountMonth(fund)) {
-                System.out.println(Constant.RED + "you can not transfer money before : " + fund.getMouthCount() + "month" );
+                System.out.println(Constant.RED + "you can not transfer money before : " + fund.getMouthCount() + "month");
                 return;
             }
         }

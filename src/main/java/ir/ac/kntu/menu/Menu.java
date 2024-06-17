@@ -37,7 +37,7 @@ public class Menu extends MainMenu {
             number = getNumber();
             switch (number) {
                 case 1:
-                    CustomerMenu customerMenu = new CustomerMenu(database,simCardDataBase, bankDataBase, payaDataBase, answerDB);
+                    CustomerMenu customerMenu = new CustomerMenu(database, simCardDataBase, bankDataBase, payaDataBase, answerDB);
                     customerMenu.userRegistrationMenu(answerDB);
                     break;
                 case 2:

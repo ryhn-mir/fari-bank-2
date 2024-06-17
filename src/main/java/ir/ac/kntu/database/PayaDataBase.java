@@ -7,6 +7,7 @@ import java.util.List;
 
 public class PayaDataBase {
     private List<Paya> payaList;
+
     public PayaDataBase(List<Paya> payaList) {
         this.payaList = payaList;
     }
@@ -26,6 +27,7 @@ public class PayaDataBase {
     public void removePaya(Paya paya) {
         payaList.remove(paya);
     }
+
     public int size() {
         return payaList.size();
     }
@@ -37,7 +39,7 @@ public class PayaDataBase {
     public void printPaya() {
         int count = 1;
         for (Paya paya : payaList) {
-            System.out.println(Constant.PURPLE + count + "." + "source customer : " + paya.getFromCustomer().getLastName() + "destination customer : " + paya.getToCustomer().getLastName() );
+            System.out.println(Constant.PURPLE + count + "." + "source customer : " + paya.getFromCustomer().getLastName() + "destination customer : " + paya.getToCustomer().getLastName());
             count++;
         }
     }

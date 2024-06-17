@@ -5,6 +5,7 @@ public enum FundKind {
     REMAINING("remaining"),
     PROFIT("profit");
     private final String kind;
+
     private FundKind(String kind) {
         this.kind = kind;
     }

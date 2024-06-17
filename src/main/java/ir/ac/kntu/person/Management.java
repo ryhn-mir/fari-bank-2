@@ -1,9 +1,12 @@
 package ir.ac.kntu.person;
 
-public class Management extends Person {
+import java.io.Serializable;
+
+public class Management extends Person implements Serializable {
     private String userName;
     private UserState userState;
     private Permission permission;
+
     public Management(String firstName, String lastName, String password, String userName) {
         super(firstName, lastName, password);
         this.userName = userName;

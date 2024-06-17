@@ -50,7 +50,7 @@ public class BankDataBase {
 
     public String getAccountNumberByCardNumber(String cardNumber) {
         for (Customer customer : bankList) {
-            if (customer.getAccount().getCard().getCardNumber().equals(cardNumber)){
+            if (customer.getAccount().getCard().getCardNumber().equals(cardNumber)) {
                 return customer.getAccount().getAccountNumber();
             }
         }

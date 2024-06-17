@@ -80,7 +80,7 @@ public class SimCardMenu extends MainMenu {
                 SimCardTransaction simCardTransaction = new SimCardTransaction(contact.getFirstName(), contact.getLastName(), contact.getCellNumber(), charge);
                 customer.getSimTransactionDataBase().addSim(simCardTransaction);
             }
-            count ++;
+            count++;
         }
     }
 

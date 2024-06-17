@@ -62,7 +62,7 @@ public class SearchUserMenu extends MainMenu {
                 chiefExist = true;
             }
         }
-        if (!chiefExist && ! managementExist && !customerExist) {
+        if (!chiefExist && !managementExist && !customerExist) {
             System.out.println(Constant.RED + "user with this firstName not found");
         }
     }

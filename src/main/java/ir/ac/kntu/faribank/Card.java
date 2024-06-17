@@ -36,7 +36,7 @@ public class Card {
 
     private String randomCard() {
         Random random = new Random();
-        return "6037" + String.valueOf(random.nextInt((int)Math.pow(10, 8), (int)Math.pow(10, 9)));
+        return "6037" + String.valueOf(random.nextInt((int) Math.pow(10, 8), (int) Math.pow(10, 9)));
     }
 
     @Override

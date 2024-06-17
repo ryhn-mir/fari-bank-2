@@ -36,6 +36,7 @@ public class ChiefMenu extends MainMenu {
             }
         }
     }
+
     private void login() {
         String userName = getUserName();
         String password = getPassword();
@@ -51,6 +52,7 @@ public class ChiefMenu extends MainMenu {
         }
         System.out.println(Constant.RED + "chief not found!");
     }
+
     private void printChiefMenu() {
         System.out.println(Constant.BLUE + "choose one of the following options : ");
         System.out.println(Constant.GREEN + "1.setting");

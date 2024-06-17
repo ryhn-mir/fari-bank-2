@@ -52,7 +52,7 @@ public class TransferMoneyMenu extends MainMenu {
     }
 
     private void accountToAccount(Customer customer) {
-        AccountMenu accountMenu = new AccountMenu(database,bankDataBase,payaDataBase);
+        AccountMenu accountMenu = new AccountMenu(database, bankDataBase, payaDataBase);
         accountMenu.accountMenu(customer);
     }
 
@@ -110,13 +110,14 @@ public class TransferMoneyMenu extends MainMenu {
         if (number >= 1 && number <= recentTrans.size()) {
             Customer cust = customer.getRecentTrans().getRecentTrans().get(number - 1);
             long money = getInputMoney();
-            customer.getAccount().transfer(money,wageKind(cust) + money, cust.getAccount().getAccountNumber(), bankDataBase);
+            customer.getAccount().transfer(money, wageKind(cust) + money, cust.getAccount().getAccountNumber(), bankDataBase);
             customer.getRecentTrans().getRecentTrans().add(cust);
         } else {
             System.out.println(Constant.RED + "number out of the range!!");
         }
 
     }
+
     private long wageKind(Customer customer) {
         if (database.getCustomerDataBase().contains(customer)) {
             return Constant.getFariFariWage();

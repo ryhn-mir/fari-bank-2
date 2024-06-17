@@ -13,7 +13,7 @@ public class UserRoleMenu extends MainMenu {
     public UserRoleMenu(Database database) {
         this.database = database;
     }
-    
+
     private void printRoleUserMenu() {
         System.out.println(Constant.BLUE + "choose one of the following options : ");
         System.out.println(Constant.GREEN + "1.management");
@@ -21,7 +21,7 @@ public class UserRoleMenu extends MainMenu {
         System.out.println(Constant.GREEN + "3.customer");
         System.out.println(Constant.GREEN + "99.back");
     }
-    
+
     public void roleUserMenu() {
         int number = 0;
         while (number != 99) {

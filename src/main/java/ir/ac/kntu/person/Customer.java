@@ -5,10 +5,11 @@ import ir.ac.kntu.cellphone.CellPhone;
 import ir.ac.kntu.database.*;
 import ir.ac.kntu.faribank.Account;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Random;
 
-public class Customer extends Person {
+public class Customer extends Person implements Serializable {
     private String nationalCode;
     //    private String cellNumber;
     private CellPhone cellPhone;

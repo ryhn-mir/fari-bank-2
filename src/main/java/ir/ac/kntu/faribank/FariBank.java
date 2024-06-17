@@ -24,6 +24,7 @@ public class FariBank {
     private BankDataBase bankDataBase;
     private AnswerRequestDatabase answerRequestDatabase;
     private SimCardDataBase simCardDataBase;
+
     public void start() {
         initialize();
         Customer customer1 = new Customer("a", "a", "Mm@1383", "12", "09102607040", simCardDataBase);
@@ -38,7 +39,7 @@ public class FariBank {
         database.addCustomer(customer2);
         database.addCustomer(customer3);
 
-        Menu menu = new Menu(answerRequestDatabase, database, simCardDataBase,bankDataBase, payaDataBase);
+        Menu menu = new Menu(answerRequestDatabase, database, simCardDataBase, bankDataBase, payaDataBase);
         while (true) {
             if (menu.mainMenu() == 99) {
                 break;
@@ -78,6 +79,7 @@ public class FariBank {
                     break;
                 } catch (Exception e) {
                     System.out.println(Constant.RED + "something went wrong");
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -115,6 +117,7 @@ public class FariBank {
                     break;
                 } catch (Exception e) {
                     System.out.println(Constant.RED + "something went wrong");
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -152,6 +155,7 @@ public class FariBank {
                     break;
                 } catch (Exception e) {
                     System.out.println(Constant.RED + "something went wrong");
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -189,6 +193,7 @@ public class FariBank {
                     break;
                 } catch (Exception e) {
                     System.out.println(Constant.RED + "something went wrong");
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -226,6 +231,7 @@ public class FariBank {
                     break;
                 } catch (Exception e) {
                     System.out.println(Constant.RED + "something went wrong");
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -263,6 +269,7 @@ public class FariBank {
                     break;
                 } catch (Exception e) {
                     System.out.println(Constant.RED + "something went wrong");
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -300,6 +307,7 @@ public class FariBank {
                     break;
                 } catch (Exception e) {
                     System.out.println(Constant.RED + "something went wrong");
+                    break;
                 }
             }
         } catch (IOException e) {
@@ -307,6 +315,7 @@ public class FariBank {
         }
         return customers;
     }
+
     private void writeBank() {
         File file = new File("BankDataBase.txt");
         try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
