@@ -1,7 +1,6 @@
 package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.database.Database;
 import ir.ac.kntu.fund.Fund;
 import ir.ac.kntu.fund.FundKind;
 import ir.ac.kntu.menu.MainMenu;
@@ -13,12 +12,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class FundMenu extends MainMenu {
-    private Database database;
-
-    public FundMenu(Database database) {
-        this.database = database;
-    }
-
     private void printFundMenu() {
         System.out.println(Constant.BLUE + "choose one of the following options : ");
         System.out.println(Constant.GREEN + "1.show list of funds");
@@ -45,7 +38,7 @@ public class FundMenu extends MainMenu {
     }
 
     private void manageFund(Customer customer) {
-        ManageFundMenu manageFundMenu = new ManageFundMenu(database);
+        ManageFundMenu manageFundMenu = new ManageFundMenu();
         manageFundMenu.manageFund(customer);
     }
 
@@ -96,6 +89,7 @@ public class FundMenu extends MainMenu {
             Thread thread = new Thread(profit);
             executorService.schedule(thread, 30 * i, TimeUnit.DAYS);
         }
+        executorService.close();
         return fund;
     }
 

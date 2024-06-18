@@ -15,7 +15,7 @@ public class Profit implements Runnable {
 
     @Override
     public void run() {
-        customer.getAccount().deposit((fund.getBalance() * Constant.getPROFIT()) / 100);
+        customer.getAccount().deposit((fund.getBalance() * Constant.getProfit()) / 100);
         fund.setMouthCount(fund.getMouthCount() - 1);
         fund.newDate();
     }

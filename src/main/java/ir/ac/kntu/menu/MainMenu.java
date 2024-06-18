@@ -1,9 +1,6 @@
 package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.database.*;
-import ir.ac.kntu.menu.customermenu.CustomerMenu;
-import ir.ac.kntu.menu.managementmenu.ManagementMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.person.RegistrationStatus;
 import ir.ac.kntu.util.ScannerWrapper;

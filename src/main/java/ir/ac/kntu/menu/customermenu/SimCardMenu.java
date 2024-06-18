@@ -8,8 +8,6 @@ import ir.ac.kntu.database.SimCardDataBase;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.simcardtransaction.SimCardTransaction;
-import ir.ac.kntu.transaction.Transaction;
-import ir.ac.kntu.transaction.TransactionKind;
 
 public class SimCardMenu extends MainMenu {
     private Database database;
@@ -27,8 +25,8 @@ public class SimCardMenu extends MainMenu {
         System.out.println(Constant.GREEN + "1.by contact");
         System.out.println(Constant.GREEN + "2.by cellNumber");
         System.out.println(Constant.GREEN + "3.to yourself");
-        System.out.println(Constant.GREEN + "5.show recent simCard transaction");
         System.out.println(Constant.GREEN + "4.show charge");
+        System.out.println(Constant.GREEN + "5.show recent simCard transaction");
         System.out.println(Constant.GREEN + "99.back");
     }
 
@@ -52,7 +50,7 @@ public class SimCardMenu extends MainMenu {
     }
 
     private void showSimCardTransaction(Customer customer) {
-        customer.getSimTransactionDataBase().printTransactions();
+        customer.getSimTrans().printTransactions();
     }
 
     private void showCharge(Customer customer) {
@@ -70,15 +68,15 @@ public class SimCardMenu extends MainMenu {
         for (Customer cust : customer.getContactDatabase().getContactList()) {
             if (number == count) {
                 long charge = getCharge();
-                if (charge + Constant.getSimWage() > customer.getAccount().getBalance()) {
+                if (charge + Constant.getSim() > customer.getAccount().getBalance()) {
                     System.out.println(Constant.RED + "your balance is not enough!");
                     return;
                 }
-                customer.getAccount().withdraw(charge + Constant.getSimWage());
+                customer.getAccount().withdraw(charge + Constant.getSim());
                 Customer contact = database.findCustomer(cust.getCellNumber());
                 contact.getCellPhone().increaseCharge(charge);
-                SimCardTransaction simCardTransaction = new SimCardTransaction(contact.getFirstName(), contact.getLastName(), contact.getCellNumber(), charge);
-                customer.getSimTransactionDataBase().addSim(simCardTransaction);
+                SimCardTransaction simTrans = new SimCardTransaction(contact.getFirstName(), contact.getLastName(), contact.getCellNumber(), charge);
+                customer.getSimTrans().addSim(simTrans);
             }
             count++;
         }
@@ -92,26 +90,26 @@ public class SimCardMenu extends MainMenu {
             return;
         }
         long charge = getCharge();
-        if (charge + Constant.getSimWage() > customer.getAccount().getBalance()) {
+        if (charge + Constant.getSim() > customer.getAccount().getBalance()) {
             System.out.println(Constant.RED + "your balance is not enough!");
             return;
         }
-        customer.getAccount().withdraw(charge + Constant.getSimWage());
+        customer.getAccount().withdraw(charge + Constant.getSim());
         cellPhone.increaseCharge(charge);
         Customer cust = bankDataBase.findCustByPhone(cellNumber);
-        SimCardTransaction simCardTransaction = new SimCardTransaction(cust.getFirstName(), cust.getLastName(), cust.getCellNumber(), charge);
-        customer.getSimTransactionDataBase().addSim(simCardTransaction);
+        SimCardTransaction simTrans = new SimCardTransaction(cust.getFirstName(), cust.getLastName(), cust.getCellNumber(), charge);
+        customer.getSimTrans().addSim(simTrans);
     }
 
     private void toYourself(Customer customer) {
         long charge = getCharge();
-        if (charge + Constant.getSimWage() > customer.getAccount().getBalance()) {
+        if (charge + Constant.getSim() > customer.getAccount().getBalance()) {
             System.out.println(Constant.RED + "your balance is not enough!");
             return;
         }
-        customer.getAccount().withdraw(charge + Constant.getSimWage());
+        customer.getAccount().withdraw(charge + Constant.getSim());
         customer.getCellPhone().increaseCharge(charge);
-        SimCardTransaction simCardTransaction = new SimCardTransaction(customer.getFirstName(), customer.getLastName(), customer.getCellNumber(), charge);
-        customer.getSimTransactionDataBase().addSim(simCardTransaction);
+        SimCardTransaction simTrans = new SimCardTransaction(customer.getFirstName(), customer.getLastName(), customer.getCellNumber(), charge);
+        customer.getSimTrans().addSim(simTrans);
     }
 }

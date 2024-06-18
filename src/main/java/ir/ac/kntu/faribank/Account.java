@@ -9,9 +9,10 @@ import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.transaction.Transaction;
 import ir.ac.kntu.transaction.TransactionKind;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Account {
+public class Account implements Serializable {
     private long balance = 0;
     private String accountNumber;
     private Card card;
@@ -101,11 +102,11 @@ public class Account {
             System.out.println(Constant.RED + "payment is out of limit");
             return false;
         }
-        if (money + Constant.getFariFariWage() > getBalance()) {
+        if (money + Constant.getFari() > getBalance()) {
             System.out.println(Constant.RED + "balance is not enough");
             return false;
         }
-        setBalance(getBalance() - money - Constant.getFariFariWage());
+        setBalance(getBalance() - money - Constant.getFari());
         Customer customer = database.findReceiver(accountNumber);
         customer.getAccount().setBalance(customer.getAccount().getBalance() + money);
         Transaction transaction = new Transaction(customer.getFirstName(), customer.getLastName(), customer.getAccount().getAccountNumber(), getAccountNumber(), TransactionKind.TRANSFER_MONEY);
@@ -177,8 +178,12 @@ public class Account {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Account account = (Account) obj;
         return Objects.equals(accountNumber, account.accountNumber) && Objects.equals(card, account.card) && Objects.equals(transactionDb, account.transactionDb) && Objects.equals(fundDataBase, account.fundDataBase);
     }

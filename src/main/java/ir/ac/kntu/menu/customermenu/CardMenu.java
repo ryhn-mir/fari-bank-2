@@ -26,7 +26,7 @@ public class CardMenu extends MainMenu {
         System.out.println(Constant.GREEN + "99.back");
     }
 
-    public void CardMenu(Customer customer) {
+    public void cardMenu(Customer customer) {
         int number = 0;
         while (number != 99) {
             printMenu();

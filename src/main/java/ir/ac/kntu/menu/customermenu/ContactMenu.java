@@ -1,6 +1,7 @@
 package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
+import ir.ac.kntu.database.ContactDatabase;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
@@ -52,14 +53,10 @@ public class ContactMenu extends MainMenu {
             System.out.println(Constant.RED + "there is no contact to show!");
             return;
         }
-        int count = 1;
-        for (Customer cust : customer.getContactDatabase().getContactList()) {
-            System.out.println(count + "." + Constant.PURPLE + cust.getFirstName() + " " + Constant.PURPLE + cust.getLastName());
-            count++;
-        }
+        customer.getContactDatabase().printContact();
         try {
             int number = getNumber();
-            if (number >= 1 && number <= count) {
+            if (number >= 1 && number < customer.getContactDatabase().getContactList().size()) {
                 System.out.print(Constant.PURPLE + customer.getContactDatabase().getContactList().get(number - 1).getFirstName());
                 System.out.print(" " + Constant.PURPLE + customer.getContactDatabase().getContactList().get(number - 1).getLastName());
                 System.out.println(" " + Constant.PURPLE + customer.getContactDatabase().getContactList().get(number - 1).getCellNumber());

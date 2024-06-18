@@ -88,7 +88,7 @@ public class ManagementMenu extends MainMenu {
                         checkRequest(management, answerDB);
                         break;
                     case 3:
-                        checkUserAccess(management, answerDB);
+                        checkUserAccess(management);
                         break;
                     case 99:
                         break;
@@ -104,17 +104,16 @@ public class ManagementMenu extends MainMenu {
 
     public void verify() {
         int count = 1;
-        for (Customer customer : database.getCustomerDataBase()) {
-            if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
-                System.out.println(count + "." + customer);
-                count++;
-            }
-        }
-        if (database.getCustomerDataBase().isEmpty() || count == 1) {
+        database.printCustomer();
+        if (database.getCustomerDataBase().isEmpty()) {
             System.out.println(Constant.RED + "there is no customer!!");
             return;
         }
         int number = getNumber();
+        if (!(0 < number && number < database.getCustomerDataBase().size())) {
+            System.out.println(Constant.RED + "number out of the range");
+            return;
+        }
         System.out.println(Constant.BLUE + "wanna accept the customer ? 1(yes) 0(no)");
         int num = getNumber();
         if (num == 1) {
@@ -170,11 +169,11 @@ public class ManagementMenu extends MainMenu {
             System.out.println(Constant.RED + "you do not have access");
             return;
         }
-        ShowRequestMenu showRequestMenu = new ShowRequestMenu(database);
+        ShowRequestMenu showRequestMenu = new ShowRequestMenu();
         showRequestMenu.showRequestMenu(answerDB, management);
     }
 
-    private void checkUserAccess(Management management, AnswerRequestDatabase answerDB) {
+    private void checkUserAccess(Management management) {
         Permission permission = management.getPermission();
         if (!permission.isUserAccess()) {
             System.out.println(Constant.RED + "you do not have access");

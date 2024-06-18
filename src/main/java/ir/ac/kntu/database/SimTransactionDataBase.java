@@ -3,36 +3,37 @@ package ir.ac.kntu.database;
 import ir.ac.kntu.simcardtransaction.SimCardTransaction;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimTransactionDataBase {
-    private List<SimCardTransaction> simCardTransactions;
+public class SimTransactionDataBase implements Serializable {
+    private List<SimCardTransaction> simTrans;
 
     public SimTransactionDataBase() {
-        simCardTransactions = new ArrayList<>();
+        simTrans = new ArrayList<>();
     }
 
-    public List<SimCardTransaction> getSimCardTransactions() {
-        return simCardTransactions;
+    public List<SimCardTransaction> getSimTrans() {
+        return simTrans;
     }
 
-    public void setSimCardTransactions(List<SimCardTransaction> simCardTransactions) {
-        this.simCardTransactions = simCardTransactions;
+    public void setSimTrans(List<SimCardTransaction> simTrans) {
+        this.simTrans = simTrans;
     }
 
-    public void addSim(SimCardTransaction simCardTransaction) {
-        simCardTransactions.add(simCardTransaction);
+    public void addSim(SimCardTransaction simTrans) {
+        this.simTrans.add(simTrans);
     }
 
-    public void removeSim(SimCardTransaction simCardTransaction) {
-        simCardTransactions.remove(simCardTransaction);
+    public void removeSim(SimCardTransaction simTrans) {
+        this.simTrans.remove(simTrans);
     }
 
     public void printTransactions() {
         int count = 1;
-        for (SimCardTransaction simCardTransaction : simCardTransactions) {
-            System.out.println(count + "." + simCardTransaction);
+        for (SimCardTransaction simTrans : this.simTrans) {
+            System.out.println(count + "." + simTrans);
             count++;
         }
     }

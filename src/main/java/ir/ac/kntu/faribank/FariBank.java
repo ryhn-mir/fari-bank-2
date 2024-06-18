@@ -22,29 +22,29 @@ public class FariBank {
     private Database database;
     private PayaDataBase payaDataBase;
     private BankDataBase bankDataBase;
-    private AnswerRequestDatabase answerRequestDatabase;
+    private AnswerRequestDatabase answerDB;
     private SimCardDataBase simCardDataBase;
 
     public void start() {
         initialize();
-        Customer customer1 = new Customer("a", "a", "Mm@1383", "12", "09102607040", simCardDataBase);
-        Customer customer2 = new Customer("b", "b", "Rr@1384", "13", "09112607040", simCardDataBase);
-        Customer customer3 = new Customer("c", "c", "Cc@1383", "14", "09122607040", simCardDataBase);
+//        Customer customer1 = new Customer("a", "a", "Mm@1383", "12", "09102607040", simCardDataBase);
+//        Customer customer2 = new Customer("b", "b", "Rr@1384", "13", "09112607040", simCardDataBase);
+//        Customer customer3 = new Customer("c", "c", "Cc@1383", "14", "09122607040", simCardDataBase);
+//
+//        customer1.setStatus(RegistrationStatus.ACCEPTED);
+//        customer2.setStatus(RegistrationStatus.ACCEPTED);
+//        customer3.setStatus(RegistrationStatus.ACCEPTED);
+//
+//        database.addCustomer(customer1);
+//        database.addCustomer(customer2);
+//        database.addCustomer(customer3);
 
-        customer1.setStatus(RegistrationStatus.ACCEPTED);
-        customer2.setStatus(RegistrationStatus.ACCEPTED);
-        customer3.setStatus(RegistrationStatus.ACCEPTED);
-
-        database.addCustomer(customer1);
-        database.addCustomer(customer2);
-        database.addCustomer(customer3);
-
-        Menu menu = new Menu(answerRequestDatabase, database, simCardDataBase, bankDataBase, payaDataBase);
-        while (true) {
-            if (menu.mainMenu() == 99) {
-                break;
-            }
-        }
+        Menu menu = new Menu(answerDB, database, simCardDataBase, bankDataBase, payaDataBase);
+//        while (true) {
+//            if (menu.mainMenu() == 99) {
+//                break;
+//            }
+//        }
         finish();
     }
 
@@ -63,7 +63,12 @@ public class FariBank {
         simCardDataBase = new SimCardDataBase(readSimCard());
         payaDataBase = new PayaDataBase(readPaya());
         bankDataBase = new BankDataBase(simCardDataBase, readBank());
-        answerRequestDatabase = new AnswerRequestDatabase(readAnswer());
+        answerDB = new AnswerRequestDatabase(readAnswer());
+//        database = new Database(new HashSet<>(), new HashSet<>(), new HashSet<>());
+//        simCardDataBase = new SimCardDataBase(new HashSet<>());
+//        payaDataBase = new PayaDataBase(new ArrayList<>());
+//        bankDataBase = new BankDataBase(simCardDataBase, new HashSet<>());
+//        answerDB = new AnswerRequestDatabase(new ArrayList<>());
     }
 
     private Set<Customer> readCustomer() {
@@ -96,7 +101,7 @@ public class FariBank {
                 try {
                     output.writeObject(customer);
                 } catch (IOException e) {
-                    System.out.println(Constant.RED + "something went wrong");
+                    System.out.println(Constant.RED + "something went wrong" + e.getMessage());
                 }
             }
         } catch (IOException e) {
@@ -134,7 +139,7 @@ public class FariBank {
                 try {
                     output.writeObject(management);
                 } catch (IOException e) {
-                    System.out.println(Constant.RED + "something went wrong");
+                    System.out.println(Constant.RED + "something went wrong" + e.getMessage());
                 }
             }
         } catch (IOException e) {
@@ -172,7 +177,7 @@ public class FariBank {
                 try {
                     output.writeObject(chief);
                 } catch (IOException e) {
-                    System.out.println(Constant.RED + "something went wrong");
+                    System.out.println(Constant.RED + "something went wrong" + e.getMessage());
                 }
             }
         } catch (IOException e) {
@@ -210,7 +215,7 @@ public class FariBank {
                 try {
                     output.writeObject(cellPhone);
                 } catch (IOException e) {
-                    System.out.println(Constant.RED + "something went wrong");
+                    System.out.println(Constant.RED + "something went wrong" + e.getMessage());
                 }
             }
         } catch (IOException e) {
@@ -244,11 +249,11 @@ public class FariBank {
         File file = new File("RequestDataBase.txt");
         try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
             ObjectOutputStream output = new ObjectOutputStream(fileOutputStream);
-            for (Request request : answerRequestDatabase.getAnswer()) {
+            for (Request request : answerDB.getAnswer()) {
                 try {
                     output.writeObject(request);
                 } catch (IOException e) {
-                    System.out.println(Constant.RED + "something went wrong");
+                    System.out.println(Constant.RED + "something went wrong" + e.getMessage());
                 }
             }
         } catch (IOException e) {
@@ -286,7 +291,7 @@ public class FariBank {
                 try {
                     output.writeObject(paya);
                 } catch (IOException e) {
-                    System.out.println(Constant.RED + "something went wrong");
+                    System.out.println(Constant.RED + "something went wrong" + e.getMessage());
                 }
             }
         } catch (IOException e) {
@@ -324,7 +329,7 @@ public class FariBank {
                 try {
                     output.writeObject(customer);
                 } catch (IOException e) {
-                    System.out.println(Constant.RED + "something went wrong");
+                    System.out.println(Constant.RED + "something went wrong" + e.getMessage());
                 }
             }
         } catch (IOException e) {

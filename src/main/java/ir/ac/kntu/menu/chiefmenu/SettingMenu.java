@@ -37,17 +37,17 @@ public class SettingMenu extends MainMenu {
 
     private void simWage() {
         long wage = getWage();
-        Constant.setSimWage(wage);
+        Constant.setSim(wage);
     }
 
     private void fariToFari() {
         long wage = getWage();
-        Constant.setFariFariWage(wage);
+        Constant.setFari(wage);
     }
 
     private void fariToAnother() {
         long wage = getWage();
-        Constant.setFariAnotherCartWage(wage);
+        Constant.setOtherCart(wage);
 
     }
 
@@ -65,7 +65,7 @@ public class SettingMenu extends MainMenu {
 
     private void profit() {
         long wage = getWage();
-        Constant.setPROFIT(wage);
+        Constant.setProfit(wage);
 
     }
 }

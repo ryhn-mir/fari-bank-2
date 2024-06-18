@@ -58,7 +58,7 @@ public class TransferMoneyMenu extends MainMenu {
 
     private void cardToCard(Customer customer) {
         CardMenu cardMenu = new CardMenu(database, bankDataBase, payaDataBase);
-        cardMenu.CardMenu(customer);
+        cardMenu.cardMenu(customer);
     }
 
     public void transferMoneyByContact(Customer customer) {
@@ -69,13 +69,9 @@ public class TransferMoneyMenu extends MainMenu {
         if (!customer.isContactIsOn()) {
             System.out.println(Constant.RED + "you do not have access to contact");
         } else {
-            int count = 1;
-            for (Customer cust : customer.getContactDatabase().getContactList()) {
-                System.out.println(count + "." + cust.getFirstName() + " " + cust.getLastName());
-                count++;
-            }
+            customer.getContactDatabase().printContact();
             int number = getNumber();
-            if (number >= 1 && number <= count) {
+            if (number >= 1 && number <= customer.getContactDatabase().getContactList().size()) {
                 checkContact(customer, number);
             } else {
                 System.out.println(Constant.RED + "number out of the range!!");
@@ -92,7 +88,7 @@ public class TransferMoneyMenu extends MainMenu {
         }
         if (cust.getContactDatabase().checkContactIsOn(customer.getAccount().getAccountNumber())) {
             long money = getInputMoney();
-            customer.getAccount().transfer(money, money + Constant.getFariFariWage(), cust.getAccount().getAccountNumber(), bankDataBase);
+            customer.getAccount().transfer(money, money + Constant.getFari(), cust.getAccount().getAccountNumber(), bankDataBase);
             customer.getRecentTrans().getRecentTrans().add(cust);
         } else {
             System.out.println(Constant.RED + "you are not the contact of " + cust.getFirstName() + " " + cust.getLastName());
@@ -120,10 +116,10 @@ public class TransferMoneyMenu extends MainMenu {
 
     private long wageKind(Customer customer) {
         if (database.getCustomerDataBase().contains(customer)) {
-            return Constant.getFariFariWage();
+            return Constant.getFari();
         }
         if (bankDataBase.getBankList().contains(customer)) {
-            return Constant.getFariAnotherCartWage();
+            return Constant.getOtherCart();
         }
         return 0;
     }

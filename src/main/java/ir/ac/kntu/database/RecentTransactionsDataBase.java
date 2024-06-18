@@ -2,11 +2,12 @@ package ir.ac.kntu.database;
 
 import ir.ac.kntu.person.Customer;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class RecentTransactionsDataBase {
+public class RecentTransactionsDataBase implements Serializable {
     private List<Customer> recentTrans;
 
     public RecentTransactionsDataBase() {
@@ -35,8 +36,12 @@ public class RecentTransactionsDataBase {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         RecentTransactionsDataBase that = (RecentTransactionsDataBase) obj;
         return Objects.equals(recentTrans, that.recentTrans);
     }

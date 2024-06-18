@@ -3,9 +3,10 @@ package ir.ac.kntu.cellphone;
 import ir.ac.kntu.database.SimCardDataBase;
 
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class CellPhone {
+public class CellPhone implements Serializable {
     private String cellNo;
     private long charge;
 
@@ -50,8 +51,12 @@ public class CellPhone {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         CellPhone cellPhone = (CellPhone) obj;
         return Objects.equals(cellNo, cellPhone.cellNo);
     }

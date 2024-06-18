@@ -182,7 +182,7 @@ public class CustomerMenu extends MainMenu {
     }
 
     private void fund(Customer customer) {
-        FundMenu fundMenu = new FundMenu(database);
+        FundMenu fundMenu = new FundMenu();
         fundMenu.fundMenu(customer);
     }
 }

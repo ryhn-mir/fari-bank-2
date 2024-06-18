@@ -83,8 +83,8 @@ public class ChiefMenu extends MainMenu {
     }
 
     private void autoTransaction() {
-        AutoTransactionMenu autoTransactionMenu = new AutoTransactionMenu(database, payaDataBase);
-        autoTransactionMenu.autoTransactionMenu();
+        AutoTransactionMenu autoTransMenu = new AutoTransactionMenu(database, payaDataBase);
+        autoTransMenu.autoTransactionMenu();
     }
 
 

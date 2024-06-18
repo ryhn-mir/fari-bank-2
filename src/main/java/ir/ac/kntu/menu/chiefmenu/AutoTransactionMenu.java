@@ -95,7 +95,7 @@ public class AutoTransactionMenu extends MainMenu {
         }
         Fund fund = returnFund(number);
         Customer customer = returnCustomer(number);
-        customer.getAccount().deposit((fund.getBalance() * Constant.getPROFIT()) / 100);
+        customer.getAccount().deposit((fund.getBalance() * Constant.getProfit()) / 100);
 
     }
 
@@ -105,7 +105,7 @@ public class AutoTransactionMenu extends MainMenu {
         for (Customer customer : database.getCustomerDataBase()) {
             for (Fund fund : customer.getAccount().getFundDataBase().getFundList()) {
                 long seconds = nowDate.getTime() - fund.getDate().getTime();
-                if (seconds > Constant.mileSecond && fund.getFundKind() == FundKind.PROFIT) {
+                if (seconds > Constant.getMileSecond() && fund.getFundKind() == FundKind.PROFIT) {
                     System.out.println(Constant.PURPLE + count + "." + fund);
                     count++;
                 }
@@ -120,7 +120,7 @@ public class AutoTransactionMenu extends MainMenu {
         for (Customer customer : database.getCustomerDataBase()) {
             for (Fund fund : customer.getAccount().getFundDataBase().getFundList()) {
                 long seconds = nowDate.getTime() - fund.getDate().getTime();
-                if (seconds > Constant.mileSecond && fund.getFundKind() == FundKind.PROFIT) {
+                if (seconds > Constant.getMileSecond() && fund.getFundKind() == FundKind.PROFIT) {
                     if (number == count) {
                         return fund;
                     }
@@ -137,7 +137,7 @@ public class AutoTransactionMenu extends MainMenu {
         for (Customer customer : database.getCustomerDataBase()) {
             for (Fund fund : customer.getAccount().getFundDataBase().getFundList()) {
                 long seconds = nowDate.getTime() - fund.getDate().getTime();
-                if (seconds > Constant.mileSecond && fund.getFundKind() == FundKind.PROFIT) {
+                if (seconds > Constant.getMileSecond() && fund.getFundKind() == FundKind.PROFIT) {
                     if (number == count) {
                         return customer;
                     }

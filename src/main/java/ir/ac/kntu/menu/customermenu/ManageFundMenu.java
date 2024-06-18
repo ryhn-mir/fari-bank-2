@@ -1,7 +1,6 @@
 package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.database.Database;
 import ir.ac.kntu.fund.Fund;
 import ir.ac.kntu.fund.FundKind;
 import ir.ac.kntu.menu.MainMenu;
@@ -10,12 +9,6 @@ import ir.ac.kntu.person.Customer;
 import java.util.Date;
 
 public class ManageFundMenu extends MainMenu {
-    private Database database;
-
-    public ManageFundMenu(Database database) {
-        this.database = database;
-    }
-
     private void printManageFund() {
         System.out.println(Constant.BLUE + "choose one of the following option : ");
         System.out.println(Constant.GREEN + "1.transfer from fund to account");
@@ -122,9 +115,6 @@ public class ManageFundMenu extends MainMenu {
         Date nowDate = new Date();
         Date fundDate = fund.getDate();
         long dif = nowDate.getTime() - fundDate.getTime();
-        if (dif > Constant.mileSecond * fund.getMouthCount()) {
-            return true;
-        }
-        return false;
+        return dif > Constant.getMileSecond() * fund.getMouthCount();
     }
 }

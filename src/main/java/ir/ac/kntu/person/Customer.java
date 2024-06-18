@@ -19,7 +19,7 @@ public class Customer extends Person implements Serializable {
     private RecentTransactionsDataBase recentTrans;
     private RegistrationStatus status;
     private RequestDatabase requestDatabase;
-    private SimTransactionDataBase simTransactionDataBase;
+    private SimTransactionDataBase simTrans;
 
     public Customer(String firstName, String lastName, String password, String nationalCode, String cellNumber, SimCardDataBase simCardDataBase) {
         super(firstName, lastName, password);
@@ -33,7 +33,7 @@ public class Customer extends Person implements Serializable {
         this.status = RegistrationStatus.PROGRESSING;
         requestDatabase = new RequestDatabase();
         account = new Account(0, randAccountNo());
-        simTransactionDataBase = new SimTransactionDataBase();
+        simTrans = new SimTransactionDataBase();
 
     }
 
@@ -104,12 +104,12 @@ public class Customer extends Person implements Serializable {
         this.cellPhone = cellPhone;
     }
 
-    public SimTransactionDataBase getSimTransactionDataBase() {
-        return simTransactionDataBase;
+    public SimTransactionDataBase getSimTrans() {
+        return simTrans;
     }
 
-    public void setSimTransactionDataBase(SimTransactionDataBase simTransactionDataBase) {
-        this.simTransactionDataBase = simTransactionDataBase;
+    public void setSimTrans(SimTransactionDataBase simTrans) {
+        this.simTrans = simTrans;
     }
 
     private String randAccountNo() {
@@ -162,8 +162,12 @@ public class Customer extends Person implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Customer customer = (Customer) obj;
         return Objects.equals(nationalCode, customer.nationalCode) && Objects.equals(cellPhone, customer.cellPhone) && Objects.equals(account, customer.account) && Objects.equals(contactDatabase, customer.contactDatabase) && Objects.equals(recentTrans, customer.recentTrans) && Objects.equals(requestDatabase, customer.requestDatabase);
     }

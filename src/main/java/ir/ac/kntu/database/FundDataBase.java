@@ -2,11 +2,12 @@ package ir.ac.kntu.database;
 
 import ir.ac.kntu.fund.Fund;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class FundDataBase {
+public class FundDataBase implements Serializable {
     private List<Fund> fundList;
 
     public List<Fund> getFundList() {
@@ -40,8 +41,12 @@ public class FundDataBase {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         FundDataBase that = (FundDataBase) obj;
         return Objects.equals(fundList, that.fundList);
     }

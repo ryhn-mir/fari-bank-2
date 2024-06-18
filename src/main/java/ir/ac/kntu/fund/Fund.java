@@ -1,9 +1,11 @@
 package ir.ac.kntu.fund;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
-public class Fund {
+public class Fund implements Serializable {
     private String name;
     private long balance;
     private FundKind fundKind;
@@ -88,8 +90,12 @@ public class Fund {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         Fund fund = (Fund) obj;
         return Objects.equals(name, fund.name) && fundKind == fund.fundKind;
     }

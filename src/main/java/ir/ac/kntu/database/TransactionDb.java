@@ -2,11 +2,12 @@ package ir.ac.kntu.database;
 
 import ir.ac.kntu.transaction.Transaction;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class TransactionDb {
+public class TransactionDb implements Serializable {
     private List<Transaction> transactions;
 
     public TransactionDb() {
@@ -42,8 +43,12 @@ public class TransactionDb {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         TransactionDb that = (TransactionDb) obj;
         return Objects.equals(transactions, that.transactions);
     }

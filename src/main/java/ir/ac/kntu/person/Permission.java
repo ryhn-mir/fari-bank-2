@@ -1,6 +1,8 @@
 package ir.ac.kntu.person;
 
-public class Permission {
+import java.io.Serializable;
+
+public class Permission implements Serializable {
     private boolean verify;
     private boolean userAccess;
     private boolean request;

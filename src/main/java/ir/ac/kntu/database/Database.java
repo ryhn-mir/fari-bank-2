@@ -4,8 +4,10 @@ import ir.ac.kntu.Constant;
 import ir.ac.kntu.person.Chief;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.person.Management;
+import ir.ac.kntu.util.ScannerWrapper;
 
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class Database {
@@ -17,10 +19,10 @@ public class Database {
         this.customerDataBase = customerDataBase;
         this.managementDB = managementDB;
         this.chiefDB = chiefDB;
-        chiefDB.add(new Chief("reyhane", "arabshahi", "Rr@138406", "reyhane123", 1));
-        chiefDB.add(new Chief("a", "a", "Aa@138406", "a", 2));
-        managementDB.add(new Management("reyhane", "arabshahi", "Rr@138406", "reyhane123"));
-        managementDB.add(new Management("sara", "ahmadi", "Ss@138310", "sara123"));
+//        chiefDB.add(new Chief("reyhane", "arabshahi", "Rr@138406", "reyhane123", 1));
+//        chiefDB.add(new Chief("a", "a", "Aa@138406", "a", 2));
+//        managementDB.add(new Management("reyhane", "arabshahi", "Rr@138406", "reyhane123"));
+//        managementDB.add(new Management("sara", "ahmadi", "Ss@138310", "sara123"));
     }
 
     public Set<Management> getManagementDB() {
@@ -123,10 +125,158 @@ public class Database {
     }
 
     public void printManagement() {
+        int size = addToManagementMap().size();
+        Map<Integer, Management> map = addToManagementMap();
+        int position = 1;
+        int value = Constant.VALUE;
+        if (value > size) {
+            value = size;
+        }
+        String type;
+        this.managementPrint(1, value + 1, map);
+        do {
+            type = ScannerWrapper.getInstance().nextLine();
+            switch (type) {
+                case "next" -> position = this.managementPositiveCheck(position, size, +value, map);
+                case "back" -> position = this.managementNegativeCheck(position, size, -value, map);
+                case "quit" -> {
+                    return;
+                }
+                default -> System.out.println("invalid input");
+            }
+
+        } while (true);
+    }
+
+    private Map<Integer, Management> addToManagementMap() {
         int count = 1;
+        Map<Integer, Management> showManagement = new HashMap<>();
         for (Management management : managementDB) {
-            System.out.println(Constant.PURPLE + count + "." + management.getFirstName() + " " + management.getLastName());
+            showManagement.put(count, management);
             count++;
         }
+        return showManagement;
+    }
+
+    private void managementPrint(int a, int b, Map<Integer, Management> map) {
+        for (int i = a; i < b; i++) {
+            System.out.println(i + "." + map.get(i).getFirstName() + " " + map.get(i).getLastName());
+        }
+    }
+
+    private int managementPositiveCheck(int position, int size, int amount, Map<Integer, Management> map) {
+        if (position + amount > size) {
+            position = size;
+            this.managementPrint(size - amount, size, map);
+        } else {
+            if (position == 1) {
+                position += amount;
+            }
+            if (position + amount > size) {
+                position = size;
+                this.managementPrint(size - amount, size, map);
+                return position;
+            }
+            this.managementPrint(position, position + amount, map);
+            position += amount;
+        }
+        return position;
+    }
+
+    private int managementNegativeCheck(int position, int size, int amount, Map<Integer, Management> map) {
+        if (position + amount < 0) {
+            position = 0;
+            this.managementPrint(1, -amount + 1, map);
+        } else {
+            if (position == size) {
+                position += amount;
+            }
+            if (position + amount < 1) {
+                position = 0;
+                this.managementPrint(1, -amount + 1, map);
+                return position;
+            }
+            this.managementPrint(position + amount, position + 1, map);
+            position += amount;
+        }
+        return position;
+    }
+
+    public void printCustomer() {
+        int size = addToCustomerMap().size();
+        Map<Integer, Customer> map = addToCustomerMap();
+        int position = 1;
+        int value = Constant.VALUE;
+        if (value > size) {
+            value = size;
+        }
+        String type;
+        customerPrint(1, value + 1, map);
+        do {
+            type = ScannerWrapper.getInstance().nextLine();
+            switch (type) {
+                case "next" -> position = customerPositiveCheck(position, size, +value, map);
+                case "back" -> position = customerNegativeCheck(position, size, -value, map);
+                case "quit" -> {
+                    return;
+                }
+                default -> System.out.println("invalid input");
+            }
+
+        } while (true);
+    }
+
+    private Map<Integer, Customer> addToCustomerMap() {
+        int count = 1;
+        Map<Integer, Customer> showCustomer = new HashMap<>();
+        for (Customer customer : customerDataBase) {
+            showCustomer.put(count, customer);
+            count++;
+        }
+        return showCustomer;
+    }
+
+    private void customerPrint(int a, int b, Map<Integer, Customer> map) {
+        for (int i = a; i < b; i++) {
+            System.out.println(i + "." + map.get(i).getFirstName() + " " + map.get(i).getLastName() + " " + map.get(i).getCellNumber());
+        }
+    }
+
+    private int customerPositiveCheck(int position, int size, int amount, Map<Integer, Customer> map) {
+        if (position + amount > size) {
+            position = size;
+            customerPrint(size - amount, size, map);
+        } else {
+            if (position == 1) {
+                position += amount;
+            }
+            if (position + amount > size) {
+                position = size;
+                customerPrint(size - amount, size, map);
+                return position;
+            }
+            customerPrint(position, position + amount, map);
+            position += amount;
+        }
+        return position;
+    }
+
+    private int customerNegativeCheck(int position, int size, int amount, Map<Integer, Customer> map) {
+        if (position + amount < 0) {
+            position = 0;
+            customerPrint(1, -amount + 1, map);
+        } else {
+            if (position == size) {
+                position += amount;
+            }
+            if (position + amount < 1) {
+                position = 0;
+                customerPrint(1, -amount + 1, map);
+                return position;
+            }
+            customerPrint(position + amount, position + 1, map);
+            position += amount;
+        }
+        return position;
     }
 }
