@@ -169,11 +169,11 @@ public class Customer extends Person implements Serializable {
             return false;
         }
         Customer customer = (Customer) obj;
-        return Objects.equals(nationalCode, customer.nationalCode) && Objects.equals(cellPhone, customer.cellPhone) && Objects.equals(account, customer.account) && Objects.equals(contactDatabase, customer.contactDatabase) && Objects.equals(recentTrans, customer.recentTrans) && Objects.equals(requestDatabase, customer.requestDatabase);
+        return Objects.equals(nationalCode, customer.nationalCode) && Objects.equals(cellPhone, customer.cellPhone) && Objects.equals(account, customer.account);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nationalCode, cellPhone, account, contactDatabase, recentTrans, requestDatabase);
+        return Objects.hash(nationalCode, cellPhone, account);
     }
 }

@@ -5,11 +5,11 @@ import ir.ac.kntu.fund.Fund;
 import ir.ac.kntu.fund.FundKind;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;
-import ir.ac.kntu.thread.Profit;
+//import ir.ac.kntu.thread.Profit;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+//import java.util.concurrent.Executors;
+//import java.util.concurrent.ScheduledExecutorService;
+//import java.util.concurrent.TimeUnit;
 
 public class FundMenu extends MainMenu {
     private void printFundMenu() {
@@ -82,13 +82,13 @@ public class FundMenu extends MainMenu {
         int mounthCount = getMonthCount();
         Fund fund = new Fund(fundName, money, FundKind.PROFIT, mounthCount);
         customer.getAccount().withdraw(money);
-        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(mounthCount);
-        for (int i = 1; i <= mounthCount; i++) {
-            Profit profit = new Profit();
-            profit.setFund(fund, customer);
-            Thread thread = new Thread(profit);
-            executorService.schedule(thread, 30 * i, TimeUnit.DAYS);
-        }
+//        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(mounthCount);
+//        for (int i = 1; i <= mounthCount; i++) {
+//            Profit profit = new Profit();
+//            profit.setFund(fund, customer);
+//            Thread thread = new Thread(profit);
+//            executorService.schedule(thread, 30 * i, TimeUnit.DAYS);
+//        }
         //executorService.close();
         return fund;
     }

@@ -185,11 +185,11 @@ public class Account implements Serializable {
             return false;
         }
         Account account = (Account) obj;
-        return Objects.equals(accountNumber, account.accountNumber) && Objects.equals(card, account.card) && Objects.equals(transactionDb, account.transactionDb) && Objects.equals(fundDataBase, account.fundDataBase);
+        return Objects.equals(accountNumber, account.accountNumber) && Objects.equals(card, account.card);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountNumber, card, transactionDb, fundDataBase);
+        return Objects.hash(accountNumber, card);
     }
 }

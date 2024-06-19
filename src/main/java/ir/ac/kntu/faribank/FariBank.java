@@ -1,21 +1,10 @@
 package ir.ac.kntu.faribank;
 
-import ir.ac.kntu.Constant;
-import ir.ac.kntu.cellphone.CellPhone;
 import ir.ac.kntu.database.*;
 import ir.ac.kntu.menu.Menu;
-import ir.ac.kntu.paya.Paya;
-import ir.ac.kntu.person.Chief;
-import ir.ac.kntu.person.Customer;
-import ir.ac.kntu.person.Management;
-import ir.ac.kntu.person.RegistrationStatus;
-import ir.ac.kntu.request.Request;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class FariBank {
 
@@ -27,17 +16,17 @@ public class FariBank {
 
     public void start() {
         initialize();
-        Customer customer1 = new Customer("a", "a", "Mm@1383", "12", "09102607040", simCardDataBase);
-        Customer customer2 = new Customer("b", "b", "Rr@1384", "13", "09112607040", simCardDataBase);
-        Customer customer3 = new Customer("c", "c", "Cc@1383", "14", "09122607040", simCardDataBase);
-
-        customer1.setStatus(RegistrationStatus.ACCEPTED);
-        customer2.setStatus(RegistrationStatus.ACCEPTED);
-        customer3.setStatus(RegistrationStatus.ACCEPTED);
-
-        database.addCustomer(customer1);
-        database.addCustomer(customer2);
-        database.addCustomer(customer3);
+//        Customer customer1 = new Customer("a", "a", "Mm@1383", "12", "09102607040", simCardDataBase);
+//        Customer customer2 = new Customer("b", "b", "Rr@1384", "13", "09112607040", simCardDataBase);
+//        Customer customer3 = new Customer("c", "c", "Cc@1383", "14", "09122607040", simCardDataBase);
+//
+//        customer1.setStatus(RegistrationStatus.ACCEPTED);
+//        customer2.setStatus(RegistrationStatus.ACCEPTED);
+//        customer3.setStatus(RegistrationStatus.ACCEPTED);
+//
+//        database.addCustomer(customer1);
+//        database.addCustomer(customer2);
+//        database.addCustomer(customer3);
 
         Menu menu = new Menu(answerDB, database, simCardDataBase, bankDataBase, payaDataBase);
         while (true) {

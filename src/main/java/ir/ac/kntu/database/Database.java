@@ -21,9 +21,9 @@ public class Database {
         this.managementDB = managementDB;
         this.chiefDB = chiefDB;
         chiefDB.add(new Chief("reyhane", "arabshahi", "Rr@138406", "reyhane123", 1));
-        chiefDB.add(new Chief("a", "a", "Aa@138406", "a", 2));
-        managementDB.add(new Management("reyhane", "arabshahi", "Rr@138406", "reyhane123"));
-        managementDB.add(new Management("sara", "ahmadi", "Ss@138310", "sara123"));
+//        chiefDB.add(new Chief("a", "a", "Aa@138406", "a", 2));
+//        managementDB.add(new Management("reyhane", "arabshahi", "Rr@138406", "reyhane123"));
+//        managementDB.add(new Management("sara", "ahmadi", "Ss@138310", "sara123"));
     }
 
     public Set<Management> getManagementDB() {
@@ -178,6 +178,7 @@ public class Database {
 
     private int managementPositiveCheck(int position, int size, int amount, Map<Integer, Management> map) {
         if (position + amount > size) {
+            voice();
             position = size;
             this.managementPrint(size - amount + 1, size + 1, map);
         } else {
@@ -197,6 +198,7 @@ public class Database {
 
     private int managementNegativeCheck(int position, int size, int amount, Map<Integer, Management> map) {
         if (position + amount < 0) {
+            voice();
             position = 0;
             this.managementPrint(1, -amount + 1, map);
         } else {
@@ -256,6 +258,7 @@ public class Database {
 
     private int customerPositiveCheck(int position, int size, int amount, Map<Integer, Customer> map) {
         if (position + amount > size) {
+            voice();
             position = size;
             customerPrint(size - amount + 1, size + 1, map);
         } else {
@@ -275,6 +278,7 @@ public class Database {
 
     private int customerNegativeCheck(int position, int size, int amount, Map<Integer, Customer> map) {
         if (position + amount < 0) {
+            voice();
             position = 0;
             customerPrint(1, -amount + 1, map);
         } else {
@@ -290,5 +294,22 @@ public class Database {
             position += amount;
         }
         return position;
+    }
+
+    private void voice() {
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                File file = new File("ding.wav");
+//                try {
+//                    AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+//                    Clip clip = AudioSystem.getClip();
+//                    clip.open(audioStream);
+//                    clip.start();
+//                } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
+//        }).start();
     }
 }
