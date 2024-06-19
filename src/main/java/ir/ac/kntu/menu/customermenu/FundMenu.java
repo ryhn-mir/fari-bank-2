@@ -79,17 +79,17 @@ public class FundMenu extends MainMenu {
             System.out.println(Constant.RED + "your balance is not enough");
             return null;
         }
-        int mouthCount = getMonthCount();
-        Fund fund = new Fund(fundName, money, FundKind.PROFIT, mouthCount);
+        int mounthCount = getMonthCount();
+        Fund fund = new Fund(fundName, money, FundKind.PROFIT, mounthCount);
         customer.getAccount().withdraw(money);
-        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(mouthCount);
-        for (int i = 1; i <= mouthCount; i++) {
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(mounthCount);
+        for (int i = 1; i <= mounthCount; i++) {
             Profit profit = new Profit();
             profit.setFund(fund, customer);
             Thread thread = new Thread(profit);
             executorService.schedule(thread, 30 * i, TimeUnit.DAYS);
         }
-        executorService.close();
+        //executorService.close();
         return fund;
     }
 

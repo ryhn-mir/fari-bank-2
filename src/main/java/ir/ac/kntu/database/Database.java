@@ -4,6 +4,7 @@ import ir.ac.kntu.Constant;
 import ir.ac.kntu.person.Chief;
 import ir.ac.kntu.person.Customer;
 import ir.ac.kntu.person.Management;
+import ir.ac.kntu.person.RegistrationStatus;
 import ir.ac.kntu.util.ScannerWrapper;
 
 import java.util.HashMap;
@@ -19,10 +20,10 @@ public class Database {
         this.customerDataBase = customerDataBase;
         this.managementDB = managementDB;
         this.chiefDB = chiefDB;
-//        chiefDB.add(new Chief("reyhane", "arabshahi", "Rr@138406", "reyhane123", 1));
-//        chiefDB.add(new Chief("a", "a", "Aa@138406", "a", 2));
-//        managementDB.add(new Management("reyhane", "arabshahi", "Rr@138406", "reyhane123"));
-//        managementDB.add(new Management("sara", "ahmadi", "Ss@138310", "sara123"));
+        chiefDB.add(new Chief("reyhane", "arabshahi", "Rr@138406", "reyhane123", 1));
+        chiefDB.add(new Chief("a", "a", "Aa@138406", "a", 2));
+        managementDB.add(new Management("reyhane", "arabshahi", "Rr@138406", "reyhane123"));
+        managementDB.add(new Management("sara", "ahmadi", "Ss@138310", "sara123"));
     }
 
     public Set<Management> getManagementDB() {
@@ -83,6 +84,17 @@ public class Database {
             }
         }
         return null;
+    }
+
+    public int showCustomer() {
+        int count = 1;
+        for (Customer customer : customerDataBase) {
+            if (customer.getStatus().equals(RegistrationStatus.PROGRESSING)) {
+                System.out.println(count + "." + customer);
+                count++;
+            }
+        }
+        return count;
     }
 
     public boolean doesCustomerExist(Customer customer) {
@@ -158,8 +170,8 @@ public class Database {
         return showManagement;
     }
 
-    private void managementPrint(int a, int b, Map<Integer, Management> map) {
-        for (int i = a; i < b; i++) {
+    private void managementPrint(int num1, int num2, Map<Integer, Management> map) {
+        for (int i = num1; i < num2; i++) {
             System.out.println(i + "." + map.get(i).getFirstName() + " " + map.get(i).getLastName());
         }
     }
@@ -167,7 +179,7 @@ public class Database {
     private int managementPositiveCheck(int position, int size, int amount, Map<Integer, Management> map) {
         if (position + amount > size) {
             position = size;
-            this.managementPrint(size - amount, size, map);
+            this.managementPrint(size - amount + 1, size + 1, map);
         } else {
             if (position == 1) {
                 position += amount;
@@ -236,8 +248,8 @@ public class Database {
         return showCustomer;
     }
 
-    private void customerPrint(int a, int b, Map<Integer, Customer> map) {
-        for (int i = a; i < b; i++) {
+    private void customerPrint(int num1, int num2, Map<Integer, Customer> map) {
+        for (int i = num1; i < num2; i++) {
             System.out.println(i + "." + map.get(i).getFirstName() + " " + map.get(i).getLastName() + " " + map.get(i).getCellNumber());
         }
     }
@@ -245,7 +257,7 @@ public class Database {
     private int customerPositiveCheck(int position, int size, int amount, Map<Integer, Customer> map) {
         if (position + amount > size) {
             position = size;
-            customerPrint(size - amount, size, map);
+            customerPrint(size - amount + 1, size + 1, map);
         } else {
             if (position == 1) {
                 position += amount;

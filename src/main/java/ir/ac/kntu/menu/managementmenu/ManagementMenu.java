@@ -103,14 +103,13 @@ public class ManagementMenu extends MainMenu {
 
 
     public void verify() {
-        int count = 1;
-        database.printCustomer();
-        if (database.getCustomerDataBase().isEmpty()) {
+        int count = database.showCustomer();
+        if (database.getCustomerDataBase().isEmpty() || count == 1) {
             System.out.println(Constant.RED + "there is no customer!!");
             return;
         }
         int number = getNumber();
-        if (!(0 < number && number < database.getCustomerDataBase().size())) {
+        if (!(0 < number && number < count)) {
             System.out.println(Constant.RED + "number out of the range");
             return;
         }

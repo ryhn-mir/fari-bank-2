@@ -11,16 +11,16 @@ public class BankDataBase {
 
     public BankDataBase(SimCardDataBase simCardDataBase, Set<Customer> bankList) {
         this.bankList = bankList;
-//        Customer customer1 = new Customer("sara", "ghasemi", "Ss@1383", "91", "09052607040", simCardDataBase);
-//        Customer customer2 = new Customer("mozhgan", "hosseini", "Mm@1377", "92", "09372607040", simCardDataBase);
-//        customer1.getAccount().setAccountNumber("123456789");
-//        customer2.getAccount().setAccountNumber("123456798");
-//        customer1.getAccount().getCard().setCardNumber("123456789123");
-//        customer2.getAccount().getCard().setCardNumber("123456789132");
-//        customer1.setStatus(RegistrationStatus.ACCEPTED);
-//        customer2.setStatus(RegistrationStatus.ACCEPTED);
-//        bankList.add(customer1);
-//        bankList.add(customer2);
+        Customer customer1 = new Customer("sara", "ghasemi", "Ss@1383", "91", "09052607040", simCardDataBase);
+        Customer customer2 = new Customer("mozhgan", "hosseini", "Mm@1377", "92", "09372607040", simCardDataBase);
+        customer1.getAccount().setAccountNumber("123456789");
+        customer2.getAccount().setAccountNumber("123456798");
+        customer1.getAccount().getCard().setCardNumber("123456789123");
+        customer2.getAccount().getCard().setCardNumber("123456789132");
+        customer1.setStatus(RegistrationStatus.ACCEPTED);
+        customer2.setStatus(RegistrationStatus.ACCEPTED);
+        bankList.add(customer1);
+        bankList.add(customer2);
     }
 
     public Set<Customer> getBankList() {

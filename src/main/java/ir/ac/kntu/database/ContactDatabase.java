@@ -96,8 +96,8 @@ public class ContactDatabase implements Serializable {
         return showCustomer;
     }
 
-    private void contactPrint(int a, int b, Map<Integer, Customer> map) {
-        for (int i = a; i < b; i++) {
+    private void contactPrint(int num1, int num2, Map<Integer, Customer> map) {
+        for (int i = num1; i < num2; i++) {
             System.out.println(i + "." + map.get(i).getFirstName() + " " + map.get(i).getLastName() + " " + map.get(i).getCellNumber());
         }
     }
@@ -105,7 +105,7 @@ public class ContactDatabase implements Serializable {
     private int contactPositiveCheck(int position, int size, int amount, Map<Integer, Customer> map) {
         if (position + amount > size) {
             position = size;
-            contactPrint(size - amount, size, map);
+            contactPrint(size - amount + 1, size + 1, map);
         } else {
             if (position == 1) {
                 position += amount;

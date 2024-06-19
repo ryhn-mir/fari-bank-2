@@ -1,7 +1,6 @@
 package ir.ac.kntu.menu.customermenu;
 
 import ir.ac.kntu.Constant;
-import ir.ac.kntu.database.ContactDatabase;
 import ir.ac.kntu.database.Database;
 import ir.ac.kntu.menu.MainMenu;
 import ir.ac.kntu.person.Customer;

@@ -3,7 +3,6 @@ package ir.ac.kntu.fund;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-import java.util.Set;
 
 public class Fund implements Serializable {
     private String name;

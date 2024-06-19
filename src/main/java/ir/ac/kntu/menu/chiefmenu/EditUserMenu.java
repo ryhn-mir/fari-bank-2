@@ -16,7 +16,7 @@ public class EditUserMenu extends MainMenu {
     private void printEditUserMenu() {
         System.out.println(Constant.BLUE + "choose one of the following options : ");
         System.out.println(Constant.GREEN + "1.edit chief");
-        System.out.println(Constant.GREEN + "2.edit ");
+        System.out.println(Constant.GREEN + "2.edit Management");
         System.out.println(Constant.GREEN + "99.back");
     }
 
